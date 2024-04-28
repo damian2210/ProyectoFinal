@@ -50,7 +50,9 @@ create table prestar(
 cod_sucursal varchar(3),
 cod_sucursal_prestadora varchar(3),
 cantidad int,
-primary key(cod_sucursal,cod_sucursal_prestadora)
+primary key(cod_sucursal,cod_sucursal_prestadora),
+foreign key(cod_sucursal) references sucursal(cod_sucursal),
+foreign key(cod_sucursal_prestadora) references sucursal(cod_sucursal)
 );
 
 create table contratar(
