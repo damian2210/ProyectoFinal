@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sucursal">
+
+
+    <Button
+        android:id="@+id/btnInsSuc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="116dp"
+        android:text="Insertar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/btnBorrarSuc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="32dp"
+        android:text="Borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toEndOf="@+id/btnModSuc"
+        app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
+
+    <Button
+        android:id="@+id/btnModSuc"
+        android:layout_width="129dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:text="Modificar"
+        app:layout_constraintStart_toEndOf="@+id/btnInsSuc"
+        app:layout_constraintTop_toBottomOf="@+id/btnVisualizarSuc" />
+
+    <Button
+        android:id="@+id/btnVisualizarSuc"
+        android:layout_width="129dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="144dp"
+        android:text="Visualizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="76dp"
+        android:text="Cod.Sucursal"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="Dirección"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="Teléfono"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#A65CE6"
+        android:backgroundTint="#C473F6"
+        android:text="Sucursal"
+        android:textAlignment="center"
+        android:textColor="#131313"
+        android:textSize="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtCodSuc"
+        android:layout_width="214dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="44dp"
+        android:hint="Código de la sucursal"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/txtDirSuc"
+        android:layout_width="214dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        android:hint="Dirección"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodSuc" />
+
+    <EditText
+        android:id="@+id/txtTlfSuc"
+        android:layout_width="214dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        android:hint="Teléfono"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDirSuc" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
