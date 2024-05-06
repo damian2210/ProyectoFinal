@@ -49,7 +49,7 @@ public class controladorPantallaPrincipal {
 
     public static void insertarEmp(String codEmp, String contraseña, String dni, String nombre, String rol, String usuario) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e != null) {
                 JOptionPane.showMessageDialog(ventana, "Ya existe el empleado");
@@ -58,17 +58,17 @@ public class controladorPantallaPrincipal {
             e = new Empleado(codEmp, contraseña, dni, nombre, rol, usuario);
 
             empDAO.insertar(session, e);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Empleado insertado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void borrarEmp(String codEmp) {
         try {
-            session.beginTransaction();
+           HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el empleado");
@@ -76,18 +76,18 @@ public class controladorPantallaPrincipal {
             }
             venDAO.modificarEmpNull(session, e);
             empDAO.borrar(session, e);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Empleado borrado correctamente");
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void modificarEmp(String codEmp, String contraseña, String dni, String nombre, String rol, String usuario) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el empleado");
@@ -95,18 +95,18 @@ public class controladorPantallaPrincipal {
             }
 
             empDAO.modificar(session, e, nombre, usuario, contraseña, dni, rol);
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Empleado modificado correctamente");
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void cargarDatosEmp(String codEmp, JTextField nombre, JTextField usuario, JTextField contra, JTextField dni, JComboBox rol) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e != null) {
                 nombre.setText(e.getNombre());
@@ -120,27 +120,27 @@ public class controladorPantallaPrincipal {
                 contra.setText("");
                 dni.setText("");
             }
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void VisualizarEmp(JTextArea ta) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             empDAO.cargadatos(session, ta);
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void insertarCli(String idCliente, String dni, String nombre, String numCuenta, Integer telefono) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
             if (c != null) {
                 JOptionPane.showMessageDialog(ventana, "Ya existe el cliente");
@@ -149,17 +149,17 @@ public class controladorPantallaPrincipal {
             c = new Cliente(idCliente, dni, nombre, numCuenta, telefono);
 
             cliDAO.insertar(session, c);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Cliente insertado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void borrarCli(String idCliente) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
             if (c == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el cliente");
@@ -171,34 +171,34 @@ public class controladorPantallaPrincipal {
                 return;
             }
             cliDAO.borrar(session, c);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Cliente borrado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void modificarCli(String idCliente, String dni, String nombre, String numCuenta, Integer telefono) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
             if (c == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el cliente");
                 return;
             }
-            cliDAO.modificar(session, c, nombre, dni, 0, 0);
-            session.getTransaction().commit();
+            cliDAO.modificar(session, c, nombre, dni, numCuenta, telefono);
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Cliente modificado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void cargarDatosCli(String idCliente, JTextField dni, JTextField nombre, JTextField numCuenta, JTextField telefono) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
             if (c != null) {
                 nombre.setText(c.getNombre());
@@ -212,20 +212,20 @@ public class controladorPantallaPrincipal {
                 telefono.setText("");
                 dni.setText("");
             }
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void VisualizarCli(JTextArea ta) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             cliDAO.cargadatos(session, ta);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

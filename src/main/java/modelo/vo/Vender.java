@@ -12,11 +12,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 /**
  *
@@ -24,15 +22,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "vender")
-@NamedQueries({
-    @NamedQuery(name = "Vender.findAll", query = "SELECT v FROM Vender v")})
 public class Vender implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected VenderPK venderPK;
     @Column(name = "fecha_venta")
-    @Temporal(TemporalType.DATE)
     private Date fechaVenta;
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente", insertable = false, updatable = false)
     @ManyToOne(optional = false)

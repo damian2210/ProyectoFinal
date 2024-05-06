@@ -33,7 +33,7 @@ public class ClienteDAO {
     
     }
     public Cliente buscarCliente(Session session, String id) {
-        String consulta="from Cliente c where c.codcli=:id";
+        String consulta="from Cliente c where c.idCliente=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",id);
         return (Cliente)q.uniqueResult();
@@ -43,10 +43,10 @@ public class ClienteDAO {
         session.save(c);
     }
 
-    public void modificar(Session session, Cliente c, String nombre, String dni, long numCuenta , int tlf) {
+    public void modificar(Session session, Cliente c, String nombre, String dni, String numCuenta , int tlf) {
         c.setNombre(nombre);
         c.setDni(dni);
-        c.setNumCuenta(nombre);
+        c.setNumCuenta(numCuenta);
         c.setTelefono(tlf);
         session.update(c);
     }

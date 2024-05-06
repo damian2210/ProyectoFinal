@@ -18,9 +18,17 @@ import org.hibernate.query.Query;
  */
 public class PrestarDAO {
      public Prestar buscarPrestamo(Session session, PrestarPK pPK) {
-        String consulta="from Prestar p where p.prestarPK=:id";
+        String consulta="from Prestar p where p.prestarPK.codSucursal=:id and p.prestarPK.codSucursalPrestadora=:id2";
         Query q=session.createQuery(consulta);
-        q.setParameter("id",pPK);
+        q.setParameter("id",pPK.getCodSucursal());
+          q.setParameter("id2",pPK.getCodSucursalPrestadora());
+        return (Prestar)q.uniqueResult();
+    }
+
+       public Prestar buscarSucursalEnPrestamo(Session session, String codSuc) {
+        String consulta="from Prestar p where p.prestarPK.codSucursal=:id or p.prestarPK.codSucursalPrestadora=:id";
+        Query q=session.createQuery(consulta);
+        q.setParameter("id",codSuc);
         return (Prestar)q.uniqueResult();
     }
 

@@ -103,7 +103,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cmbEmpRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director", "Inversionista", "Gestor de préstamos" }));
+        cmbEmpRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director", "Inversionista" }));
 
         btnEmpIns.setText("Insertar");
         btnEmpIns.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +160,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                             .addComponent(txtEmpDni)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(cmbEmpRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -383,6 +383,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
+        controladorPantallaProductos.cerrarSession();
+        controladorPantallaSucursal.cerrarSession(); 
         controladorPantallaPrincipal.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
@@ -392,32 +394,40 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void txtEmpCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpCodFocusLost
         // TODO add your handling code here:
-        controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText(), txtEmpNom, txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
+        if (!txtEmpCod.getText().isBlank()) {
+            controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText(), txtEmpNom, txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
+        }
     }//GEN-LAST:event_txtEmpCodFocusLost
 
     private void txtCliCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCliCodFocusLost
         // TODO add your handling code here:
-        controladorPantallaPrincipal.cargarDatosCli(txtCliCod.getText(), txtCliDni, txtCliNom, txtCliNumC, txtCliTlf);
+        if (!txtCliCod.getText().isBlank()) {
+            controladorPantallaPrincipal.cargarDatosCli(txtCliCod.getText(), txtCliDni, txtCliNom, txtCliNumC, txtCliTlf);
+        }
     }//GEN-LAST:event_txtCliCodFocusLost
 
     private void btnEmpInsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpInsMouseClicked
         // TODO add your handling code here:
-        validarEmpleado();
-        controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
-    
+        boolean correcto = validarEmpleado();
+        if (correcto == true) {
+            controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+        }
     }//GEN-LAST:event_btnEmpInsMouseClicked
 
     private void btnEmpBorraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpBorraMouseClicked
         // TODO add your handling code here:
-        validarEmpleado();
-        controladorPantallaPrincipal.borrarEmp(txtEmpCod.getText());
+        boolean correcto = validarEmpleado();
+        if (correcto == true) {
+            controladorPantallaPrincipal.borrarEmp(txtEmpCod.getText());
+        }
     }//GEN-LAST:event_btnEmpBorraMouseClicked
 
     private void btnEmpModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpModMouseClicked
         // TODO add your handling code here:
-        validarEmpleado();
-                controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
-
+        boolean correcto = validarEmpleado();
+        if (correcto == true) {
+            controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+        }
     }//GEN-LAST:event_btnEmpModMouseClicked
 
     private void btnEmpVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpVerMouseClicked
@@ -427,22 +437,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnCliInsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCliInsMouseClicked
         // TODO add your handling code here:
-        validarCliente();
-         controladorPantallaPrincipal.insertarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
-         
+        boolean correcto = validarCliente();
+        if (correcto == true) {
+            controladorPantallaPrincipal.insertarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
+        }
     }//GEN-LAST:event_btnCliInsMouseClicked
 
     private void btnCliBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCliBorrarMouseClicked
         // TODO add your handling code here:
-        validarCliente();
-        controladorPantallaPrincipal.borrarCli(txtCliCod.getText());
+        boolean correcto = validarCliente();
+        if (correcto == true) {
+            controladorPantallaPrincipal.borrarCli(txtCliCod.getText());
+        }
     }//GEN-LAST:event_btnCliBorrarMouseClicked
 
     private void btnCliModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCliModMouseClicked
         // TODO add your handling code here:
-          validarCliente();
-         controladorPantallaPrincipal.modificarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
-         
+        boolean correcto = validarCliente();
+        if (correcto == true) {
+            controladorPantallaPrincipal.modificarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
+        }
     }//GEN-LAST:event_btnCliModMouseClicked
 
     private void txtCliVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCliVerMouseClicked
@@ -485,11 +499,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
     }
 
-    private void validarEmpleado() {
+    private boolean validarEmpleado() {
         if (txtEmpCod.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtEmpCod.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^e\\d{2}$");
             boolean correcto = p.matcher(txtEmpCod.getText()).matches();
@@ -497,27 +511,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:e+dos dígitos)");
                 txtEmpCod.requestFocus();
                 txtEmpCod.setText(" ");
-                return;
+                return false;
             }
         }
         if (txtEmpNom.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el nombre");
             txtEmpNom.requestFocus();
-            return;
+            return false;
         } else {
             for (int i = 0; i < txtEmpNom.getText().length(); i++) {
                 if (Character.isDigit(txtEmpNom.getText().charAt(i))) {
                     JOptionPane.showMessageDialog(null, "El nombre no puede tener números");
                     txtEmpNom.requestFocus();
                     txtEmpNom.setText(" ");
-                    return;
+                    return false;
                 }
             }
         }
         if (txtEmpDni.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
             txtEmpDni.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
             boolean correcto = p.matcher(txtEmpDni.getText()).matches();
@@ -525,45 +539,45 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de DNI incorrecto");
                 txtEmpDni.requestFocus();
                 txtEmpDni.setText(" ");
-                return;
+                return false;
             }
         }
-       
+        return true;
     }
-    
-     private void validarCliente() {
+
+    private boolean validarCliente() {
         if (txtCliCod.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtCliCod.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^c\\d{3}$");
-            boolean correcto = p.matcher(txtCliCod.getText()).matches();
+            boolean correcto = p.matcher(txtCliCod.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:c+tres dígitos)");
                 txtCliCod.requestFocus();
                 txtCliCod.setText(" ");
-                return;
+                return false;
             }
         }
         if (txtCliNom.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el nombre");
             txtCliNom.requestFocus();
-            return;
+            return false;
         } else {
             for (int i = 0; i < txtCliNom.getText().length(); i++) {
                 if (Character.isDigit(txtCliNom.getText().charAt(i))) {
                     JOptionPane.showMessageDialog(null, "El nombre no puede tener números");
                     txtCliNom.requestFocus();
                     txtCliNom.setText(" ");
-                    return;
+                    return false;
                 }
             }
         }
         if (txtCliDni.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
             txtCliDni.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
             boolean correcto = p.matcher(txtCliDni.getText()).matches();
@@ -571,13 +585,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de DNI incorrecto");
                 txtCliDni.requestFocus();
                 txtCliDni.setText(" ");
-                return;
+                return false;
             }
         }
-         if (txtCliTlf.getText().isBlank() == true) {
+        if (txtCliTlf.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el teléfono");
             txtCliTlf.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
             boolean correcto = p.matcher(txtCliTlf.getText()).matches();
@@ -585,14 +599,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de número de teléfono incorrecto");
                 txtCliTlf.requestFocus();
                 txtCliTlf.setText(" ");
-                return;
+                return false;
             }
         }
-         
-         if (txtCliNumC.getText().isBlank() == true) {
+
+        if (txtCliNumC.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el número de cuenta");
             txtCliNumC.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\d{10}");
             boolean correcto = p.matcher(txtCliNumC.getText()).matches();
@@ -600,10 +614,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de número de cuenta incorrecto");
                 txtCliNumC.requestFocus();
                 txtCliNumC.setText(" ");
-                return;
+                return false;
             }
         }
-       
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

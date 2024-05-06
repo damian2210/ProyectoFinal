@@ -20,11 +20,12 @@ import modelo.vo.VenderPK;
  */
 public class PantallaProductos extends javax.swing.JFrame {
 
+    private boolean comboCarg;
     /**
      * Creates new form PantallaProductos
      */
     public PantallaProductos() {
-
+ comboCarg=false;
         initComponents();
         controladorPantallaProductos.iniciarSession();
     }
@@ -107,12 +108,22 @@ public class PantallaProductos extends javax.swing.JFrame {
             }
         });
 
+        cmbVendProd.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbVendProdItemStateChanged(evt);
+            }
+        });
         cmbVendProd.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cmbVendProdPropertyChange(evt);
             }
         });
 
+        cmbVendCli.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbVendCliItemStateChanged(evt);
+            }
+        });
         cmbVendCli.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cmbVendCliPropertyChange(evt);
@@ -358,11 +369,12 @@ public class PantallaProductos extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         controladorPantallaProductos.cargarCb();
+        comboCarg=true;
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        controladorPantallaProductos.cerrarSession();
+        comboCarg=false;
     }//GEN-LAST:event_formWindowClosed
 
     private void cmbProdTipoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbProdTipoPropertyChange
@@ -405,26 +417,33 @@ public class PantallaProductos extends javax.swing.JFrame {
 
     private void txtProdCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProdCodFocusLost
         // TODO add your handling code here:
-
+        if (!txtProdCod.getText().isBlank()) {
         controladorPantallaProductos.cargarDatosPro(txtProdCod.getText(), txtProdfecha, txtProdInt, txtProdPunt, cmbProdTipo);
+        }
     }//GEN-LAST:event_txtProdCodFocusLost
 
     private void btnProdInsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdInsMouseClicked
         // TODO add your handling code here:
-        validarProducto();
+        boolean correcto=validarProducto();
+        if(correcto==true){
         controladorPantallaProductos.insertarPro(txtProdCod.getText(), Date.valueOf(txtProdfecha.getText()), Float.valueOf(txtProdInt.getText()), txtProdPunt.getText(), cmbProdTipo.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_btnProdInsMouseClicked
 
     private void btnProdBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdBorrarMouseClicked
         // TODO add your handling code here:
-        validarProducto();
+        boolean correcto=validarProducto();
+        if(correcto==true){
         controladorPantallaProductos.borrarPro(txtProdCod.getText());
+        }
     }//GEN-LAST:event_btnProdBorrarMouseClicked
 
     private void btnProdModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdModMouseClicked
         // TODO add your handling code here:
-        validarProducto();
+        boolean correcto=validarProducto();
+        if(correcto==true){
         controladorPantallaProductos.modificarPro(txtProdCod.getText(), Date.valueOf(txtProdfecha.getText()), Float.valueOf(txtProdInt.getText()), txtProdPunt.getText(), cmbProdTipo.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_btnProdModMouseClicked
 
     private void btnProdVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdVerMouseClicked
@@ -443,6 +462,7 @@ public class PantallaProductos extends javax.swing.JFrame {
 
     private void btnCliModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCliModMouseClicked
         // TODO add your handling code here:
+
         ProductoFinanciero p = (ProductoFinanciero) cmbVendProd.getSelectedItem();
         Cliente c = (Cliente) cmbVendCli.getSelectedItem();
         Empleado e = (Empleado) cmbVendEmp.getSelectedItem();
@@ -454,6 +474,28 @@ public class PantallaProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         controladorPantallaProductos.VisualizarVend(txtVendArea);
     }//GEN-LAST:event_txtCliVerMouseClicked
+
+    private void cmbVendCliItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbVendCliItemStateChanged
+        // TODO add your handling code here:
+        if(comboCarg==true){
+       ProductoFinanciero p = (ProductoFinanciero) cmbVendProd.getSelectedItem();
+            Cliente c = (Cliente) cmbVendCli.getSelectedItem();
+
+            VenderPK vpk = new VenderPK(p.getCodProducto(), c.getIdCliente());
+            controladorPantallaProductos.cargarDatosVend(vpk, cmbVendEmp);
+        }
+    }//GEN-LAST:event_cmbVendCliItemStateChanged
+
+    private void cmbVendProdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbVendProdItemStateChanged
+        // TODO add your handling code here:
+        if(comboCarg==true){
+         ProductoFinanciero p = (ProductoFinanciero) cmbVendProd.getSelectedItem();
+            Cliente c = (Cliente) cmbVendCli.getSelectedItem();
+
+            VenderPK vpk = new VenderPK(p.getCodProducto(), c.getIdCliente());
+            controladorPantallaProductos.cargarDatosVend(vpk, cmbVendEmp);
+        }
+    }//GEN-LAST:event_cmbVendProdItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -503,39 +545,39 @@ public class PantallaProductos extends javax.swing.JFrame {
         return cmbVendProd;
     }
 
-    private void validarProducto() {
+    private boolean validarProducto() {
         if (txtProdCod.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtProdCod.requestFocus();
-            return;
+            return false;
         } else {
-            Pattern p = Pattern.compile("^e\\d{2}$");
+            Pattern p = Pattern.compile("^p\\d{2}$");
             boolean correcto = p.matcher(txtProdCod.getText()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:p+dos dígitos)");
                 txtProdCod.requestFocus();
                 txtProdCod.setText(" ");
-                return;
+                return false;
             }
         }
         if (txtProdInt.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el interés");
             txtProdInt.requestFocus();
-            return;
+            return false;
         } else {
             for (int i = 0; i < txtProdInt.getText().length(); i++) {
                 if (Character.isLetter(txtProdInt.getText().charAt(i))) {
                     JOptionPane.showMessageDialog(null, "El intéres solo pueden ser números");
                     txtProdInt.requestFocus();
                     txtProdInt.setText(" ");
-                    return;
+                    return false;
                 }
             }
         }
         if (txtProdPunt.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir la puntuación");
             txtProdPunt.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\p{L}{3}");
             boolean correcto = p.matcher(txtProdPunt.getText()).matches();
@@ -543,14 +585,14 @@ public class PantallaProductos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de puntuación incorrecto(Formato correcto:tres letras)");
                 txtProdPunt.requestFocus();
                 txtProdPunt.setText(" ");
-                return;
+                return false;
             }
         }
         if (cmbProdTipo.getSelectedItem().equals("Financiación")) {
             if (txtProdfecha.getText().isBlank() == true) {
                 JOptionPane.showMessageDialog(null, "Tiene que introducir la fecha de devolución");
                 txtProdfecha.requestFocus();
-                return;
+                return false;
             } else {
                 try {
                     Date fecha = Date.valueOf(txtProdfecha.getText());
@@ -559,10 +601,11 @@ public class PantallaProductos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Formato de fecha incorrecto(Formato correcto:yyyy-mm-dd)");
                     txtProdfecha.requestFocus();
                     txtProdfecha.setText(" ");
-                    return;
+                    return false;
                 }
             }
         }
+        return true;
     }
 
 

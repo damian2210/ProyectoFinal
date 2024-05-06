@@ -18,20 +18,21 @@ import org.hibernate.query.Query;
  */
 public class VenderDAO {
      public Vender buscarVenta(Session session, VenderPK vpk) {
-        String consulta="from Vender v where v.venderPK=:id";
+        String consulta="from Vender v where v.venderPK.codProducto=:id and v.venderPK.idCliente=:id2";
         Query q=session.createQuery(consulta);
-        q.setParameter("id",vpk);
+        q.setParameter("id",vpk.getCodProducto());
+        q.setParameter("id2",vpk.getIdCliente());
         return (Vender)q.uniqueResult();
     }
      public Vender buscarProductoEnVenta(Session session, String codProd) {
-        String consulta="from Vender v where v.venderPK.cod_producto=:id";
+        String consulta="from Vender v where v.venderPK.codProducto=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",codProd);
         return (Vender)q.uniqueResult();
     }
       
         public Vender buscarClienteEnVenta(Session session, String codCli) {
-        String consulta="from Vender v where v.venderPK.id_cliente=:id";
+        String consulta="from Vender v where v.venderPK.idCliente=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",codCli);
         return (Vender)q.uniqueResult();

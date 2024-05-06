@@ -33,7 +33,7 @@ public class EmpleadoDAO {
     }
     
     public Empleado buscarEmpleado(Session session, String cod) {
-        String consulta="from Empleado e where e.cod_empleado=:id";
+        String consulta="from Empleado e where e.codEmpleado=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",cod);
         return (Empleado)q.uniqueResult();
@@ -44,11 +44,11 @@ public class EmpleadoDAO {
     }
 
     public void modificar(Session session, Empleado e, String nombre, String usuario, String contraseña , String dni,String rol) {
-         e.setContraseña(contraseña);
-         e.setDni(dni);
-         e.setRol(rol);
-         e.setUsuario(usuario);
-         e.setUsuario(usuario);
+        e.setNombre(nombre);
+        e.setUsuario(usuario);
+        e.setContraseña(contraseña);
+        e.setDni(dni);
+        e.setRol(rol);
         session.update(e);
     }
 

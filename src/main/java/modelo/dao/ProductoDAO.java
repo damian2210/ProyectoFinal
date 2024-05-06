@@ -32,7 +32,7 @@ public class ProductoDAO {
     }
     
      public ProductoFinanciero buscarProducto(Session session, String cod) {
-        String consulta="from ProductoFinanciero p where p.cod_producto=:id";
+        String consulta="from ProductoFinanciero p where p.codProducto=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",cod);
         return (ProductoFinanciero)q.uniqueResult();
@@ -68,7 +68,7 @@ public class ProductoDAO {
         while (it.hasNext()){
             p=(ProductoFinanciero) it.next();
             String fecha;
-            if(p.getFechaDevolucion().toString()==null){
+            if(p.getFechaDevolucion()==null){
                 fecha="No hay";
             }else{
                 fecha=p.getFechaDevolucion().toString();

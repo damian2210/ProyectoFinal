@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,6 +29,12 @@ public class Prestar implements Serializable {
     protected PrestarPK prestarPK;
     @Column(name = "cantidad")
     private Float cantidad;
+     @JoinColumn(name = "cod_sucursal", referencedColumnName = "cod_sucursal", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Sucursal sucursal;
+    @JoinColumn(name = "cod_sucursal_prestadora", referencedColumnName = "cod_sucursal", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Sucursal sucursalPrest;
 
     public Prestar() {
     }
@@ -59,6 +67,23 @@ public class Prestar implements Serializable {
     public void setCantidad(Float cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    public Sucursal getSucursalPrest() {
+        return sucursalPrest;
+    }
+
+    public void setSucursalPrest(Sucursal sucursalPrest) {
+        this.sucursalPrest = sucursalPrest;
+    }
+    
 
     @Override
     public int hashCode() {

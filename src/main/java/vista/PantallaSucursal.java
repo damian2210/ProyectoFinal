@@ -4,18 +4,21 @@
  */
 package vista;
 
+import controlador.controladorPantallaProductos;
 import controlador.controladorPantallaSucursal;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import modelo.vo.PrestarPK;
 import modelo.vo.Sucursal;
+import modelo.vo.VenderPK;
 
 /**
  *
  * @author dami2
  */
 public class PantallaSucursal extends javax.swing.JFrame {
-
+    boolean comboCarg;
     /**
      * Creates new form PantallaSucursal
      */
@@ -79,10 +82,47 @@ public class PantallaSucursal extends javax.swing.JFrame {
         jLabel10.setText("Cantidad");
 
         btnPrestIns.setText("Insertar");
+        btnPrestIns.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrestInsMouseClicked(evt);
+            }
+        });
 
         btnPrestMod.setText("Modificar");
+        btnPrestMod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrestModMouseClicked(evt);
+            }
+        });
 
         txtPrestVer.setText("Visualizar");
+        txtPrestVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPrestVerMouseClicked(evt);
+            }
+        });
+
+        cmbPrestSucR.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbPrestSucRItemStateChanged(evt);
+            }
+        });
+        cmbPrestSucR.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbPrestSucRPropertyChange(evt);
+            }
+        });
+
+        cmbPrestSucPres.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbPrestSucPresItemStateChanged(evt);
+            }
+        });
+        cmbPrestSucPres.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbPrestSucPresPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,6 +184,14 @@ public class PantallaSucursal extends javax.swing.JFrame {
 
         jLabel5.setText("Dirección");
 
+        txtSucCod.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSucCodFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSucCodFocusLost(evt);
+            }
+        });
         txtSucCod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSucCodActionPerformed(evt);
@@ -151,12 +199,32 @@ public class PantallaSucursal extends javax.swing.JFrame {
         });
 
         btnSucIns.setText("Insertar");
+        btnSucIns.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSucInsMouseClicked(evt);
+            }
+        });
 
         btnSucBorrar.setText("Borrar");
+        btnSucBorrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSucBorrarMouseClicked(evt);
+            }
+        });
 
         btnSucMod.setText("Modificar");
+        btnSucMod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSucModMouseClicked(evt);
+            }
+        });
 
         btnSucVer.setText("Visualizar");
+        btnSucVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSucVerMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -257,17 +325,116 @@ public class PantallaSucursal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSucCodActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        controladorPantallaSucursal.cargarCb();        // TODO add your handling code here:
+        controladorPantallaSucursal.cargarCb();  
+        comboCarg=true;// TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        controladorPantallaSucursal.cerrarSession();      // TODO add your handling code here:
+        
+         comboCarg=false;// TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private void txtSucCodFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSucCodFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSucCodFocusGained
+
+    private void txtSucCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSucCodFocusLost
+        // TODO add your handling code here:
+          if (!txtSucCod.getText().isBlank()) {
+        controladorPantallaSucursal.cargarDatosSuc(txtSucCod.getText(), txtSucDir, txtSucTlf);
+          }
+    }//GEN-LAST:event_txtSucCodFocusLost
+
+    private void cmbPrestSucRPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbPrestSucRPropertyChange
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_cmbPrestSucRPropertyChange
+
+    private void cmbPrestSucPresPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbPrestSucPresPropertyChange
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbPrestSucPresPropertyChange
+
+    private void btnSucInsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucInsMouseClicked
+        // TODO add your handling code here:
+        boolean correcto=validarSucursal();
+        if(correcto==true){
+        controladorPantallaSucursal.insertarSuc(txtSucCod.getText(), txtSucDir.getText(), Integer.valueOf(txtSucTlf.getText()));
+        }
+    }//GEN-LAST:event_btnSucInsMouseClicked
+
+    private void btnSucBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucBorrarMouseClicked
+        // TODO add your handling code here:
+        boolean correcto=validarSucursal();
+        if(correcto==true){
+        controladorPantallaSucursal.borrarSuc(txtSucCod.getText());
+        }
+    }//GEN-LAST:event_btnSucBorrarMouseClicked
+
+    private void btnSucModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucModMouseClicked
+        // TODO add your handling code here:
+        boolean correcto=validarSucursal();
+        if(correcto==true){
+        controladorPantallaSucursal.modificarSuc(txtSucCod.getText(), txtSucDir.getText(), Integer.valueOf(txtSucTlf.getText()));
+        }
+    }//GEN-LAST:event_btnSucModMouseClicked
+
+    private void btnSucVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucVerMouseClicked
+        // TODO add your handling code here:
+        controladorPantallaSucursal.VisualizarSuc(txtSucArea);
+    }//GEN-LAST:event_btnSucVerMouseClicked
+
+    private void btnPrestInsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrestInsMouseClicked
+        // TODO add your handling code here:
+      boolean correcto=validarPrestar();
+        if(correcto==true){
+        Sucursal s = (Sucursal) cmbPrestSucR.getSelectedItem();
+        Sucursal sPres = (Sucursal) cmbPrestSucPres.getSelectedItem();
+        PrestarPK ppk = new PrestarPK(s.getCodSucursal(), sPres.getCodSucursal());
+        controladorPantallaSucursal.insertarPrest(ppk, Integer.valueOf(txtPrestCant.getText()));
+        }
+    }//GEN-LAST:event_btnPrestInsMouseClicked
+
+    private void btnPrestModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrestModMouseClicked
+        // TODO add your handling code here:
+         boolean correcto=validarPrestar();
+        if(correcto==true){
+        Sucursal s = (Sucursal) cmbPrestSucR.getSelectedItem();
+        Sucursal sPres = (Sucursal) cmbPrestSucPres.getSelectedItem();
+        PrestarPK ppk = new PrestarPK(s.getCodSucursal(), sPres.getCodSucursal());
+        controladorPantallaSucursal.modificarPrest(ppk, Integer.valueOf(txtPrestCant.getText()));
+        }
+    }//GEN-LAST:event_btnPrestModMouseClicked
+
+    private void txtPrestVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrestVerMouseClicked
+        // TODO add your handling code here:
+        controladorPantallaSucursal.VisualizarPres(txtPrestArea);
+    }//GEN-LAST:event_txtPrestVerMouseClicked
+
+    private void cmbPrestSucRItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPrestSucRItemStateChanged
+        // TODO add your handling code here:
+       if(comboCarg==true){
+            Sucursal s = (Sucursal) cmbPrestSucR.getSelectedItem();
+            Sucursal sPres = (Sucursal) cmbPrestSucPres.getSelectedItem();
+            PrestarPK ppk = new PrestarPK(s.getCodSucursal(), sPres.getCodSucursal());
+            controladorPantallaSucursal.cargarDatosPres(ppk, txtPrestCant);
+       }
+    }//GEN-LAST:event_cmbPrestSucRItemStateChanged
+
+    private void cmbPrestSucPresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPrestSucPresItemStateChanged
+        // TODO add your handling code here:
+        if(comboCarg==true){
+            Sucursal s = (Sucursal) cmbPrestSucR.getSelectedItem();
+            Sucursal sPres = (Sucursal) cmbPrestSucPres.getSelectedItem();
+            PrestarPK ppk = new PrestarPK(s.getCodSucursal(), sPres.getCodSucursal());
+            controladorPantallaSucursal.cargarDatosPres(ppk, txtPrestCant);
+        }
+    }//GEN-LAST:event_cmbPrestSucPresItemStateChanged
 
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -299,35 +466,35 @@ public class PantallaSucursal extends javax.swing.JFrame {
         });
         
     }
-
+    
     public JComboBox<Sucursal> getCmbPrestSucPres() {
         return cmbPrestSucPres;
     }
-
+    
     public JComboBox<Sucursal> getCmbPrestSucR() {
         return cmbPrestSucR;
     }
     
-    private void validarSucursal() {
+    private boolean validarSucursal() {
         if (txtSucCod.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtSucCod.requestFocus();
-            return;
+            return false;
         } else {
-            Pattern p = Pattern.compile("^s\\d{3}$");
+            Pattern p = Pattern.compile("^s\\d{2}$");
             boolean correcto = p.matcher(txtSucCod.getText()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:s+dos dígitos)");
                 txtSucCod.requestFocus();
                 txtSucCod.setText(" ");
-                return;
+                return false;
             }
         }
-       
-         if (txtSucTlf.getText().isBlank() == true) {
+        
+        if (txtSucTlf.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el teléfono");
             txtSucTlf.requestFocus();
-            return;
+            return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
             boolean correcto = p.matcher(txtSucTlf.getText()).matches();
@@ -335,22 +502,25 @@ public class PantallaSucursal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Formato de número de teléfono incorrecto");
                 txtSucTlf.requestFocus();
                 txtSucTlf.setText(" ");
-                return;
+                return false;
             }
         }
+        return true;
     }
-    private void validarPrestar() {
-       if(cmbPrestSucPres.getSelectedItem().toString().equals(cmbPrestSucR.getSelectedItem().toString())){
-           JOptionPane.showMessageDialog(null, "La sucursal que realiza el préstamo no puede ser la que lo recibe");
-            return;
-       }
-       try{
-          float cant=Float.valueOf(txtPrestCant.getText());
-       }catch(NumberFormatException nfe){
+
+    private boolean validarPrestar() {
+        if (cmbPrestSucPres.getSelectedItem().toString().equals(cmbPrestSucR.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "La sucursal que realiza el préstamo no puede ser la que lo recibe");
+            return false;
+        }
+        try {
+            float cant = Float.valueOf(txtPrestCant.getText());
+        } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Formato de cantidad incorrecto");
-                txtPrestCant.requestFocus();
-                return;
-       }
+            txtPrestCant.requestFocus();
+            return false;
+        }
+        return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrestIns;

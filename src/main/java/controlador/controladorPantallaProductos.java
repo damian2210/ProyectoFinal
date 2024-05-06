@@ -61,13 +61,13 @@ public class controladorPantallaProductos {
 
     public static void cargarCb() {
         try {
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             cliDAO.cargacombo(session, modelocmbCli);
             empDAO.cargacombo(session, modelocmbEmp);
             proDAO.cargacombo(session, modelocmbProd);
             HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -78,7 +78,7 @@ public class controladorPantallaProductos {
             if (!tipo.equals("Financiación")) {
                 fechaDevolucion = null;
             }
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             ProductoFinanciero p = proDAO.buscarProducto(session, codProducto);
             if (p != null) {
                 JOptionPane.showMessageDialog(ventana, "Ya existe el producto");
@@ -86,18 +86,18 @@ public class controladorPantallaProductos {
             }
             p = new ProductoFinanciero(codProducto, fechaDevolucion, interes, puntuacion, tipo);
             proDAO.insertar(session, p);
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Producto insertado correctamente");
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void borrarPro(String codProducto) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             ProductoFinanciero p = proDAO.buscarProducto(session, codProducto);
             if (p == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el producto");
@@ -109,10 +109,10 @@ public class controladorPantallaProductos {
                 return;
             }
             proDAO.borrar(session, p);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Producto borrado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -122,17 +122,17 @@ public class controladorPantallaProductos {
             if (!tipo.equals("Financiación")) {
                 fechaDevolucion = null;
             }
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             ProductoFinanciero p = proDAO.buscarProducto(session, codProducto);
             if (p == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el producto");
                 return;
             }
             proDAO.modificar(session, p, interes, puntuacion, tipo, fechaDevolucion);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Producto modificado correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -141,7 +141,7 @@ public class controladorPantallaProductos {
         try {
             String fecha;
 
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             ProductoFinanciero p = proDAO.buscarProducto(session, codProducto);
 
             if (p != null) {
@@ -160,28 +160,28 @@ public class controladorPantallaProductos {
                 puntuacion.setText("");
                 tipo.setSelectedItem("");
             }
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public static void VisualizarPro(JTextArea ta) {
         try {
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             proDAO.cargadatos(session, ta);
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+          HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
       public static void insertarVend(VenderPK venderPK,Empleado codEmpleado) {
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             Vender v = venDAO.buscarVenta(session, venderPK);
             if (v != null) {
                 JOptionPane.showMessageDialog(ventana, "Ya existe la venta");
@@ -189,11 +189,11 @@ public class controladorPantallaProductos {
             }
             v = new Vender(venderPK, codEmpleado);
             venDAO.insertar(session, v);
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Venta insertada correctamente");
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -201,17 +201,17 @@ public class controladorPantallaProductos {
    
     public static void modificarVend(VenderPK venderPK,Empleado codEmpleado) {
         try {
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
            Vender v = venDAO.buscarVenta(session, venderPK);
             if (v == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe la venta");
                 return;
             }
             venDAO.modificar(session, v,codEmpleado);
-            session.getTransaction().commit();
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Venta modificada correctamente");
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -219,27 +219,27 @@ public class controladorPantallaProductos {
     public static void cargarDatosVend(VenderPK venderPK, JComboBox codEmpleado) {
         try {
 
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             Vender v = venDAO.buscarVenta(session, venderPK);
 
             if (v != null) {
                  codEmpleado.setSelectedItem(v.getCodEmpleado());
             } 
-            session.getTransaction().commit();
+           HibernateUtil.commitTx(session);
 
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public static void VisualizarVend(JTextArea ta) {
         try {
-            session.beginTransaction();
+             HibernateUtil.beginTx(session);
             venDAO.cargadatos(session, ta);
-            session.getTransaction().commit();
+             HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-            session.getTransaction().rollback();
+           HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

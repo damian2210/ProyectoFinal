@@ -29,7 +29,7 @@ public class Empleado implements Serializable {
     @Basic(optional = false)
     @Column(name = "cod_empleado")
     private String codEmpleado;
-    @Column(name = "contraseña")
+    @Column(name = "contra")
     private String contraseña;
     @Column(name = "direccion")
     private String direccion;

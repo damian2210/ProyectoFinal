@@ -31,7 +31,7 @@ public class SucursalDAO {
     }
 
     public Sucursal buscarSucursal(Session session, String cod) {
-        String consulta="from Sucursal s where s.cod_sucursal=:id";
+        String consulta="from Sucursal s where s.codSucursal=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",cod);
         return (Sucursal)q.uniqueResult();
@@ -47,11 +47,8 @@ public class SucursalDAO {
         session.update(s);
     }
 
-    public void borrar(Session session, String cod) {//no se puede borrar si participa en préstamos
-     
-       Query q=session.createQuery("from Sucursal s where s.cod_sucursal=:cod");
-       q.setParameter("cod",cod);
-        Sucursal s=(Sucursal)q.uniqueResult();
+    public void borrar(Session session,Sucursal s) {//no se puede borrar si participa en préstamos
+
         session.delete(s);
     }
      public  void cargadatos(Session session, JTextArea ta) throws Exception {
@@ -64,7 +61,7 @@ public class SucursalDAO {
         Iterator it=q.list().iterator();
         while (it.hasNext()){
             s=(Sucursal) it.next();  
-            ta.append(s.getCodSucursal()+ " "+s.getDireccion()+" "+s.getTelefono()+"\n");
+            ta.append("Cod.Sucursal:"+s.getCodSucursal()+ " Dirección:"+s.getDireccion()+" Teléfono:"+s.getTelefono()+"\n");
         }
     
     }

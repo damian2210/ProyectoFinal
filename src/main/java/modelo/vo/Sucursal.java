@@ -5,12 +5,15 @@
 package modelo.vo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +35,10 @@ public class Sucursal implements Serializable {
     private String direccion;
     @Column(name = "telefono")
     private Integer telefono;
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal")
+    private List<Prestar> prestarRecibidosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalPrest")
+    private List<Prestar> prestarRealizadosList1;
 
     public Sucursal() {
     }
@@ -68,6 +75,22 @@ public class Sucursal implements Serializable {
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
+    }
+
+    public List<Prestar> getPrestarRecibidosList() {
+        return prestarRecibidosList;
+    }
+
+    public void setPrestarRecibidosList(List<Prestar> prestarRecibidosList) {
+        this.prestarRecibidosList = prestarRecibidosList;
+    }
+
+    public List<Prestar> getPrestarRealizadosList1() {
+        return prestarRealizadosList1;
+    }
+
+    public void setPrestarRealizadosList1(List<Prestar> prestarRealizadosList1) {
+        this.prestarRealizadosList1 = prestarRealizadosList1;
     }
 
     @Override
