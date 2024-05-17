@@ -70,6 +70,7 @@
         android:layout_marginStart="51dp"
         android:layout_marginTop="114dp"
         android:hint="Usuario"
+        android:text="Antonio"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -81,6 +82,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="45dp"
         android:hint="Contraseña"
+        android:text="ant"
         android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/txtUsuarioLog" />

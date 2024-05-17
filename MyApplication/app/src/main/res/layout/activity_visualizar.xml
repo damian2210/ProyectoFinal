@@ -8,7 +8,7 @@
     tools:context=".Visualizar">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/visualTitulo"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -22,9 +22,19 @@
 
     <ListView
         android:id="@+id/listaGeneral"
-        android:layout_width="match_parent"
-        android:layout_height="674dp"
+        android:layout_width="411dp"
+        android:layout_height="601dp"
         android:layout_marginTop="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/visualTitulo" />
+
+    <Button
+        android:id="@+id/btnAtrasVer"
+        android:layout_width="126dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
+        android:text="Salir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaGeneral" />
 </androidx.constraintlayout.widget.ConstraintLayout>

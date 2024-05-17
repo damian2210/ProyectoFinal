@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/verEmpCod"
+        android:layout_width="206dp"
+        android:layout_height="43dp"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/verEmpDni"
+        android:layout_width="205dp"
+        android:layout_height="52dp"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verEmpCod" />
+
+    <TextView
+        android:id="@+id/verEmpDir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verEmpContra" />
+
+    <TextView
+        android:id="@+id/verEmpNombre"
+        android:layout_width="206dp"
+        android:layout_height="43dp"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verEmpDni" />
+
+    <TextView
+        android:id="@+id/verEmptlf"
+        android:layout_width="199dp"
+        android:layout_height="52dp"
+
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="43dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/verEmpDni"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/verEmpRol"
+        android:layout_width="201dp"
+        android:layout_height="45dp"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/verEmpNombre"
+        app:layout_constraintTop_toBottomOf="@+id/verEmptlf" />
+
+    <TextView
+        android:id="@+id/verEmpUser"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="2dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verEmpNombre" />
+
+    <TextView
+        android:id="@+id/verEmpContra"
+        android:layout_width="199dp"
+        android:layout_height="52dp"
+
+        android:layout_marginStart="2dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/verEmpUser"
+        app:layout_constraintTop_toBottomOf="@+id/verEmpRol" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
