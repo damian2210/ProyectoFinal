@@ -1,23 +1,20 @@
 package com.damian.Servidor.Producto;
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
-import java.util.List;
 
-import com.damian.Servidor.Vender.Vender;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "producto_financiero")
@@ -36,7 +33,39 @@ public class Producto {
     @Column(name = "fecha_devolucion")
     @Temporal(TemporalType.DATE)
     private Date fechaDevolucion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoFinanciero")
-    private List<Vender> venderList;
+  
 
+    public String getCodproducto() {
+        return codproducto;
+    }
+    public void setCodproducto(String codproducto) {
+        this.codproducto = codproducto;
+    }
+    public String getPuntuacion() {
+        return puntuacion;
+    }
+    public void setPuntuacion(String puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public Integer getInteres() {
+        return interes;
+    }
+    public void setInteres(Integer interes) {
+        this.interes = interes;
+    }
+    public Date getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+    public void setFechaDevolucion(Date fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
+    }
+
+
+    
 }

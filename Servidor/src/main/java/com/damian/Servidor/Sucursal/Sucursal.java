@@ -1,15 +1,16 @@
 package com.damian.Servidor.Sucursal;
+
+
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,4 +24,25 @@ public class Sucursal {
     private String direccion;
     @Column(name = "telefono")
     private Integer telefono;
+    
+    public String getCodSucursal() {
+        return codSucursal;
+    }
+    public void setCodSucursal(String codSucursal) {
+        this.codSucursal = codSucursal;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    public Integer getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+    
+
 }

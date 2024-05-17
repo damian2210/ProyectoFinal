@@ -1,22 +1,20 @@
 package com.damian.Servidor.Cliente;
-import java.util.List;
 
-import com.damian.Servidor.Vender.Vender;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,6 +33,38 @@ public class Cliente {
     @Lob
     @Column(name = "num_cuenta")
     private String numCuenta;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Vender> venderList;
+
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+    public String getDni() {
+        return dni;
+    }
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+    public Integer getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getNumCuenta() {
+        return numCuenta;
+    }
+    public void setNumCuenta(String numCuenta) {
+        this.numCuenta = numCuenta;
+    }
+
+
 }

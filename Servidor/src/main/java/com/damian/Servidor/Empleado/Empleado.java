@@ -1,20 +1,17 @@
 package com.damian.Servidor.Empleado;
-import java.util.List;
 
-import com.damian.Servidor.Vender.Vender;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -36,9 +33,59 @@ public class Empleado {
     private String rol;
     @Column(name = "usuario")
     private String usuario;
-    @Column(name = "contrase\u00f1a")
+    @Column(name = "contra")
     private String contraseña;
-    @OneToMany(mappedBy = "codEmpleado")
-    private List<Vender> venderList;
 
+
+    public String getCodEmpleado() {
+        return codEmpleado;
+    }
+    public void setCodEmpleado(String codEmpleado) {
+        this.codEmpleado = codEmpleado;
+    }
+    public String getDni() {
+        return dni;
+    }
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public Integer getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+    public String getRol() {
+        return rol;
+    }
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    public String getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    public String getContraseña() {
+        return contraseña;
+    }
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+
+    
 }
