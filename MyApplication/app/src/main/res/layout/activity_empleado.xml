@@ -8,15 +8,16 @@
     tools:context=".Empleado">
 
 
+
     <Button
         android:id="@+id/btnInsEmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="120dp"
         android:text="Insertar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7Emp" />
 
     <Button
         android:id="@+id/btnBorrarEmp"
@@ -42,17 +43,27 @@
         app:layout_constraintTop_toBottomOf="@+id/btnVisualizarEmp" />
 
     <Button
+        android:id="@+id/btnSalirEmp"
+        android:layout_width="103dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="136dp"
+        android:text="Salir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6Emp" />
+
+    <Button
         android:id="@+id/btnVisualizarEmp"
         android:layout_width="129dp"
         android:layout_height="53dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="144dp"
+        android:layout_marginEnd="80dp"
         android:text="Visualizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnRolEmp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewEmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -61,10 +72,10 @@
         android:text="Cod.Empleado"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloEmp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3Emp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -72,10 +83,10 @@
         android:text="Dni"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tituloEmp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -89,6 +100,7 @@
 
     <EditText
         android:id="@+id/txtCodEmp"
+        android:text="e78"
         android:layout_width="214dp"
         android:layout_height="57dp"
         android:layout_marginTop="20dp"
@@ -96,7 +108,7 @@
         android:hint="Código del empleado"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloEmp" />
 
     <EditText
         android:id="@+id/txtDniEmp"
@@ -105,6 +117,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="28dp"
         android:hint="DNI"
+        android:text="55555555N"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodEmp" />
@@ -116,6 +129,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="28dp"
         android:hint="Usuario"
+        android:text="Damian"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTlfEmp" />
@@ -127,6 +141,7 @@
         android:layout_marginTop="31dp"
         android:layout_marginEnd="28dp"
         android:hint="Contraseña"
+        android:text="dam"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUsuarioEmp" />
@@ -138,12 +153,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="28dp"
         android:hint="Teléfono"
+        android:text="666666666"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDniEmp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView4Emp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -151,7 +167,7 @@
         android:text="Teléfono"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3Emp" />
 
     <Spinner
         android:id="@+id/spnRolEmp"
@@ -164,7 +180,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtContraEmp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView5Emp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -172,10 +188,10 @@
         android:text="Usuario"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4Emp" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView6Emp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -183,10 +199,10 @@
         android:text="Contraseña"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5Emp" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView7Emp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -194,7 +210,15 @@
         android:text="Rol"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6Emp" />
+
+    <ImageButton
+        android:id="@+id/btnImagenEmp"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

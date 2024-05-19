@@ -16,7 +16,17 @@
         android:layout_marginTop="116dp"
         android:text="Insertar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4Suc" />
+
+    <Button
+        android:id="@+id/btnSalirSuc"
+        android:layout_width="131dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="28dp"
+        android:text="Salir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnModSuc" />
 
     <Button
         android:id="@+id/btnBorrarSuc"
@@ -52,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewSuc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -61,10 +71,10 @@
         android:text="Cod.Sucursal"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3Suc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -72,10 +82,10 @@
         android:text="Dirección"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSuc" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView4Suc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -83,10 +93,10 @@
         android:text="Teléfono"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3Suc" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tituloSuc"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -108,7 +118,7 @@
         android:inputType="text"
         android:text="s27"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
 
     <EditText
         android:id="@+id/txtDirSuc"
@@ -133,6 +143,13 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDirSuc" />
+    <ImageButton
+        android:id="@+id/btnImagenSuc"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

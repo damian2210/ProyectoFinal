@@ -9,37 +9,47 @@
 
 
     <Button
-        android:id="@+id/btnInsVend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
-        android:text="Insertar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:id="@+id/btnVisualizarVend"
+        android:layout_width="129dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="16dp"
+        android:text="Visualizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
 
     <Button
         android:id="@+id/btnModVend"
         android:layout_width="129dp"
         android:layout_height="49dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="80dp"
         android:text="Modificar"
         app:layout_constraintStart_toEndOf="@+id/btnInsVend"
-        app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
 
     <Button
-        android:id="@+id/btnVisualizarVend"
-        android:layout_width="129dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="16dp"
-        android:text="Visualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
+        android:id="@+id/btnInsVend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:text="Insertar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7Vend" />
+
+    <Button
+        android:id="@+id/btnSalirVend"
+        android:layout_width="131dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="23dp"
+        android:text="Salir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnModVend" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewVend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -48,10 +58,10 @@
         android:text="Cod.Producto"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloVend" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3Vend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -59,10 +69,10 @@
         android:text="Cod.Cliente"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewVend" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView4Vend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -70,10 +80,21 @@
         android:text="Cod.Empleado"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3Vend" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView7Vend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="80dp"
+        android:text="Fecha venta"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4Vend" />
+
+    <TextView
+        android:id="@+id/tituloVend"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -92,9 +113,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:hint="Código del producto"
+        android:text="p01"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloVend" />
 
     <EditText
         android:id="@+id/txtCodCliVend"
@@ -103,20 +125,43 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="32dp"
         android:hint="Código del cliente"
+        android:text="c125"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodProVend" />
 
     <EditText
-        android:id="@+id/txtCantPrest"
+        android:id="@+id/txtCodEmpVend"
         android:layout_width="214dp"
         android:layout_height="57dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
         android:hint="Código del empleado"
+        android:text="e24"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodCliVend" />
+
+    <EditText
+        android:id="@+id/txtFechaVend"
+        android:layout_width="214dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Fecha de venta"
+        android:text="2006-10-10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodEmpVend" />
+
+
+    <ImageButton
+        android:id="@+id/btnImagenVend"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

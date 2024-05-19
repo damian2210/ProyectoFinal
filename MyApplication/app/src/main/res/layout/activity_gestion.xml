@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView6Gest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
@@ -46,7 +46,7 @@
         android:text="Sucursales"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6Gest" />
 
     <Button
         android:id="@+id/btnPrestGest"
@@ -58,7 +58,7 @@
         android:text="Préstamos"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6Gest" />
 
     <Button
         android:id="@+id/btnVendGest"
@@ -107,5 +107,12 @@
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPrestGest" />
+    <ImageButton
+        android:id="@+id/btnImagenGest"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,10 +22,20 @@
         android:id="@+id/btnVisualizarPro"
         android:layout_width="129dp"
         android:layout_height="53dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="64dp"
         android:text="Visualizar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <Button
+        android:id="@+id/btnSalirPro"
+        android:layout_width="127dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="36dp"
+        android:text="Salir"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <Button
@@ -36,7 +46,7 @@
         android:layout_marginTop="116dp"
         android:text="Insertar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6Pro" />
 
     <Button
         android:id="@+id/btnBorrarPro"
@@ -52,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewPro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -61,10 +71,10 @@
         android:text="Cod.Producto"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloPro" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView3Pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -72,10 +82,10 @@
         android:text="Interés"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPro" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tituloPro"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -93,10 +103,11 @@
         android:layout_height="57dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="28dp"
+        android:text="p98"
         android:hint="Código del producto"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloPro" />
 
     <EditText
         android:id="@+id/txtInteresPro"
@@ -105,6 +116,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="28dp"
         android:hint="Interés"
+        android:text="45"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodPro" />
@@ -116,6 +128,7 @@
         android:layout_marginTop="41dp"
         android:layout_marginEnd="28dp"
         android:hint="Puntuación"
+        android:text="aAA"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInteresPro" />
@@ -127,12 +140,13 @@
         android:layout_marginTop="34dp"
         android:layout_marginEnd="28dp"
         android:hint="Fecha de devolución"
+        android:text="2006-10-10"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPuntPro" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView4Pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -140,10 +154,10 @@
         android:text="Fecha\ndevolución"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5Pro" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView5Pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -151,10 +165,10 @@
         android:text="Puntuación"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3Pro" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView6Pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -162,7 +176,7 @@
         android:text="Tipo"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4Pro" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -173,6 +187,13 @@
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaPro" />
+    <ImageButton
+        android:id="@+id/btnImagenPro"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

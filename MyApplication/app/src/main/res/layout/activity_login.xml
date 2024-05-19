@@ -15,7 +15,7 @@
         android:layout_marginTop="85dp"
         android:text="Iniciar sesión"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2Log" />
 
     <Button
         android:id="@+id/btnGuardarLog"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtContraLog" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView1Log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
@@ -36,10 +36,10 @@
         android:text="Usuario"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/titulolog" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView2Log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -47,10 +47,10 @@
         android:text="Contraseña"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1Log" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/titulolog"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#A65CE6"
@@ -72,8 +72,8 @@
         android:hint="Usuario"
         android:text="Antonio"
         android:inputType="text"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/textView1Log"
+        app:layout_constraintTop_toBottomOf="@+id/titulolog" />
 
     <EditText
         android:id="@+id/txtContraLog"
@@ -84,6 +84,14 @@
         android:hint="Contraseña"
         android:text="ant"
         android:inputType="textPassword"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView2Log"
         app:layout_constraintTop_toBottomOf="@+id/txtUsuarioLog" />
+
+    <ImageButton
+        android:id="@+id/btnImagenLog"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:contentDescription="Ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
