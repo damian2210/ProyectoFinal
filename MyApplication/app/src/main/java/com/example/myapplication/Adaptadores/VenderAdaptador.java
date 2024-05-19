@@ -20,7 +20,7 @@ public class VenderAdaptador extends ArrayAdapter<ObjVender> {
     private ArrayList<ObjVender> datos;
 
     public VenderAdaptador(Context context, ArrayList<ObjVender> datos){
-        super(context, R.layout.elementovender,datos);
+        super(context,R.layout.elementovender,datos);
         this.datos=datos;
     }
 

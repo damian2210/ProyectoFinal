@@ -1,6 +1,9 @@
 package com.example.myapplication.Objetos;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 public class ObjVender {
     protected VenderPK venderPK;
@@ -12,7 +15,6 @@ public class ObjVender {
     private ObjEmpleado codEmpleado;
 
     private ObjProducto productoFinanciero;
-
 
     public ObjVender(VenderPK venderPK, Date fechaVenta, ObjCliente cliente, ObjEmpleado codEmpleado, ObjProducto productoFinanciero) {
         this.venderPK = venderPK;
@@ -78,5 +80,16 @@ public class ObjVender {
 
     public void setProductoFinanciero(ObjProducto productoFinanciero) {
         this.productoFinanciero = productoFinanciero;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjVender{" +
+                "venderPK=" + venderPK +
+                ", fechaVenta=" + fechaVenta +
+                ", cliente=" + cliente +
+                ", codEmpleado=" + codEmpleado +
+                ", productoFinanciero=" + productoFinanciero +
+                '}';
     }
 }

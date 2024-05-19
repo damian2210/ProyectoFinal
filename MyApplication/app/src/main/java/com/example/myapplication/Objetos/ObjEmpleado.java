@@ -5,9 +5,6 @@ public class ObjEmpleado {
 
     private String dni;
 
-    private String direccion;
-
-    private String nombre;
 
     private Integer telefono;
 
@@ -18,11 +15,10 @@ public class ObjEmpleado {
     private String contraseña;
 
 
-    public ObjEmpleado(String codEmpleado, String dni, String direccion, String nombre, Integer telefono, String rol, String usuario, String contraseña) {
+    public ObjEmpleado(String codEmpleado, String dni,Integer telefono, String rol, String usuario, String contraseña) {
         this.codEmpleado = codEmpleado;
         this.dni = dni;
-        this.direccion = direccion;
-        this.nombre = nombre;
+
         this.telefono = telefono;
         this.rol = rol;
         this.usuario = usuario;
@@ -41,18 +37,7 @@ public class ObjEmpleado {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    public String getDireccion() {
-        return direccion;
-    }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
     public Integer getTelefono() {
         return telefono;
     }

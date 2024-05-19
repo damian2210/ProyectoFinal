@@ -1,12 +1,18 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +25,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.myapplication.Objetos.ObjEmpleado;
 import com.example.myapplication.Objetos.ObjPrestar;
 import com.example.myapplication.Objetos.ObjSucursal;
+import com.example.myapplication.bbdd.AjustesDAO;
+import com.example.myapplication.bbdd.PreferenciasHelper;
+import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -44,8 +53,10 @@ public class Sucursal extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
+        cambiarTamaño();
+        String usuario = null;
+        String rol = null;
+        Intent intent = getIntent();
         EditText txtcodSuc=findViewById(R.id.txtCodSuc);
         EditText txtdireccionSuc=findViewById(R.id.txtDirSuc);
         EditText txttlfSuc=findViewById(R.id.txtTlfSuc);
@@ -55,6 +66,39 @@ public class Sucursal extends AppCompatActivity {
         Button modSuc=findViewById(R.id.btnModSuc);
         Button borrarSuc=findViewById(R.id.btnBorrarSuc);
         Button verSuc=findViewById(R.id.btnVisualizarSuc);
+        Button salirSuc=findViewById(R.id.btnSalirSuc);
+        ImageButton ajustes=findViewById(R.id.btnImagenSuc);
+
+
+
+
+
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                startActivity(ajustes);
+                finish();
+            }
+        });
+        if (intent != null) {
+            usuario = intent.getStringExtra("usuario");
+            rol = intent.getStringExtra("rol");
+
+
+        }
+        String usuario2=usuario;
+        String rol2=rol;
+        salirSuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent salir=new Intent(getBaseContext(), Gestion.class);
+                salir.putExtra("usuario",usuario2);
+                salir.putExtra("rol",rol2);
+                startActivity(salir);
+                finish();
+            }
+        });
 
 
         verSuc.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +114,12 @@ public class Sucursal extends AppCompatActivity {
         insSuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datos d=getDatos();
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
 
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse("http://10.0.2.2:8080/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -97,7 +142,7 @@ public class Sucursal extends AppCompatActivity {
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             if(response.isSuccessful()){
                                 String data=response.body().string();
-                                Log.d("RESPUESTA",data.toString());
+
                                 Gson gson=new Gson();
                                 ObjSucursal sucursal=gson.fromJson(data, ObjSucursal.class);
                                 if(sucursal!=null){
@@ -132,11 +177,12 @@ public class Sucursal extends AppCompatActivity {
         modSuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datos d=getDatos();
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
 
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse("http://10.0.2.2:8080/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -194,10 +240,11 @@ public class Sucursal extends AppCompatActivity {
         borrarSuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datos d=getDatos();
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse("http://10.0.2.2:8080/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -236,7 +283,7 @@ public class Sucursal extends AppCompatActivity {
 
 
 
-                                String uri = Uri.parse("http://10.0.2.2:8080/prestar/buscarSucursalEnPrestamo").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + "/prestar/buscarSucursalEnPrestamo").buildUpon()
                                         .appendQueryParameter("id",sucursal.getCodSucursal())
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -246,14 +293,20 @@ public class Sucursal extends AppCompatActivity {
                                 client.newCall(request).enqueue(new Callback() {
                                     @Override
                                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                                        Log.d("Fallo","Error en petición");
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(Sucursal.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
 
                                     @Override
                                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                                         if(response.isSuccessful()){
                                             String data=response.body().string();
-                                            Log.d("Fallo", data.toString());
+
                                             Gson gson=new Gson();
                                             ObjPrestar prestar =gson.fromJson(data, ObjPrestar.class);
                                             if(prestar!=null){
@@ -269,7 +322,13 @@ public class Sucursal extends AppCompatActivity {
                                             borrarSucursal(client, sucursal);
 
                                         }else{
-                                            Log.d("Fallo","Error");
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(Sucursal.this, "Error", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
                                         }
                                     }
                                 });
@@ -293,11 +352,12 @@ public class Sucursal extends AppCompatActivity {
     }
 
     public void insertarSucursal( OkHttpClient client,ObjSucursal sucursal){
+        datos d=getDatos();
         Gson gson = new Gson();
         String json = gson.toJson(sucursal);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse("http://10.0.2.2:8080/sucursal/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + "/sucursal/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -340,11 +400,12 @@ public class Sucursal extends AppCompatActivity {
         });
     }
     public void modSucursal( OkHttpClient client,ObjSucursal sucursal){
+        datos d=getDatos();
         Gson gson = new Gson();
         String json = gson.toJson(sucursal);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse("http://10.0.2.2:8080/sucursal/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + "/sucursal/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -387,11 +448,12 @@ public class Sucursal extends AppCompatActivity {
         });
     }
     public void borrarSucursal( OkHttpClient client,ObjSucursal sucursal){
+        datos d=getDatos();
         Gson gson = new Gson();
         String json = gson.toJson(sucursal);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse("http://10.0.2.2:8080/sucursal/borrar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + "/sucursal/borrar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -471,6 +533,51 @@ public class Sucursal extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    private datos getDatos(){
+        SharedPreferences preferencias= getBaseContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        preferenceHelper helper=new preferenceHelper(preferencias);
+        datos d=helper.cargar();
+        return d;
+    }
+
+    private  int getTamaño(){
+        PreferenciasHelper helper=new PreferenciasHelper(getBaseContext());
+        SQLiteDatabase bd=helper.getWritableDatabase();
+        AjustesDAO ajustesDAO=new AjustesDAO();
+        Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        return  a.getTamaño();
+    }
+    private void cambiarTamaño(){
+        int tamaño=getTamaño();
+
+        EditText txtcodSuc=findViewById(R.id.txtCodSuc);
+        EditText txtdireccionSuc=findViewById(R.id.txtDirSuc);
+        EditText txttlfSuc=findViewById(R.id.txtTlfSuc);
+
+
+        Button insSuc=findViewById(R.id.btnInsSuc);
+        Button modSuc=findViewById(R.id.btnModSuc);
+        Button borrarSuc=findViewById(R.id.btnBorrarSuc);
+        Button verSuc=findViewById(R.id.btnVisualizarSuc);
+        Button salirSuc=findViewById(R.id.btnSalirSuc);
+        TextView texto1=findViewById(R.id.textViewSuc);
+        TextView texto2=findViewById(R.id.textView3Suc);
+        TextView texto3=findViewById(R.id.textView4Suc);
+
+        txtcodSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        txtdireccionSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        txttlfSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        insSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        modSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        borrarSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        verSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        salirSuc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        texto1.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        texto2.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        texto3.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+
     }
 
 

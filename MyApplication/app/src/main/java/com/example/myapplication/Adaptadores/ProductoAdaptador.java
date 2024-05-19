@@ -36,10 +36,12 @@ public class ProductoAdaptador extends ArrayAdapter<ObjProducto> {
         TextView tipo=elemento.findViewById(R.id.verProdTipo);
         tipo.setText("Tipo:"+datos.get(position).getTipo());
         TextView fecha=elemento.findViewById(R.id.verProFecha);
-        String fechaDev=datos.get(position).getFechaDevolucion().toString();
-        if(!fechaDev.isEmpty()&&fechaDev!=null){
-            fecha.setText("Teléfono:"+fechaDev);
+
+        if(datos.get(position).getFechaDevolucion()!=null){
+            String fechaDev=datos.get(position).getFechaDevolucion().toString();
+            fecha.setText("Fecha:"+fechaDev);
         }else{
+
             fecha.setText("");
         }
         TextView interes=elemento.findViewById(R.id.verProInt);

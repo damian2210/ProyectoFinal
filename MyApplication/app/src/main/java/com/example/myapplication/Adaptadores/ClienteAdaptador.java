@@ -33,6 +33,8 @@ public class ClienteAdaptador extends ArrayAdapter<ObjCliente> {
         View elemento=mostrado.inflate(R.layout.elementocliente,parent,false);
         TextView codigo=elemento.findViewById(R.id.verCliCod);
         codigo.setText("Código:"+datos.get(position).getIdCliente());
+        TextView dni=elemento.findViewById(R.id.verCliDNI);
+        dni.setText("Dni:"+datos.get(position).getDni());
         TextView nombre=elemento.findViewById(R.id.verCliNombre);
         nombre.setText("Nombre:"+datos.get(position).getNombre());
         TextView tlf=elemento.findViewById(R.id.verCliTLF);
