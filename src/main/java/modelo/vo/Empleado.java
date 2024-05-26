@@ -31,12 +31,8 @@ public class Empleado implements Serializable {
     private String codEmpleado;
     @Column(name = "contra")
     private String contraseña;
-    @Column(name = "direccion")
-    private String direccion;
     @Column(name = "dni")
     private String dni;
-    @Column(name = "nombre")
-    private String nombre;
     @Column(name = "rol")
     private String rol;
     @Column(name = "telefono")
@@ -53,13 +49,13 @@ public class Empleado implements Serializable {
         this.codEmpleado = codEmpleado;
     }
 
-    public Empleado(String codEmpleado, String contraseña, String dni, String nombre, String rol, String usuario) {
+    public Empleado(String codEmpleado, String contraseña, String dni, String rol, String usuario) {
         this.codEmpleado = codEmpleado;
         this.contraseña = contraseña;
-        this.direccion="Direccion";
+   
         this.telefono=655380938;
         this.dni = dni;
-        this.nombre = nombre;
+   
         this.rol = rol;
         this.usuario = usuario;
     }
@@ -80,13 +76,7 @@ public class Empleado implements Serializable {
         this.contraseña = contraseña;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
 
     public String getDni() {
         return dni;
@@ -96,13 +86,6 @@ public class Empleado implements Serializable {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public String getRol() {
         return rol;
@@ -158,7 +141,7 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return nombre+"("+codEmpleado+")";
+        return "("+codEmpleado+")";
     }
     
 }

@@ -39,10 +39,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtEmpCod = new javax.swing.JTextField();
-        txtEmpNom = new javax.swing.JTextField();
         txtEmpContra = new javax.swing.JTextField();
         txtEmpUser = new javax.swing.JTextField();
         txtEmpDni = new javax.swing.JTextField();
@@ -93,8 +91,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("Dni");
 
-        jLabel5.setText("Nombre");
-
         jLabel6.setText("Rol");
 
         txtEmpCod.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -139,29 +135,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtEmpUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(txtEmpNom)
-                            .addComponent(txtEmpCod)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmpContra)
-                            .addComponent(txtEmpDni)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                        .addComponent(cmbEmpRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)
+                        .addComponent(txtEmpCod, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(38, 38, 38)
+                            .addComponent(txtEmpUser, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEmpContra)
+                                .addComponent(txtEmpDni)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                            .addComponent(cmbEmpRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEmpMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,28 +174,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtEmpCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEmpIns))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtEmpNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEmpBorra))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtEmpUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEmpMod))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtEmpContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEmpVer))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEmpDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(cmbEmpRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnEmpBorra)
+                        .addGap(21, 21, 21)
+                        .addComponent(btnEmpMod)
+                        .addGap(19, 19, 19)
+                        .addComponent(btnEmpVer))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtEmpUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtEmpContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtEmpDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(cmbEmpRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -395,7 +391,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void txtEmpCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpCodFocusLost
         // TODO add your handling code here:
         if (!txtEmpCod.getText().isBlank()) {
-            controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText(), txtEmpNom, txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
+            controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText(), txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
         }
     }//GEN-LAST:event_txtEmpCodFocusLost
 
@@ -410,7 +406,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarEmpleado();
         if (correcto == true) {
-            controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+            controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
         }
     }//GEN-LAST:event_btnEmpInsMouseClicked
 
@@ -426,7 +422,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarEmpleado();
         if (correcto == true) {
-            controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), txtEmpNom.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+            controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
         }
     }//GEN-LAST:event_btnEmpModMouseClicked
 
@@ -514,20 +510,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 return false;
             }
         }
-        if (txtEmpNom.getText().isBlank() == true) {
-            JOptionPane.showMessageDialog(null, "Tiene que introducir el nombre");
-            txtEmpNom.requestFocus();
+        if (txtEmpContra.getText().isBlank() == true) {
+            JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
+            txtEmpDni.requestFocus();
             return false;
-        } else {
-            for (int i = 0; i < txtEmpNom.getText().length(); i++) {
-                if (Character.isDigit(txtEmpNom.getText().charAt(i))) {
-                    JOptionPane.showMessageDialog(null, "El nombre no puede tener números");
-                    txtEmpNom.requestFocus();
-                    txtEmpNom.setText(" ");
-                    return false;
-                }
-            }
         }
+       if (txtEmpUser.getText().isBlank() == true) {
+            JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
+            txtEmpDni.requestFocus();
+            return false;
+       }
+        
         if (txtEmpDni.getText().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
             txtEmpDni.requestFocus();
@@ -637,7 +630,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -657,7 +649,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmpCod;
     private javax.swing.JTextField txtEmpContra;
     private javax.swing.JTextField txtEmpDni;
-    private javax.swing.JTextField txtEmpNom;
     private javax.swing.JTextField txtEmpUser;
     // End of variables declaration//GEN-END:variables
 }

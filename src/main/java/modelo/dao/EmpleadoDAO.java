@@ -38,13 +38,19 @@ public class EmpleadoDAO {
         q.setParameter("id",cod);
         return (Empleado)q.uniqueResult();
     }
+    
+      public Empleado buscarUsuario(Session session, String usuario) {
+        String consulta="from Empleado e where e.usuario=:id";
+        Query q=session.createQuery(consulta);
+        q.setParameter("id",usuario);
+        return (Empleado)q.uniqueResult();
+    }
 
     public void insertar(Session session, Empleado e) {
         session.save(e);
     }
 
-    public void modificar(Session session, Empleado e, String nombre, String usuario, String contraseña , String dni,String rol) {
-        e.setNombre(nombre);
+    public void modificar(Session session, Empleado e, String usuario, String contraseña , String dni,String rol) {
         e.setUsuario(usuario);
         e.setContraseña(contraseña);
         e.setDni(dni);

@@ -47,7 +47,7 @@ public class controladorPantallaPrincipal {
         session.close();
     }
 
-    public static void insertarEmp(String codEmp, String contraseña, String dni, String nombre, String rol, String usuario) {
+    public static void insertarEmp(String codEmp, String contraseña, String dni, String rol, String usuario) {
         try {
             HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
@@ -55,7 +55,12 @@ public class controladorPantallaPrincipal {
                 JOptionPane.showMessageDialog(ventana, "Ya existe el empleado");
                 return;
             }
-            e = new Empleado(codEmp, contraseña, dni, nombre, rol, usuario);
+            e = empDAO.buscarUsuario(session, usuario);
+            if (e != null) {
+                JOptionPane.showMessageDialog(ventana, "Ya existe usuario");
+                return;
+            }
+            e = new Empleado(codEmp, contraseña, dni, rol, usuario);
 
             empDAO.insertar(session, e);
             HibernateUtil.commitTx(session);
@@ -85,7 +90,7 @@ public class controladorPantallaPrincipal {
         }
     }
 
-    public static void modificarEmp(String codEmp, String contraseña, String dni, String nombre, String rol, String usuario) {
+    public static void modificarEmp(String codEmp, String contraseña, String dni, String rol, String usuario) {
         try {
             HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
@@ -93,8 +98,13 @@ public class controladorPantallaPrincipal {
                 JOptionPane.showMessageDialog(ventana, "No existe el empleado");
                 return;
             }
+            e = empDAO.buscarUsuario(session, usuario);
+            if (e != null) {
+                JOptionPane.showMessageDialog(ventana, "Ya existe usuario");
+                return;
+            }
 
-            empDAO.modificar(session, e, nombre, usuario, contraseña, dni, rol);
+            empDAO.modificar(session, e,usuario, contraseña, dni, rol);
            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Empleado modificado correctamente");
 
@@ -104,18 +114,18 @@ public class controladorPantallaPrincipal {
         }
     }
 
-    public static void cargarDatosEmp(String codEmp, JTextField nombre, JTextField usuario, JTextField contra, JTextField dni, JComboBox rol) {
+    public static void cargarDatosEmp(String codEmp, JTextField usuario, JTextField contra, JTextField dni, JComboBox rol) {
         try {
             HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e != null) {
-                nombre.setText(e.getNombre());
+                
                 usuario.setText(e.getUsuario());
                 contra.setText(e.getContraseña());
                 dni.setText(e.getDni());
                 rol.setSelectedItem(e.getRol());
             } else {
-                nombre.setText("");
+               
                 usuario.setText("");
                 contra.setText("");
                 dni.setText("");
