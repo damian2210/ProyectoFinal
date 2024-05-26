@@ -1,203 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cliente">
 
-
-    <Button
-        android:id="@+id/btnVisualizarCli"
-        android:layout_width="129dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="140dp"
-        android:text="Visualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCuentaCli" />
-
-    <Button
-        android:id="@+id/btnInsCli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:text="Insertar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6Cli" />
-
-
-    <Button
-        android:id="@+id/btnSalirCli"
-        android:layout_width="128dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="23dp"
-        android:text="Salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnModCli" />
-
-    <Button
-        android:id="@+id/btnBorrarCli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="32dp"
-        android:text="Borrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/btnModCli"
-        app:layout_constraintTop_toBottomOf="@+id/txtCuentaCli" />
-
-    <Button
-        android:id="@+id/btnModCli"
-        android:layout_width="129dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Modificar"
-        app:layout_constraintStart_toEndOf="@+id/btnInsCli"
-        app:layout_constraintTop_toBottomOf="@+id/btnVisualizarCli" />
-
-    <TextView
-        android:id="@+id/textViewCli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        android:text="Cod.Cliente"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloCLi" />
-
-    <TextView
-        android:id="@+id/textView2Cli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:text="Dni"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCli" />
-
-    <TextView
-        android:id="@+id/tituloCLi"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#A65CE6"
-        android:backgroundTint="#C473F6"
-        android:text="Cliente"
-        android:textAlignment="center"
-        android:textColor="#131313"
-        android:textSize="35dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/txtCodCli"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="28dp"
-        android:hint="Código del cliente"
-        android:text="c129"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloCLi" />
+        <Button
+            android:id="@+id/btnVisualizarCli"
+            android:layout_width="129dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="140dp"
+            android:text="Visualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCuentaCli" />
 
-    <EditText
-        android:id="@+id/txtDniCli"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="28dp"
-        android:hint="DNI"
-        android:text="55555555N"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodCli" />
+        <Button
+            android:id="@+id/btnInsCli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="84dp"
+            android:text="@string/insertar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6Cli" />
 
-    <EditText
-        android:id="@+id/txtNombreCli"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="28dp"
-        android:hint="Nombre"
-        android:text="nombre"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDniCli" />
+        <Button
+            android:id="@+id/btnSalirCli"
+            android:layout_width="128dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="23dp"
+            android:text="@string/salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnModCli" />
 
-    <EditText
-        android:id="@+id/txtCuentaCli"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="28dp"
-        android:hint="Número de cuenta"
-        android:text="6666666666"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTlfCli" />
+        <Button
+            android:id="@+id/btnBorrarCli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="32dp"
+            android:text="Borrar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toEndOf="@+id/btnModCli"
+            app:layout_constraintTop_toBottomOf="@+id/txtCuentaCli" />
 
-    <EditText
-        android:id="@+id/txtTlfCli"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="28dp"
-        android:hint="Teléfono"
-        android:text="777777777"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreCli" />
+        <Button
+            android:id="@+id/btnModCli"
+            android:layout_width="129dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Modificar"
+            app:layout_constraintStart_toEndOf="@+id/btnInsCli"
+            app:layout_constraintTop_toBottomOf="@+id/btnVisualizarCli" />
 
-    <TextView
-        android:id="@+id/textView4Cli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="76dp"
-        android:text="Teléfono"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5Cli" />
+        <TextView
+            android:id="@+id/textViewCli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:text="Cod.Cliente"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloCLi" />
 
-    <TextView
-        android:id="@+id/textView5Cli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="71dp"
-        android:text="Nombre"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2Cli" />
+        <TextView
+            android:id="@+id/textView2Cli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:text="Dni"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCli" />
 
-    <TextView
-        android:id="@+id/textView6Cli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="59dp"
-        android:text="Num.Cuenta"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4Cli" />
+        <TextView
+            android:id="@+id/tituloCLi"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#A65CE6"
+            android:backgroundTint="#C473F6"
+            android:text="Cliente"
+            android:textAlignment="center"
+            android:textColor="#131313"
+            android:textSize="35sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnImagenCli"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:contentDescription="Ajustes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/txtCodCli"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="28dp"
+            android:hint="Código cliente"
+            android:text="c129"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloCLi" />
 
+        <EditText
+            android:id="@+id/txtDniCli"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="28dp"
+            android:hint="DNI"
+            android:text="55555555N"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCodCli" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/txtNombreCli"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="28dp"
+            android:hint="@string/nombre"
+            android:text="nombre"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDniCli" />
+
+        <EditText
+            android:id="@+id/txtCuentaCli"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="28dp"
+            android:hint="@string/numCuenta"
+            android:text="6666666666"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTlfCli" />
+
+        <EditText
+            android:id="@+id/txtTlfCli"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="28dp"
+            android:hint="Teléfono"
+            android:text="777777777"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNombreCli" />
+
+        <TextView
+            android:id="@+id/textView4Cli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="76dp"
+            android:text="Teléfono"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5Cli" />
+
+        <TextView
+            android:id="@+id/textView5Cli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="71dp"
+            android:text="@string/nombre"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2Cli" />
+
+        <TextView
+            android:id="@+id/textView6Cli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="59dp"
+            android:text="@string/cuenta"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4Cli" />
+
+        <ImageButton
+            android:id="@+id/btnImagenCli"
+            android:layout_width="62dp"
+            android:layout_height="53dp"
+            android:contentDescription="Ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

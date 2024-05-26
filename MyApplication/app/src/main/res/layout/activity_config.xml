@@ -1,40 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Config">
 
-    <Spinner
-        android:id="@+id/spinAjustes"
-        android:layout_width="195dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="429dp"
-        app:layout_constraintStart_toEndOf="@+id/textView8Ajus"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView8Ajus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="450dp"
-        android:text="Tamaño de letra"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Spinner
+            android:id="@+id/spinAjustes"
+            android:layout_width="195dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="429dp"
+            app:layout_constraintStart_toEndOf="@+id/textView8Ajus"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnSalirAjustes"
-        android:layout_width="138dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="139dp"
-        android:layout_marginTop="131dp"
-        android:text="Salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8Ajus" />
+        <Spinner
+            android:id="@+id/spinIdioma"
+            android:layout_width="195dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="332dp"
+            android:entries="@array/idiomas"
+            app:layout_constraintStart_toEndOf="@+id/textView9Ajus"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView8Ajus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="450dp"
+            android:text="@string/tamaño"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9Ajus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="352dp"
+            android:text="Idioma"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSalirAjustes"
+            android:layout_width="138dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="131dp"
+            android:text="@string/salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8Ajus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

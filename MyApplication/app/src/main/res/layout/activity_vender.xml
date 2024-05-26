@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vender">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
     <Button
@@ -34,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="90dp"
-        android:text="Insertar"
+        android:text="@string/insertar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7Vend" />
 
@@ -44,7 +49,7 @@
         android:layout_height="52dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="23dp"
-        android:text="Salir"
+        android:text="@string/salir"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnModVend" />
 
@@ -55,7 +60,7 @@
 
         android:layout_marginStart="28dp"
         android:layout_marginTop="76dp"
-        android:text="Cod.Producto"
+        android:text="@string/codPro"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloVend" />
@@ -77,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="92dp"
-        android:text="Cod.Empleado"
+        android:text="@string/codEmp"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3Vend" />
@@ -88,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="80dp"
-        android:text="Fecha venta"
+        android:text="@string/fechaVent"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4Vend" />
@@ -99,7 +104,7 @@
         android:layout_height="55dp"
         android:background="#A65CE6"
         android:backgroundTint="#C473F6"
-        android:text="Ventas"
+        android:text="@string/ventas"
         android:textAlignment="center"
         android:textColor="#131313"
         android:textSize="35dp"
@@ -112,7 +117,7 @@
         android:layout_height="57dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
-        android:hint="Código del producto"
+        android:hint="@string/codigoPro"
         android:text="p01"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +141,7 @@
         android:layout_height="57dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
-        android:hint="Código del empleado"
+        android:hint="@string/codigoEmp"
         android:text="e24"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +153,7 @@
         android:layout_height="57dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
-        android:hint="Fecha de venta"
+        android:hint="@string/fechaDev"
         android:text="2006-10-10"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
@@ -164,4 +169,5 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

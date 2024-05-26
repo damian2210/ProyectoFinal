@@ -1,155 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Sucursal">
 
-
-    <Button
-        android:id="@+id/btnInsSuc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
-        android:text="Insertar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4Suc" />
-
-    <Button
-        android:id="@+id/btnSalirSuc"
-        android:layout_width="131dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="138dp"
-        android:layout_marginTop="28dp"
-        android:text="Salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnModSuc" />
-
-    <Button
-        android:id="@+id/btnBorrarSuc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="32dp"
-        android:text="Borrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toEndOf="@+id/btnModSuc"
-        app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
-
-    <Button
-        android:id="@+id/btnModSuc"
-        android:layout_width="129dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:text="Modificar"
-        app:layout_constraintStart_toEndOf="@+id/btnInsSuc"
-        app:layout_constraintTop_toBottomOf="@+id/btnVisualizarSuc" />
-
-    <Button
-        android:id="@+id/btnVisualizarSuc"
-        android:layout_width="129dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="144dp"
-        android:text="Visualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
-
-    <TextView
-        android:id="@+id/textViewSuc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="76dp"
-        android:text="Cod.Sucursal"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
-
-    <TextView
-        android:id="@+id/textView3Suc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="72dp"
-        android:text="Dirección"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSuc" />
-
-    <TextView
-        android:id="@+id/textView4Suc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="72dp"
-        android:text="Teléfono"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3Suc" />
-
-    <TextView
-        android:id="@+id/tituloSuc"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#A65CE6"
-        android:backgroundTint="#C473F6"
-        android:text="Sucursal"
-        android:textAlignment="center"
-        android:textColor="#131313"
-        android:textSize="35dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/txtCodSuc"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Código de la sucursal"
-        android:inputType="text"
-        android:text="s27"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
+        <Button
+            android:id="@+id/btnInsSuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="116dp"
+            android:text="@string/insertar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4Suc" />
 
-    <EditText
-        android:id="@+id/txtDirSuc"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Dirección"
-        android:text="d"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodSuc" />
+        <Button
+            android:id="@+id/btnSalirSuc"
+            android:layout_width="131dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="138dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnModSuc" />
 
-    <EditText
-        android:id="@+id/txtTlfSuc"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Teléfono"
-        android:text="777777777"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDirSuc" />
-    <ImageButton
-        android:id="@+id/btnImagenSuc"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:contentDescription="Ajustes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnBorrarSuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="32dp"
+            android:text="Borrar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.916"
+            app:layout_constraintStart_toEndOf="@+id/btnModSuc"
+            app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
 
+        <Button
+            android:id="@+id/btnModSuc"
+            android:layout_width="129dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:text="Modificar"
+            app:layout_constraintStart_toEndOf="@+id/btnInsSuc"
+            app:layout_constraintTop_toBottomOf="@+id/btnVisualizarSuc" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnVisualizarSuc"
+            android:layout_width="129dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="144dp"
+            android:text="Visualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
+
+        <TextView
+            android:id="@+id/textViewSuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="76dp"
+            android:text="Cod.Sucursal"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
+
+        <TextView
+            android:id="@+id/textView3Suc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/direccion"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSuc" />
+
+        <TextView
+            android:id="@+id/textView4Suc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="72dp"
+            android:text="Teléfono"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3Suc" />
+
+        <TextView
+            android:id="@+id/tituloSuc"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#A65CE6"
+            android:backgroundTint="#C473F6"
+            android:text="Sucursal"
+            android:textAlignment="center"
+            android:textColor="#131313"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtCodSuc"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Código sucursal"
+            android:inputType="text"
+            android:text="s27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSuc" />
+
+        <EditText
+            android:id="@+id/txtDirSuc"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:hint="@string/direccion"
+            android:text="d"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCodSuc" />
+
+        <EditText
+            android:id="@+id/txtTlfSuc"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Teléfono"
+            android:text="777777777"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDirSuc" />
+
+        <ImageButton
+            android:id="@+id/btnImagenSuc"
+            android:layout_width="62dp"
+            android:layout_height="53dp"
+            android:contentDescription="Ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,97 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <Button
-        android:id="@+id/btnlogLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="85dp"
-        android:text="Iniciar sesión"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2Log" />
-
-    <Button
-        android:id="@+id/btnGuardarLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="85dp"
-        android:text="Guardar"
-        app:layout_constraintStart_toEndOf="@+id/btnlogLog"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraLog" />
-
-    <TextView
-        android:id="@+id/textView1Log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="131dp"
-        android:text="Usuario"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulolog" />
-
-    <TextView
-        android:id="@+id/textView2Log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="92dp"
-        android:text="Contraseña"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1Log" />
-
-    <TextView
-        android:id="@+id/titulolog"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#A65CE6"
-        android:backgroundTint="#C473F6"
-        android:text="LOGIN"
-        android:textAlignment="center"
-        android:textColor="#131212"
-        android:textColorLink="#1C1C1C"
-        android:textSize="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/txtUsuarioLog"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="114dp"
-        android:hint="Usuario"
-        android:text="Antonio"
-        android:inputType="text"
-        app:layout_constraintStart_toEndOf="@+id/textView1Log"
-        app:layout_constraintTop_toBottomOf="@+id/titulolog" />
+        <Button
+            android:id="@+id/btnlogLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="85dp"
+            android:text="Iniciar sesión"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2Log" />
 
-    <EditText
-        android:id="@+id/txtContraLog"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="45dp"
-        android:hint="Contraseña"
-        android:text="ant"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toEndOf="@+id/textView2Log"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuarioLog" />
+        <Button
+            android:id="@+id/btnGuardarLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="85dp"
+            android:text="@string/guardar"
+            app:layout_constraintStart_toEndOf="@+id/btnlogLog"
+            app:layout_constraintTop_toBottomOf="@+id/txtContraLog" />
 
-    <ImageButton
-        android:id="@+id/btnImagenLog"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:contentDescription="Ajustes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView1Log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="131dp"
+            android:text="Usuario"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulolog" />
+
+        <TextView
+            android:id="@+id/textView2Log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="92dp"
+            android:text="@string/contraseña"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1Log" />
+
+        <TextView
+            android:id="@+id/titulolog"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#A65CE6"
+            android:backgroundTint="#C473F6"
+            android:text="LOGIN"
+            android:textAlignment="center"
+            android:textColor="#131212"
+            android:textColorLink="#1C1C1C"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtUsuarioLog"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="114dp"
+            android:hint="Usuario"
+            android:text="Antonio"
+            android:inputType="text"
+            app:layout_constraintStart_toEndOf="@+id/textView1Log"
+            app:layout_constraintTop_toBottomOf="@+id/titulolog" />
+
+        <EditText
+            android:id="@+id/txtContraLog"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="45dp"
+            android:hint="@string/contraseña"
+            android:text="ant"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toEndOf="@+id/textView2Log"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsuarioLog" />
+
+        <ImageButton
+            android:id="@+id/btnImagenLog"
+            android:layout_width="62dp"
+            android:layout_height="53dp"
+            android:contentDescription="Ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -3,6 +3,6 @@
     <string-array name="tipos">
         <item>Inversión</item>
         <item>Financiación</item>
-        <item>Ahorro</item>
+        <item>@string/ahorro</item>
     </string-array>
 </resources>

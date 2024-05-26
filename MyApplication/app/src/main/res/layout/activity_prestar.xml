@@ -1,142 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Prestar">
 
-
-    <Button
-        android:id="@+id/btnInsPrest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="116dp"
-        android:text="Insertar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4Prest" />
-
-    <Button
-        android:id="@+id/btnModPrest"
-        android:layout_width="129dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="108dp"
-        android:text="Modificar"
-        app:layout_constraintStart_toEndOf="@+id/btnInsPrest"
-        app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
-
-    <Button
-        android:id="@+id/btnSalirPrest"
-        android:layout_width="132dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="32dp"
-        android:text="Salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnModPrest" />
-
-    <Button
-        android:id="@+id/btnVisualizarPrest"
-        android:layout_width="129dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="12dp"
-        android:text="Visualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
-
-    <TextView
-        android:id="@+id/textViewPrest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="76dp"
-        android:text="Cod.Sucursal"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPrest" />
-
-    <TextView
-        android:id="@+id/textView3Prest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="104dp"
-        android:text="Cod.Sucursal\nprestadora"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrest" />
-
-    <TextView
-        android:id="@+id/textView4Prest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="88dp"
-        android:text="Cantidad"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3Prest" />
-
-    <TextView
-        android:id="@+id/tituloPrest"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#A65CE6"
-        android:backgroundTint="#C473F6"
-        android:text="Prestámos"
-        android:textAlignment="center"
-        android:textColor="#131313"
-        android:textSize="35dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/txtCodSucRPrest"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Código de la sucursal"
-        android:inputType="text"
-        android:text="s24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPrest" />
+        <Button
+            android:id="@+id/btnInsPrest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="116dp"
+            android:text="@string/insertar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4Prest" />
 
-    <EditText
-        android:id="@+id/txtCodSucPPrest"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Cod.Sucursal que presta"
-        android:text="s23"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodSucRPrest" />
+        <Button
+            android:id="@+id/btnModPrest"
+            android:layout_width="129dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="108dp"
+            android:text="Modificar"
+            app:layout_constraintStart_toEndOf="@+id/btnInsPrest"
+            app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
 
-    <EditText
-        android:id="@+id/txtCantPrest"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="44dp"
-        android:hint="Cantidad"
-        android:text="1000"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodSucPPrest" />
-    <ImageButton
-        android:id="@+id/btnImagenPrest"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
-        android:contentDescription="Ajustes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnSalirPrest"
+            android:layout_width="132dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnModPrest" />
 
+        <Button
+            android:id="@+id/btnVisualizarPrest"
+            android:layout_width="129dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="12dp"
+            android:text="Visualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textViewPrest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="76dp"
+            android:text="Cod.Sucursal"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPrest" />
+
+        <TextView
+            android:id="@+id/textView3Prest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="104dp"
+            android:text="Cod.Sucursal\nprestadora"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPrest" />
+
+        <TextView
+            android:id="@+id/textView4Prest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="88dp"
+            android:text="Cantidad"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3Prest" />
+
+        <TextView
+            android:id="@+id/tituloPrest"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#A65CE6"
+            android:backgroundTint="#C473F6"
+            android:text="Prestámos"
+            android:textAlignment="center"
+            android:textColor="#131313"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtCodSucRPrest"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Código sucursal"
+            android:inputType="text"
+            android:text="s24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPrest" />
+
+        <EditText
+            android:id="@+id/txtCodSucPPrest"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Cod.Sucursal que presta"
+            android:text="s23"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCodSucRPrest" />
+
+        <EditText
+            android:id="@+id/txtCantPrest"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Cantidad"
+            android:text="1000"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCodSucPPrest" />
+
+        <ImageButton
+            android:id="@+id/btnImagenPrest"
+            android:layout_width="62dp"
+            android:layout_height="53dp"
+            android:contentDescription="Ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
