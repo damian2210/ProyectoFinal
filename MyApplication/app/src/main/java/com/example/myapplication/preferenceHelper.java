@@ -27,4 +27,19 @@ public class preferenceHelper {
         editor.putString("url",url);
         editor.commit();
     }
+
+    public datos cargarIdioma(){
+        datos d=new datos();
+
+        d.setIdioma(sharPref.getString("idioma",null));
+
+
+        return d;
+    }
+    public void guardarIdioma(String idioma){
+        SharedPreferences.Editor editor=sharPref.edit();
+        editor.putString("idioma",idioma);
+
+        editor.commit();
+    }
 }

@@ -59,19 +59,19 @@ public class Guardar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(txtContraGuar.getText().toString().trim().equals("")){
-                    Toast.makeText(Guardar.this, "Tiene que escribir la contraseña", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Guardar.this, R.string.intContra, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(txtUsuarioGuar.getText().toString().trim().equals("")){
-                    Toast.makeText(Guardar.this, "Tiene que escribir el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Guardar.this, R.string.intUser, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(txtURLGuar.getText().toString().trim().equals("")){
-                    Toast.makeText(Guardar.this, "Tiene que escribir la URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Guardar.this, R.string.intURL, Toast.LENGTH_SHORT).show();
                     return;
                 }
                     helper.guardar(txtUsuarioGuar.getText().toString().trim(),txtContraGuar.getText().toString().trim(),txtURLGuar.getText().toString().trim());
-                    Toast.makeText(Guardar.this, "Preferencia guardada correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Guardar.this, R.string.prefGuar, Toast.LENGTH_SHORT).show();
                 }
 
         });

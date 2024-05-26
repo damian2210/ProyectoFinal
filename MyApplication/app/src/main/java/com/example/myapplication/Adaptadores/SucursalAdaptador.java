@@ -33,7 +33,7 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         TextView codigo=elemento.findViewById(R.id.verCodSuc);
         codigo.setText("Código:"+datos.get(position).getCodSucursal());
         TextView direccion=elemento.findViewById(R.id.verDirSuc);
-        direccion.setText("Dirección:"+datos.get(position).getDireccion());
+        direccion.setText(R.string.direccion+":"+datos.get(position).getDireccion());
         TextView tlf=elemento.findViewById(R.id.verTlfSuc);
         tlf.setText("Teléfono:"+datos.get(position).getTelefono());
         return elemento;

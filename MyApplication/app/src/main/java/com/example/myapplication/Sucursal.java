@@ -132,7 +132,7 @@ public class Sucursal extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Sucursal.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Sucursal.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -149,7 +149,7 @@ public class Sucursal extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Sucursal.this, "La sucursal ya existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Sucursal.this, R.string.sucExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -163,7 +163,7 @@ public class Sucursal extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Sucursal.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -195,7 +195,7 @@ public class Sucursal extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Sucursal.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -212,7 +212,7 @@ public class Sucursal extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Sucursal.this, "La sucursal no existe", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Sucursal.this, R.string.sucNoExiste, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -226,7 +226,7 @@ public class Sucursal extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Sucursal.this, "Error en respuesta", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -257,7 +257,7 @@ public class Sucursal extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Sucursal.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -274,7 +274,7 @@ public class Sucursal extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Sucursal.this, "La sucursal no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Sucursal.this, R.string.sucNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                     return;
@@ -297,7 +297,7 @@ public class Sucursal extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Sucursal.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -313,7 +313,7 @@ public class Sucursal extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Sucursal.this, "La sucursal realiza o recibe un prestamo,no se puede borrar", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Sucursal.this, R.string.sucEnPrest, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                                 return;
@@ -325,7 +325,7 @@ public class Sucursal extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Sucursal.this, "Error", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -338,7 +338,7 @@ public class Sucursal extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Sucursal.this, "Error en respuesta", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -371,7 +371,7 @@ public class Sucursal extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Sucursal.this, "No insertado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Sucursal.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -383,7 +383,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "Insertado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -391,7 +391,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "No insertado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.NoInsResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -419,7 +419,7 @@ public class Sucursal extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Sucursal.this, "No modificado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Sucursal.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -431,7 +431,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.mod, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -439,7 +439,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "No modificado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -466,7 +466,7 @@ public class Sucursal extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Sucursal.this, "No borrado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Sucursal.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -478,7 +478,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "Borrado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -486,7 +486,7 @@ public class Sucursal extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Sucursal.this, "No borrado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Sucursal.this, R.string.NoBorrarResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -499,34 +499,34 @@ public class Sucursal extends AppCompatActivity {
     private boolean validarSuc(EditText txtcodSuc, EditText txttlfSuc,EditText txtDirSuc){
 
         if (txtcodSuc.getText().toString().trim().isEmpty() == true || txtcodSuc.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el código", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             Pattern p = Pattern.compile("^s\\d{2}$");
             boolean correcto = p.matcher(txtcodSuc.getText().toString().trim()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de código incorrecto(Formato válido:s+dos dígitos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intCodigoSuc, Toast.LENGTH_SHORT).show();
                 txtcodSuc.setText(" ");
                 return false;
             }
         }
 
         if (txtDirSuc.getText().toString().trim().isEmpty() == true || txtDirSuc.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir la direcion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intDir, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (txttlfSuc.getText().toString().trim().isEmpty() == true||txttlfSuc.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el teléfono", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
             txttlfSuc.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
             boolean correcto = p.matcher(txttlfSuc.getText().toString()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de número de teléfono incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
                 txttlfSuc.requestFocus();
                 txttlfSuc.setText(" ");
                 return false;

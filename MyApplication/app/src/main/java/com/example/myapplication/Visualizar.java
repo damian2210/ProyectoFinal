@@ -181,7 +181,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -205,7 +205,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -230,7 +230,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -254,7 +254,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -278,7 +278,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -306,7 +306,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -330,7 +330,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -353,7 +353,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -378,7 +378,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -410,7 +410,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -434,7 +434,7 @@ public class Visualizar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -458,7 +458,7 @@ public class Visualizar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Visualizar.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Visualizar.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

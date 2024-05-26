@@ -6,10 +6,24 @@ public class datos {
     private String contra;
     private String url;
 
+    private String idioma;
+
     public datos(String usuario, String contra, String url) {
         this.usuario = usuario;
         this.contra = contra;
         this.url = url;
+    }
+
+    public datos(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
 
     public datos() {

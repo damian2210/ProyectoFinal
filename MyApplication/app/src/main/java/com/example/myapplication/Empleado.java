@@ -136,7 +136,7 @@ public class Empleado extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Empleado.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -153,7 +153,7 @@ public class Empleado extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Empleado.this, "El empleado ya existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Empleado.this, R.string.empExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -173,7 +173,7 @@ public class Empleado extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Empleado.this, "Error", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -188,7 +188,7 @@ public class Empleado extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Empleado.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Empleado.this, R.string.usuExiste, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                                 return;
@@ -202,7 +202,7 @@ public class Empleado extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Empleado.this, "Error", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Empleado.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }
@@ -215,7 +215,7 @@ public class Empleado extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Empleado.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Empleado.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -247,7 +247,7 @@ public class Empleado extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Empleado.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -263,7 +263,7 @@ public class Empleado extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Empleado.this, "El empleado no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Empleado.this, R.string.empNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -283,7 +283,7 @@ public class Empleado extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Empleado.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -298,7 +298,7 @@ public class Empleado extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Empleado.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Empleado.this, R.string.usuExiste, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                                 return;
@@ -312,7 +312,7 @@ public class Empleado extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Empleado.this, "Error", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Empleado.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -326,7 +326,7 @@ public class Empleado extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Empleado.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Empleado.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -358,7 +358,7 @@ public class Empleado extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Empleado.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -375,7 +375,7 @@ public class Empleado extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Empleado.this, "El empleado no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Empleado.this, R.string.empNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -398,7 +398,7 @@ public class Empleado extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Empleado.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -416,7 +416,7 @@ public class Empleado extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Empleado.this, "El empleado esta en una venta,no se puede borrar", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Empleado.this, R.string.empEnVenta, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                                 return;
@@ -429,7 +429,7 @@ public class Empleado extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Empleado.this, "Error", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Empleado.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -443,7 +443,7 @@ public class Empleado extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Empleado.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Empleado.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -477,7 +477,7 @@ public class Empleado extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Empleado.this, "No insertado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Empleado.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -489,7 +489,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "Insertado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this,  R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -497,7 +497,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "No insertado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this,  R.string.NoInsResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -525,7 +525,7 @@ public class Empleado extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Empleado.this, "No modificado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Empleado.this,  R.string.NoModPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -537,7 +537,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this, R.string.mod, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -545,7 +545,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "No modificado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -573,7 +573,7 @@ public class Empleado extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Empleado.this, "No borrado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Empleado.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -585,7 +585,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "Borrado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -593,7 +593,7 @@ public class Empleado extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Empleado.this, "No borrado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Empleado.this, R.string.NoBorrarResp, Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -605,32 +605,32 @@ public class Empleado extends AppCompatActivity {
 
     public boolean validarEmp(EditText txtCodEmp,EditText txtDniEmp,EditText txtTlfEmp, EditText txtContraEmp,EditText txtUsuarioEmp) {
         if (txtCodEmp.getText().toString().isEmpty() == true||txtCodEmp.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el código", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             txtCodEmp.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^e\\d{2}$");
             boolean correcto = p.matcher(txtCodEmp.getText()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de código incorrecto(Formato válido:e+dos dígitos)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intCodigoEmp, Toast.LENGTH_SHORT).show();
                 txtCodEmp.requestFocus();
                 txtCodEmp.setText(" ");
                 return false;
             }
         }
         if (txtContraEmp.getText().toString().isEmpty() == true||txtContraEmp.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir la contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intContra, Toast.LENGTH_SHORT).show();
             txtContraEmp.requestFocus();
             return false;
         }
 
         if (txtUsuarioEmp.getText().toString().isEmpty() == true||txtUsuarioEmp.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intUser, Toast.LENGTH_SHORT).show();
             txtUsuarioEmp.requestFocus();
             return false;
         }
         if (txtTlfEmp.getText().toString().trim().isEmpty() == true||txtTlfEmp.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el teléfono", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
             txtTlfEmp.requestFocus();
             return false;
         } else {
@@ -638,7 +638,7 @@ public class Empleado extends AppCompatActivity {
             boolean correcto = p.matcher(txtTlfEmp.getText()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de número de teléfono incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
                 txtTlfEmp.requestFocus();
                 txtTlfEmp.setText(" ");
                 return false;
@@ -646,14 +646,14 @@ public class Empleado extends AppCompatActivity {
         }
         if (txtDniEmp.getText().toString().isEmpty() == true||txtDniEmp.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el DNI", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intDni, Toast.LENGTH_SHORT).show();
             txtDniEmp.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
             boolean correcto = p.matcher(txtDniEmp.getText()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de DNI incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intDniForm, Toast.LENGTH_SHORT).show();
                 txtDniEmp.requestFocus();
                 txtDniEmp.setText(" ");
                 return false;

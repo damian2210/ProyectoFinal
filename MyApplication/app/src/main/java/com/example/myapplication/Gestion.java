@@ -80,7 +80,7 @@ public class Gestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(rol2.equals("Inversionista")){
-                    Toast.makeText(Gestion.this, "Solo los directores pueden acceder a las sucursales", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Gestion.this, R.string.accSuc, Toast.LENGTH_SHORT).show();
                 }else{
                     cambio=new Intent(v.getContext(),Sucursal.class);
                     cambio.putExtra("usuario",usuario2);
@@ -94,7 +94,7 @@ public class Gestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(rol2.equals("Inversionista")){
-                    Toast.makeText(Gestion.this, "Solo los directores pueden acceder a los empleados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Gestion.this, R.string.accEmp, Toast.LENGTH_SHORT).show();
                 }else {
                     cambio = new Intent(v.getContext(), Empleado.class);
                     cambio.putExtra("usuario", usuario2);
@@ -126,7 +126,7 @@ public class Gestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(rol2.equals("Inversionista")){
-                    Toast.makeText(Gestion.this, "Solo los directores pueden acceder a los préstamos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Gestion.this, R.string.accPrest, Toast.LENGTH_SHORT).show();
                 }else {
                     cambio = new Intent(v.getContext(), Prestar.class);
                     cambio.putExtra("usuario", usuario2);

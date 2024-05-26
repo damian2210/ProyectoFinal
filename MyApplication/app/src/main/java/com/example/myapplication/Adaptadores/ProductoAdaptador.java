@@ -39,7 +39,7 @@ public class ProductoAdaptador extends ArrayAdapter<ObjProducto> {
 
         if(datos.get(position).getFechaDevolucion()!=null){
             String fechaDev=datos.get(position).getFechaDevolucion().toString();
-            fecha.setText("Fecha:"+fechaDev);
+            fecha.setText(R.string.fecha+":"+fechaDev);
         }else{
 
             fecha.setText("");

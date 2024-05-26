@@ -36,7 +36,7 @@ public class PrestarAdaptador extends ArrayAdapter<ObjPrestar> {
         TextView sucP=elemento.findViewById(R.id.verPrestPKSucP);
         sucP.setText("Suc.Presta:"+datos.get(position).getPrestarPK().getCodSucursalPrestadora());
         TextView cant=elemento.findViewById(R.id.verPrestCant);
-        cant.setText("Cantidad:"+datos.get(position).getCantidad());
+        cant.setText(R.string.cantidad+":"+datos.get(position).getCantidad());
         return elemento;
     }
 }

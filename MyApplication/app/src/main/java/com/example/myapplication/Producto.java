@@ -155,7 +155,7 @@ public class Producto extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Producto.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Producto.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -174,7 +174,7 @@ public class Producto extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Producto.this, "El producto ya existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Producto.this, R.string.proExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -190,7 +190,7 @@ public class Producto extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Producto.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Producto.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -222,7 +222,7 @@ public class Producto extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Producto.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -240,7 +240,7 @@ public class Producto extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Producto.this, "El producto no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Producto.this, R.string.proNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -256,7 +256,7 @@ public class Producto extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Producto.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Producto.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -288,7 +288,7 @@ public class Producto extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Producto.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -306,7 +306,7 @@ public class Producto extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Producto.this, "El producto no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Producto.this, R.string.proNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -326,7 +326,7 @@ public class Producto extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Producto.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -344,7 +344,7 @@ public class Producto extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Producto.this, "El producto esta en una venta,no se puede borrar", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Producto.this, R.string.proEnVenta, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                                 return;
@@ -357,7 +357,7 @@ public class Producto extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Producto.this, "Error", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Producto.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -371,7 +371,7 @@ public class Producto extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Producto.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Producto.this,  R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -407,7 +407,7 @@ public class Producto extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Producto.this, "No insertado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Producto.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -419,7 +419,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "Insertado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -427,7 +427,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "No insertado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this, R.string.NoInsResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -458,7 +458,7 @@ public class Producto extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Producto.this, "No modificado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Producto.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -470,7 +470,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this, R.string.mod, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -478,7 +478,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "No modificado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -508,7 +508,7 @@ public class Producto extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Producto.this, "No borrado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Producto.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -520,7 +520,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "Borrado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this,  R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -528,7 +528,7 @@ public class Producto extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Producto.this, "No borrado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Producto.this,  R.string.NoBorrarResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -539,14 +539,14 @@ public class Producto extends AppCompatActivity {
     public boolean validarPro(EditText txtCodPro,EditText txtPuntPro,EditText txtInteresPro, EditText txtFechaPro,Spinner spin) {
         if (txtCodPro.getText().toString().isEmpty() == true||txtCodPro.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el código", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             txtCodPro.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^p\\d{2}$");
             boolean correcto = p.matcher(txtCodPro.getText()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de código incorrecto(Formato válido:p+dos dígitos)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intCodigoPro, Toast.LENGTH_SHORT).show();
                 txtCodPro.requestFocus();
                 txtCodPro.setText(" ");
                 return false;
@@ -554,13 +554,13 @@ public class Producto extends AppCompatActivity {
         }
         if (txtInteresPro.getText().toString().isEmpty() == true||txtInteresPro.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el interés", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intInt, Toast.LENGTH_SHORT).show();
             txtInteresPro.requestFocus();
             return false;
         } else {
             for (int i = 0; i < txtInteresPro.getText().length(); i++) {
                 if (Character.isLetter(txtInteresPro.getText().charAt(i))) {
-                    Toast.makeText(this, "El intéres solo pueden ser números", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.intIntForm, Toast.LENGTH_SHORT).show();
                     txtInteresPro.requestFocus();
                     txtInteresPro.setText(" ");
                     return false;
@@ -569,14 +569,14 @@ public class Producto extends AppCompatActivity {
         }
         if (txtPuntPro.getText().toString().isEmpty() == true||txtPuntPro.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir la puntuación", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intPunt, Toast.LENGTH_SHORT).show();
             txtPuntPro.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\p{L}{3}");
             boolean correcto = p.matcher(txtPuntPro.getText()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de puntuación incorrecto(Formato correcto:tres letras)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intPuntForm, Toast.LENGTH_SHORT).show();
                 txtPuntPro.requestFocus();
                 txtPuntPro.setText(" ");
                 return false;
@@ -584,7 +584,7 @@ public class Producto extends AppCompatActivity {
         }
         if (spin.getSelectedItem().toString().equals("Financiación")) {
             if (txtFechaPro.getText().toString().isEmpty() == true||txtFechaPro.getText().toString()==null) {
-                Toast.makeText(this, "Tiene que introducir la fecha de devolución", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intFechaDev, Toast.LENGTH_SHORT).show();
 
                 txtFechaPro.requestFocus();
                 return false;
@@ -593,7 +593,7 @@ public class Producto extends AppCompatActivity {
                     Date fecha = Date.valueOf(txtFechaPro.getText().toString());
 
                 } catch (IllegalArgumentException iae) {
-                    Toast.makeText(this, "Formato de fecha incorrecto(Formato correcto:yyyy-mm-dd)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.intFechaForm, Toast.LENGTH_SHORT).show();
                     txtFechaPro.requestFocus();
                     txtFechaPro.setText(" ");
                     return false;

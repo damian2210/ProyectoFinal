@@ -138,7 +138,7 @@ public class Cliente extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Cliente.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -155,7 +155,7 @@ public class Cliente extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Cliente.this, "El cliente ya existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Cliente.this, R.string.cliExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -169,7 +169,7 @@ public class Cliente extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Cliente.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -201,7 +201,7 @@ public class Cliente extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Cliente.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -218,7 +218,7 @@ public class Cliente extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Cliente.this, "El cliente no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Cliente.this, R.string.cliNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -232,7 +232,7 @@ public class Cliente extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Cliente.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -247,7 +247,7 @@ public class Cliente extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rol2.equals("Inversionista")) {
-                    Toast.makeText(Cliente.this, "Solo los directores pueden borrar clientes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cliente.this, R.string.accCli, Toast.LENGTH_SHORT).show();
                 } else {
                     datos d = getDatos();
                     boolean correcto = validarCli(txtCodCli, txtDniCli, txtNombreCli, txtCuentaCli, txtTlfCli);
@@ -267,7 +267,7 @@ public class Cliente extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(Cliente.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -283,7 +283,7 @@ public class Cliente extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Cliente.this, "El cliente no existe", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -303,7 +303,7 @@ public class Cliente extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Cliente.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }
@@ -321,7 +321,7 @@ public class Cliente extends AppCompatActivity {
                                                     runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            Toast.makeText(Cliente.this, "El cliente participa en una venta,no se puede borrar", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(Cliente.this, R.string.cliEnVenta, Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                                     return;
@@ -334,7 +334,7 @@ public class Cliente extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Cliente.this, "Error", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }
@@ -346,7 +346,7 @@ public class Cliente extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Cliente.this, "Error en respuesta", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
@@ -380,7 +380,7 @@ public class Cliente extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Cliente.this, "No insertado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Cliente.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -392,7 +392,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "Insertado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -400,7 +400,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "No insertado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.NoInsResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -428,7 +428,7 @@ public class Cliente extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Cliente.this, "No modificado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Cliente.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -440,7 +440,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.mod, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -448,7 +448,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "No modificado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -476,7 +476,7 @@ public class Cliente extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Cliente.this, "No borrado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Cliente.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -488,7 +488,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "Borrado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -496,7 +496,7 @@ public class Cliente extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, "No borrado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -509,28 +509,28 @@ public class Cliente extends AppCompatActivity {
     public boolean validarCli(EditText txtCodCli,EditText txtDniCli,EditText txtNombreCli, EditText txtCuentaCli,EditText txtTlfCli){
         if (txtCodCli.getText().toString().trim().isEmpty() == true||txtCodCli.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el código", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             txtCodCli.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^c\\d{3}$");
             boolean correcto = p.matcher(txtCodCli.getText().toString().trim()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de código incorrecto(Formato válido:c+tres dígitos)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intCodigoCli, Toast.LENGTH_SHORT).show();
                 txtCodCli.requestFocus();
                 txtCodCli.setText(" ");
                 return false;
             }
         }
         if (txtNombreCli.getText().toString().trim().isEmpty() == true||txtNombreCli.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el nombre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intNombre, Toast.LENGTH_SHORT).show();
             txtNombreCli.requestFocus();
             return false;
         } else {
             for (int i = 0; i < txtNombreCli.getText().length(); i++) {
                 if (Character.isDigit(txtNombreCli.getText().charAt(i))) {
 
-                    Toast.makeText(this, "El nombre no puede tener números", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.intNombreNum, Toast.LENGTH_SHORT).show();
                     txtNombreCli.requestFocus();
                     txtNombreCli.setText(" ");
                     return false;
@@ -539,7 +539,7 @@ public class Cliente extends AppCompatActivity {
         }
         if (txtDniCli.getText().toString().trim().isEmpty() == true||txtDniCli.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el DNI", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intDni, Toast.LENGTH_SHORT).show();
             txtDniCli.requestFocus();
             return false;
         } else {
@@ -547,14 +547,14 @@ public class Cliente extends AppCompatActivity {
             boolean correcto = p.matcher(txtDniCli.getText()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de DNI incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intDniForm, Toast.LENGTH_SHORT).show();
                 txtDniCli.requestFocus();
                 txtDniCli.setText(" ");
                 return false;
             }
         }
         if (txtTlfCli.getText().toString().trim().isEmpty() == true||txtTlfCli.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el teléfono", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
             txtTlfCli.requestFocus();
             return false;
         } else {
@@ -562,7 +562,7 @@ public class Cliente extends AppCompatActivity {
             boolean correcto = p.matcher(txtTlfCli.getText()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de número de teléfono incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,  R.string.intTlfForm, Toast.LENGTH_SHORT).show();
                 txtTlfCli.requestFocus();
                 txtTlfCli.setText(" ");
                 return false;
@@ -571,14 +571,14 @@ public class Cliente extends AppCompatActivity {
 
         if (txtCuentaCli.getText().toString().trim().isEmpty() == true||txtTlfCli.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir el número de cuenta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,  R.string.intCuenta, Toast.LENGTH_SHORT).show();
             txtCuentaCli.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{10}");
             boolean correcto = p.matcher(txtCuentaCli.getText()).matches();
             if (correcto == false) {
-                Toast.makeText(this, "Formato de número de cuenta incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,  R.string.intCuentaForm, Toast.LENGTH_SHORT).show();
 
                 txtCuentaCli.requestFocus();
                 txtCuentaCli.setText(" ");

@@ -36,11 +36,13 @@ public class ClienteAdaptador extends ArrayAdapter<ObjCliente> {
         TextView dni=elemento.findViewById(R.id.verCliDNI);
         dni.setText("Dni:"+datos.get(position).getDni());
         TextView nombre=elemento.findViewById(R.id.verCliNombre);
-        nombre.setText("Nombre:"+datos.get(position).getNombre());
+        nombre.setText(R.string.nombre+":"+datos.get(position).getNombre());
         TextView tlf=elemento.findViewById(R.id.verCliTLF);
         tlf.setText("Teléfono:"+datos.get(position).getTelefono());
         TextView cuenta=elemento.findViewById(R.id.verCliNumCuenta);
-        cuenta.setText("Num.Cuenta:"+datos.get(position).getNumCuenta());
+        cuenta.setText(R.string.cuenta+":"+datos.get(position).getNumCuenta());
         return elemento;
     }
+
+
 }

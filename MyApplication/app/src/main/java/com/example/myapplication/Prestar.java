@@ -138,7 +138,7 @@ public class Prestar extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -154,7 +154,7 @@ public class Prestar extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Prestar.this, "El préstamo ya existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Prestar.this, R.string.prestExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -173,7 +173,7 @@ public class Prestar extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -189,7 +189,7 @@ public class Prestar extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Prestar.this, "La sucursal que recibe el prestamo no existe", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Prestar.this, R.string.sucRecNoExiste, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
 
@@ -208,7 +208,7 @@ public class Prestar extends AppCompatActivity {
                                                     runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
 
@@ -224,7 +224,7 @@ public class Prestar extends AppCompatActivity {
                                                             runOnUiThread(new Runnable() {
                                                                 @Override
                                                                 public void run() {
-                                                                    Toast.makeText(Prestar.this, "La sucursal que realiza el prestamo no existe", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(Prestar.this, R.string.sucReaExiste, Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
 
@@ -242,7 +242,7 @@ public class Prestar extends AppCompatActivity {
                                                         runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-                                                                Toast.makeText(Prestar.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(Prestar.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
 
@@ -253,7 +253,7 @@ public class Prestar extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Prestar.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Prestar.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -292,7 +292,7 @@ public class Prestar extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -308,7 +308,7 @@ public class Prestar extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(Prestar.this, "El préstamo no existe", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Prestar.this, R.string.prestNoExiste, Toast.LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -327,7 +327,7 @@ public class Prestar extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -343,7 +343,7 @@ public class Prestar extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Prestar.this, "La sucursal que recibe el prestamo no existe", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Prestar.this, R.string.sucRecNoExiste, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
 
@@ -362,7 +362,7 @@ public class Prestar extends AppCompatActivity {
                                                     runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
-                                                            Toast.makeText(Prestar.this, "Error en peticion", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
 
@@ -378,7 +378,7 @@ public class Prestar extends AppCompatActivity {
                                                             runOnUiThread(new Runnable() {
                                                                 @Override
                                                                 public void run() {
-                                                                    Toast.makeText(Prestar.this, "La sucursal que realiza el prestamo no existe", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(Prestar.this, R.string.sucReaExiste, Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
 
@@ -396,7 +396,7 @@ public class Prestar extends AppCompatActivity {
                                                         runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-                                                                Toast.makeText(Prestar.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(Prestar.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
 
@@ -407,7 +407,7 @@ public class Prestar extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(Prestar.this, "Error en respuesta ", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Prestar.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -445,7 +445,7 @@ public class Prestar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Prestar.this, "No insertado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Prestar.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -457,7 +457,7 @@ public class Prestar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Prestar.this, "Insertado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Prestar.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -465,7 +465,7 @@ public class Prestar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Prestar.this, "No insertado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Prestar.this, R.string.NoInsResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -493,7 +493,7 @@ public class Prestar extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Prestar.this, "No modificado,error en peticion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Prestar.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -505,7 +505,7 @@ public class Prestar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Prestar.this, "Modificado correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Prestar.this, R.string.mod, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -513,7 +513,7 @@ public class Prestar extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Prestar.this, "No modificado,error en respuesta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Prestar.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -526,40 +526,40 @@ public class Prestar extends AppCompatActivity {
 
     private boolean validarPrest(EditText txtCodSucRPrest, EditText txtCodSucPPrest,EditText txtCantPrest){
         if (txtCodSucRPrest.getText().toString().trim().isEmpty() == true || txtCodSucRPrest.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el código de la sucursal que recibe el prestamo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCodigoSucR, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             Pattern p = Pattern.compile("^s\\d{2}$");
             boolean correcto = p.matcher(txtCodSucRPrest.getText().toString().trim()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de código de la sucursal que recibe el prestamo incorrecto(Formato válido:s+dos dígitos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.intCodigoSucRForm, Toast.LENGTH_SHORT).show();
                 txtCodSucRPrest.setText(" ");
                 return false;
             }
         }
         if (txtCodSucPPrest.getText().toString().trim().isEmpty() == true || txtCodSucPPrest.getText().toString()==null) {
-            Toast.makeText(this, "Tiene que introducir el código de la sucursal que realiza el prestamo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,  R.string.intCodigoSucP, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             Pattern p = Pattern.compile("^s\\d{2}$");
             boolean correcto = p.matcher(txtCodSucPPrest.getText().toString().trim()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, "Formato de código de la sucursal que realiza el prestamo incorrecto(Formato válido:s+dos dígitos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,  R.string.intCodigoSucPForm, Toast.LENGTH_SHORT).show();
                 txtCodSucPPrest.setText(" ");
                 return false;
             }
         }
         if (txtCantPrest.getText().toString().isEmpty() == true||txtCantPrest.getText().toString()==null) {
 
-            Toast.makeText(this, "Tiene que introducir la cantidad", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.intCant, Toast.LENGTH_SHORT).show();
             txtCantPrest.requestFocus();
             return false;
         } else {
             for (int i = 0; i < txtCantPrest.getText().length(); i++) {
                 if (Character.isLetter(txtCantPrest.getText().charAt(i))) {
-                    Toast.makeText(this, "La cantidad solo pueden ser números", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.intCantForm, Toast.LENGTH_SHORT).show();
                     txtCantPrest.requestFocus();
                     txtCantPrest.setText(" ");
                     return false;

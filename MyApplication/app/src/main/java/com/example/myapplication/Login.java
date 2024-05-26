@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,6 +38,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -55,6 +58,10 @@ public class Login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String idioma=getIdioma();
+        if(idioma!=null) {
+            cambiarIdioma(idioma);
+        }
         guardarImagenes();
         guardarAjustes();
         cambiarTamaño();
@@ -122,7 +129,7 @@ public class Login extends AppCompatActivity {
                             .url(uri)
                             .build();
                 }catch (IllegalArgumentException eae){
-                    Toast.makeText(Login.this, "Formato de uri incorrecto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, R.string.uriInc, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 OkHttpClient client=new OkHttpClient();
@@ -132,7 +139,7 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(Login.this, "Error en petición", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -152,7 +159,7 @@ public class Login extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Login.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, R.string.userInc, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -169,6 +176,37 @@ public class Login extends AppCompatActivity {
         preferenceHelper helper=new preferenceHelper(preferencias);
         datos d=helper.cargar();
         return d;
+    }
+    private String getIdioma(){
+        SharedPreferences preferencias= getBaseContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        preferenceHelper helper=new preferenceHelper(preferencias);
+        datos d=helper.cargarIdioma();
+        return d.getIdioma();
+
+    }
+
+    private void cambiarIdioma(String idioma){
+
+        String codigo=null;
+
+            if (idioma.equals("Gallego")) {
+                codigo = "gl";
+            } else {
+                codigo = "en";
+            }
+            Locale lang = getResources().getConfiguration().getLocales().get(0);
+            String idiomaActual=lang.getLanguage();
+            if(!codigo.equals(idiomaActual)) {
+                Locale locale = new Locale(codigo);
+                Locale.setDefault(locale);
+                Resources resources = Login.this.getResources();
+                Configuration configuration = resources.getConfiguration();
+                configuration.setLocale(locale);
+                resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+                finish();
+                startActivity(getIntent());
+            }
+
     }
 
     private void guardarImagenes(){

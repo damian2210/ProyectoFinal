@@ -36,7 +36,7 @@ public class EmpleadoAdaptador extends ArrayAdapter<ObjEmpleado> {
         TextView tlf=elemento.findViewById(R.id.verEmptlf);
         tlf.setText("Teléfono:"+datos.get(position).getTelefono());
         TextView contra=elemento.findViewById(R.id.verEmpContra);
-        contra.setText("Contraseña::"+datos.get(position).getContraseña());
+        contra.setText(R.string.contraseña+":"+datos.get(position).getContraseña());
         TextView dni=elemento.findViewById(R.id.verEmpDni);
         dni.setText("Dni:"+datos.get(position).getDni());
         TextView rol=elemento.findViewById(R.id.verEmpRol);
