@@ -5,7 +5,10 @@
 package controlador;
 
 import controlador.factory.HibernateUtil;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -18,6 +21,11 @@ import modelo.vo.Empleado;
 import modelo.vo.ProductoFinanciero;
 import modelo.vo.Vender;
 import modelo.vo.VenderPK;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.Session;
 import vista.PantallaProductos;
 
@@ -243,6 +251,8 @@ public class controladorPantallaProductos {
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+   
 
 
 }

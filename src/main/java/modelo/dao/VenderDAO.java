@@ -37,6 +37,13 @@ public class VenderDAO {
         q.setParameter("id",codCli);
         return (Vender)q.uniqueResult();
     }
+        
+        public Vender buscarEmpEnVenta(Session session, String codEmp) {
+        String consulta="from Vender v where v.codEmpleado=:id";
+        Query q=session.createQuery(consulta);
+        q.setParameter("id",codEmp);
+        return (Vender)q.uniqueResult();
+    }
      
     public void insertar(Session session, Vender v) {
         session.save(v);
