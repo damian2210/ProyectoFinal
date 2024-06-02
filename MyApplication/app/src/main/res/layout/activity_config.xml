@@ -11,13 +11,26 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tituloConf"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#A65CE6"
+            android:backgroundTint="#C473F6"
+            android:text="Configuración"
+            android:textAlignment="center"
+            android:textColor="#131313"
+            android:textStyle="italic"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spinAjustes"
             android:layout_width="195dp"
             android:layout_height="48dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="429dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="164dp"
             app:layout_constraintStart_toEndOf="@+id/textView8Ajus"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +38,8 @@
             android:id="@+id/spinIdioma"
             android:layout_width="195dp"
             android:layout_height="48dp"
-            android:layout_marginStart="107dp"
-            android:layout_marginTop="332dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="84dp"
             android:entries="@array/idiomas"
             app:layout_constraintStart_toEndOf="@+id/textView9Ajus"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +48,8 @@
             android:id="@+id/textView8Ajus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="450dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="176dp"
             android:text="@string/tamaño"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,8 +59,8 @@
             android:id="@+id/textView9Ajus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="352dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="96dp"
             android:text="Idioma"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,13 +68,15 @@
 
         <Button
             android:id="@+id/btnSalirAjustes"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="138dp"
             android:layout_height="58dp"
-            android:layout_marginStart="139dp"
-            android:layout_marginTop="131dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="403dp"
             android:text="@string/salir"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8Ajus" />
+            app:layout_constraintTop_toBottomOf="@+id/spinAjustes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

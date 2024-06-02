@@ -13,47 +13,57 @@
         android:layout_height="wrap_content">
 
 
-    <Button
-        android:id="@+id/btnVisualizarVend"
-        android:layout_width="129dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="16dp"
-        android:text="Visualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
+        <Button
+            android:id="@+id/btnVisualizarVend"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="3dp"
+            android:text="Visualizar"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnModVend"
+            app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
 
-    <Button
-        android:id="@+id/btnModVend"
-        android:layout_width="129dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        android:text="Modificar"
-        app:layout_constraintStart_toEndOf="@+id/btnInsVend"
-        app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
+        <Button
+            android:id="@+id/btnModVend"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="76dp"
+            android:text="Modificar"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/btnInsVend"
+            app:layout_constraintTop_toBottomOf="@+id/txtFechaVend" />
 
-    <Button
-        android:id="@+id/btnInsVend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="90dp"
-        android:text="@string/insertar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7Vend" />
+        <Button
+            android:id="@+id/btnInsVend"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="80dp"
+            android:text="@string/insertar"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7Vend" />
 
-    <Button
-        android:id="@+id/btnSalirVend"
-        android:layout_width="131dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="23dp"
-        android:text="@string/salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnModVend" />
+        <Button
+            android:id="@+id/btnSalirVend"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="113dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/salir"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnModVend" />
 
-    <TextView
+        <TextView
         android:id="@+id/textViewVend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,18 +75,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloVend" />
 
-    <TextView
-        android:id="@+id/textView3Vend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="100dp"
-        android:text="Cod.Cliente"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewVend" />
+        <TextView
+            android:id="@+id/textView3Vend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="72dp"
+            android:text="Cod.Cliente"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewVend" />
 
-    <TextView
+        <TextView
         android:id="@+id/textView4Vend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,6 +118,7 @@
         android:textAlignment="center"
         android:textColor="#131313"
         android:textSize="35dp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,19 +134,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloVend" />
 
-    <EditText
-        android:id="@+id/txtCodCliVend"
-        android:layout_width="214dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Código del cliente"
-        android:text="c125"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodProVend" />
+        <EditText
+            android:id="@+id/txtCodCliVend"
+            android:layout_width="214dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Código del cliente"
+            android:inputType="text"
+            android:text="c125"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCodProVend" />
 
-    <EditText
+        <EditText
         android:id="@+id/txtCodEmpVend"
         android:layout_width="214dp"
         android:layout_height="57dp"

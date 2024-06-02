@@ -14,56 +14,63 @@
 
         <Button
             android:id="@+id/btnInsEmp"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="57dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="27dp"
             android:text="@string/insertar"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7Emp" />
 
         <Button
             android:id="@+id/btnBorrarEmp"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="115dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="19dp"
             android:text="Borrar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.833"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnModEmp"
             app:layout_constraintTop_toBottomOf="@+id/spnRolEmp" />
 
         <Button
             android:id="@+id/btnModEmp"
-            android:layout_width="129dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="19dp"
             android:text="Modificar"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnInsEmp"
-            app:layout_constraintTop_toBottomOf="@+id/btnVisualizarEmp" />
+            app:layout_constraintTop_toBottomOf="@+id/spnRolEmp" />
 
         <Button
             android:id="@+id/btnSalirEmp"
-            android:layout_width="103dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="66dp"
-            android:layout_marginTop="136dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="113dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="62dp"
+            android:layout_marginTop="12dp"
             android:text="@string/salir"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6Emp" />
+            app:layout_constraintTop_toBottomOf="@+id/btnInsEmp" />
 
         <Button
             android:id="@+id/btnVisualizarEmp"
-            android:layout_width="129dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="80dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="12dp"
             android:text="Visualizar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnRolEmp" />
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/btnSalirEmp"
+            app:layout_constraintTop_toBottomOf="@+id/btnBorrarEmp" />
 
         <TextView
             android:id="@+id/textViewEmp"
@@ -94,6 +101,7 @@
             android:background="#A65CE6"
             android:backgroundTint="#C473F6"
             android:text="@string/empleado"
+            android:textStyle="italic"
             android:textAlignment="center"
             android:textColor="#131313"
             android:textSize="35dp"

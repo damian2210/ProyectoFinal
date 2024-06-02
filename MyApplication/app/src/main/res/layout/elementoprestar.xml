@@ -10,7 +10,7 @@
         android:id="@+id/verPrestPKSucR"
         android:layout_width="204dp"
         android:layout_height="51dp"
-
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,7 +19,7 @@
         android:id="@+id/verPrestPKSucP"
         android:layout_width="199dp"
         android:layout_height="52dp"
-
+        android:textStyle="bold"
         android:layout_marginStart="7dp"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/verPrestPKSucR"

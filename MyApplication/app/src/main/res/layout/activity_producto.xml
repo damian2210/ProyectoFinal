@@ -14,54 +14,62 @@
 
         <Button
             android:id="@+id/btnModPro"
-            android:layout_width="129dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="51dp"
             android:text="Modificar"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnInsPro"
-            app:layout_constraintTop_toBottomOf="@+id/btnVisualizarPro" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <Button
             android:id="@+id/btnVisualizarPro"
-            android:layout_width="129dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="64dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="13dp"
             android:text="Visualizar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/btnSalirPro"
+            app:layout_constraintTop_toBottomOf="@+id/btnModPro" />
 
         <Button
             android:id="@+id/btnSalirPro"
-            android:layout_width="127dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="36dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="113dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
             android:text="@string/salir"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/btnInsPro" />
 
         <Button
             android:id="@+id/btnInsPro"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="76dp"
             android:text="@string/insertar"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6Pro" />
 
         <Button
             android:id="@+id/btnBorrarPro"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="51dp"
             android:text="Borrar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnModPro"
             app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -95,6 +103,7 @@
             android:backgroundTint="#C473F6"
             android:text="@string/producto"
             android:textAlignment="center"
+            android:textStyle="italic"
             android:textColor="#131313"
             android:textSize="35dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,12 +148,12 @@
         <EditText
             android:id="@+id/txtFechaPro"
             android:layout_width="214dp"
-            android:layout_height="57dp"
+            android:layout_height="70dp"
             android:layout_marginTop="34dp"
             android:layout_marginEnd="28dp"
             android:hint="@string/fechaDev"
-            android:text="2006-10-10"
             android:inputType="date"
+            android:text="2006-10-10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPuntPro" />
 

@@ -9,7 +9,7 @@
         android:id="@+id/verEmpCod"
         android:layout_width="206dp"
         android:layout_height="43dp"
-
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

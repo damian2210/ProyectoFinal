@@ -9,7 +9,7 @@
         android:id="@+id/verCliCod"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-
+        android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

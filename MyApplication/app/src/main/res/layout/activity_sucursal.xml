@@ -14,56 +14,65 @@
 
         <Button
             android:id="@+id/btnInsSuc"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="57dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="113dp"
             android:text="@string/insertar"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4Suc" />
 
         <Button
             android:id="@+id/btnSalirSuc"
-            android:layout_width="131dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="138dp"
-            android:layout_marginTop="28dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="113dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="18dp"
             android:text="@string/salir"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModSuc" />
 
         <Button
             android:id="@+id/btnBorrarSuc"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="16dp"
             android:text="Borrar"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.916"
             app:layout_constraintStart_toEndOf="@+id/btnModSuc"
             app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
 
         <Button
             android:id="@+id/btnModSuc"
-            android:layout_width="129dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="110dp"
             android:text="Modificar"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnInsSuc"
-            app:layout_constraintTop_toBottomOf="@+id/btnVisualizarSuc" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
 
         <Button
             android:id="@+id/btnVisualizarSuc"
-            android:layout_width="129dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="144dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="18dp"
             android:text="Visualizar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTlfSuc" />
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/btnSalirSuc"
+            app:layout_constraintTop_toBottomOf="@+id/btnBorrarSuc" />
 
         <TextView
             android:id="@+id/textViewSuc"
@@ -105,6 +114,7 @@
             android:background="#A65CE6"
             android:backgroundTint="#C473F6"
             android:text="Sucursal"
+            android:textStyle="italic"
             android:textAlignment="center"
             android:textColor="#131313"
             android:textSize="35dp"

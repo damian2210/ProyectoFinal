@@ -14,41 +14,49 @@
 
         <Button
             android:id="@+id/btnInsPrest"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="116dp"
             android:text="@string/insertar"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4Prest" />
 
         <Button
             android:id="@+id/btnModPrest"
-            android:layout_width="129dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="12dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="108dp"
             android:text="Modificar"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/btnInsPrest"
             app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
 
         <Button
             android:id="@+id/btnSalirPrest"
-            android:layout_width="132dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="123dp"
-            android:layout_marginTop="32dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="113dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="132dp"
+            android:layout_marginTop="28dp"
             android:text="@string/salir"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModPrest" />
 
         <Button
             android:id="@+id/btnVisualizarPrest"
-            android:layout_width="129dp"
-            android:layout_height="53dp"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="57dp"
             android:layout_marginTop="108dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="4dp"
             android:text="Visualizar"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtCantPrest" />
 
@@ -92,6 +100,7 @@
             android:background="#A65CE6"
             android:backgroundTint="#C473F6"
             android:text="Prestámos"
+            android:textStyle="italic"
             android:textAlignment="center"
             android:textColor="#131313"
             android:textSize="35dp"

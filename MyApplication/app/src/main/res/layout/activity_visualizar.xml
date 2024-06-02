@@ -20,6 +20,7 @@
         android:backgroundTint="#C473F6"
         android:text="Visualizar x"
         android:textAlignment="center"
+        android:textStyle="italic"
         android:textColor="#131313"
         android:textSize="35dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,14 +34,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visualTitulo" />
 
-    <Button
-        android:id="@+id/btnAtrasVer"
-        android:layout_width="126dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/salir"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaGeneral" />
+        <Button
+            android:id="@+id/btnAtrasVer"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="126dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/salir"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listaGeneral" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
