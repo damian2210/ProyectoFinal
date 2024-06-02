@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Objetos.ObjCliente;
+import com.example.myapplication.Objetos.ObjEmpleado;
 import com.example.myapplication.Objetos.ObjPrestar;
 import com.example.myapplication.Objetos.ObjSucursal;
 import com.example.myapplication.Objetos.ObjVender;
@@ -32,7 +35,9 @@ import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import okhttp3.Call;
@@ -73,16 +78,85 @@ public class Cliente extends AppCompatActivity {
         Button verCli=findViewById(R.id.btnVisualizarCli);
         Button salirCli=findViewById(R.id.btnSalirCli);
         ImageButton ajustes=findViewById(R.id.btnImagenCli);
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
 
 
-        ajustes.setOnClickListener(new View.OnClickListener() {
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        txtCodCli.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodCli.getText().toString().isEmpty() == true || txtCodCli.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String codCli = txtCodCli.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
+                            .appendQueryParameter("id", codCli)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new Gson();
+                                ObjCliente cliente = gson.fromJson(data, ObjCliente.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(cliente!=null){
+                                            txtDniCli.setText(cliente.getDni());
+                                            txtCuentaCli.setText(cliente.getNumCuenta()+"");
+                                            txtNombreCli.setText(cliente.getNombre());
+                                            txtTlfCli.setText(cliente.getTelefono()+"");
+
+                                        }else{
+                                            txtDniCli.setText("");
+                                            txtCuentaCli.setText("");
+                                            txtNombreCli.setText("");
+                                            txtTlfCli.setText("");
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
             }
         });
+
+
+
+
 
         if (intent != null) {
             usuario = intent.getStringExtra("usuario");
@@ -96,6 +170,17 @@ public class Cliente extends AppCompatActivity {
         }
         String usuario2=usuario;
         String rol2=rol;
+
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         salirCli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +197,8 @@ public class Cliente extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gestion=new Intent(getBaseContext(), Visualizar.class);
                 gestion.putExtra("clase","cliente");
-
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
                 startActivity(gestion);
                 finish();
             }
@@ -125,7 +211,7 @@ public class Cliente extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codCli = txtCodCli.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/cliente/buscarCliente").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                             .appendQueryParameter("id", codCli)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -139,6 +225,7 @@ public class Cliente extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -174,6 +261,7 @@ public class Cliente extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -188,7 +276,7 @@ public class Cliente extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codCli = txtCodCli.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/cliente/buscarCliente").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                             .appendQueryParameter("id", codCli)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -202,6 +290,7 @@ public class Cliente extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -237,6 +326,7 @@ public class Cliente extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -254,7 +344,7 @@ public class Cliente extends AppCompatActivity {
 
                     if (correcto == true) {
                         String codCli = txtCodCli.getText().toString();
-                        String uri = Uri.parse(d.getUrl() + "/cliente/buscarCliente").buildUpon()
+                        String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                                 .appendQueryParameter("id", codCli)
                                 .build().toString();
                         Request request = new Request.Builder()
@@ -268,6 +358,7 @@ public class Cliente extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                        call.cancel();
                                     }
                                 });
 
@@ -289,7 +380,7 @@ public class Cliente extends AppCompatActivity {
 
                                         return;
                                     }
-                                    String uri = Uri.parse(d.getUrl() + "/vender/buscarClienteEnVenta").buildUpon()
+                                    String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarClienteEnVenta").buildUpon()
                                             .appendQueryParameter("id", cliente.getIdCliente())
                                             .build().toString();
                                     Request request = new Request.Builder()
@@ -304,6 +395,7 @@ public class Cliente extends AppCompatActivity {
                                                 @Override
                                                 public void run() {
                                                     Toast.makeText(Cliente.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                    call.cancel();
                                                 }
                                             });
                                         }
@@ -338,6 +430,7 @@ public class Cliente extends AppCompatActivity {
                                                     }
                                                 });
                                             }
+                                            response.close();
                                         }
                                     });
 
@@ -350,6 +443,7 @@ public class Cliente extends AppCompatActivity {
                                         }
                                     });
                                 }
+                                response.close();
                             }
                         });
 
@@ -366,7 +460,7 @@ public class Cliente extends AppCompatActivity {
         String json = gson.toJson(cliente);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/cliente/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/cliente/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -381,6 +475,7 @@ public class Cliente extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Cliente.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -405,6 +500,7 @@ public class Cliente extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -414,7 +510,7 @@ public class Cliente extends AppCompatActivity {
         String json = gson.toJson(cliente);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/cliente/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/cliente/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -429,6 +525,7 @@ public class Cliente extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Cliente.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -453,6 +550,7 @@ public class Cliente extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -463,7 +561,7 @@ public class Cliente extends AppCompatActivity {
         String json = gson.toJson(cliente);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/cliente/borrar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/cliente/borrar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -477,6 +575,7 @@ public class Cliente extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Cliente.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -501,6 +600,7 @@ public class Cliente extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

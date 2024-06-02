@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +37,9 @@ import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.regex.Pattern;
 
@@ -76,24 +80,169 @@ public class Vender extends AppCompatActivity {
         Button verVend=findViewById(R.id.btnVisualizarVend);
         Button salirVend=findViewById(R.id.btnSalirVend);
         ImageButton ajustes=findViewById(R.id.btnImagenVend);
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
 
 
-        ajustes.setOnClickListener(new View.OnClickListener() {
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        txtCodCliVend.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodCliVend.getText().toString().isEmpty() == true || txtCodCliVend.getText().toString() == null||txtCodProVend.getText().toString().isEmpty() == true || txtCodProVend.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String codCli = txtCodCliVend.getText().toString();
+                    String codPro = txtCodProVend.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
+                            .appendQueryParameter("id", codPro)
+                            .appendQueryParameter("id2", codCli)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new GsonBuilder()
+                                        .setDateFormat("yyyy-MM-dd")
+                                        .create();
+                                ObjVender vender = gson.fromJson(data, ObjVender.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(vender!=null){
+                                            txtFechaVend.setText(String.valueOf(vender.getFechaVenta()));
+                                            txtCodEmpVend.setText(vender.getCodEmpleado().getCodEmpleado());
+
+
+                                        }else{
+                                            txtFechaVend.setText("");
+                                            txtCodEmpVend.setText("");
+
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
             }
         });
+        txtCodProVend.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodCliVend.getText().toString().isEmpty() == true || txtCodCliVend.getText().toString() == null||txtCodProVend.getText().toString().isEmpty() == true || txtCodProVend.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String codCli = txtCodCliVend.getText().toString();
+                    String codPro = txtCodProVend.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
+                            .appendQueryParameter("id", codPro)
+                            .appendQueryParameter("id2", codCli)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new GsonBuilder()
+                                        .setDateFormat("yyyy-MM-dd")
+                                        .create();
+                                ObjVender vender = gson.fromJson(data, ObjVender.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(vender!=null){
+                                            txtFechaVend.setText(String.valueOf(vender.getFechaVenta()));
+                                            txtCodEmpVend.setText(vender.getCodEmpleado().getCodEmpleado());
+
+
+                                        }else{
+                                            txtFechaVend.setText("");
+                                            txtCodEmpVend.setText("");
+
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
+            }
+        });
+
         if (intent != null) {
             usuario = intent.getStringExtra("usuario");
             rol = intent.getStringExtra("rol");
 
 
         }
+
         String usuario2=usuario;
         String rol2=rol;
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         salirVend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +260,8 @@ public class Vender extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gestion=new Intent(getBaseContext(), Visualizar.class);
                 gestion.putExtra("clase","vender");
-
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
                 startActivity(gestion);
                 finish();
             }
@@ -126,7 +276,7 @@ public class Vender extends AppCompatActivity {
                     String codCli = txtCodCliVend.getText().toString();
                     String codPro = txtCodProVend.getText().toString();
                     String codEmp=txtCodEmpVend.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/vender/buscarVenta").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
                             .build().toString();
@@ -141,6 +291,7 @@ public class Vender extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -165,7 +316,7 @@ public class Vender extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/empleado/buscarEmpleado").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                                         .appendQueryParameter("id", codEmp)
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -179,6 +330,7 @@ public class Vender extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
 
@@ -201,7 +353,7 @@ public class Vender extends AppCompatActivity {
 
                                                 return;
                                             }
-                                            String uri = Uri.parse(d.getUrl() + "/cliente/buscarCliente").buildUpon()
+                                            String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                                                     .appendQueryParameter("id", codCli)
                                                     .build().toString();
                                             Request request = new Request.Builder()
@@ -215,6 +367,7 @@ public class Vender extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                            call.cancel();
                                                         }
                                                     });
 
@@ -237,7 +390,7 @@ public class Vender extends AppCompatActivity {
 
                                                             return;
                                                         }
-                                                        String uri = Uri.parse(d.getUrl() + "/producto/buscarProducto").buildUpon()
+                                                        String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                                                                 .appendQueryParameter("id", codPro)
                                                                 .build().toString();
                                                         Request request = new Request.Builder()
@@ -251,6 +404,7 @@ public class Vender extends AppCompatActivity {
                                                                     @Override
                                                                     public void run() {
                                                                         Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                                        call.cancel();
                                                                     }
                                                                 });
 
@@ -290,6 +444,7 @@ public class Vender extends AppCompatActivity {
                                                                     });
 
                                                                 }
+                                                                response.close();
                                                             }
                                                         });
 
@@ -303,6 +458,7 @@ public class Vender extends AppCompatActivity {
                                                         });
 
                                                     }
+                                                    response.close();
                                                 }
                                             });
 
@@ -317,10 +473,12 @@ public class Vender extends AppCompatActivity {
                                 });
 
                             }
+                                        response.close();
                         }
                     });
 
                 }
+                            response.close();
             }
         });
                 }
@@ -337,7 +495,7 @@ public class Vender extends AppCompatActivity {
                     String codCli = txtCodCliVend.getText().toString();
                     String codPro = txtCodProVend.getText().toString();
                     String codEmp=txtCodEmpVend.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/vender/buscarVenta").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
                             .build().toString();
@@ -352,6 +510,7 @@ public class Vender extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -376,7 +535,7 @@ public class Vender extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/empleado/buscarEmpleado").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                                         .appendQueryParameter("id", codEmp)
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -390,6 +549,7 @@ public class Vender extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
 
@@ -412,7 +572,7 @@ public class Vender extends AppCompatActivity {
 
                                                 return;
                                             }
-                                            String uri = Uri.parse(d.getUrl() + "/cliente/buscarCliente").buildUpon()
+                                            String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                                                     .appendQueryParameter("id", codCli)
                                                     .build().toString();
                                             Request request = new Request.Builder()
@@ -426,6 +586,7 @@ public class Vender extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                            call.cancel();
                                                         }
                                                     });
 
@@ -448,7 +609,7 @@ public class Vender extends AppCompatActivity {
 
                                                             return;
                                                         }
-                                                        String uri = Uri.parse(d.getUrl() + "/producto/buscarProducto").buildUpon()
+                                                        String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                                                                 .appendQueryParameter("id", codPro)
                                                                 .build().toString();
                                                         Request request = new Request.Builder()
@@ -462,6 +623,7 @@ public class Vender extends AppCompatActivity {
                                                                     @Override
                                                                     public void run() {
                                                                         Toast.makeText(Vender.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                                        call.cancel();
                                                                     }
                                                                 });
 
@@ -501,6 +663,7 @@ public class Vender extends AppCompatActivity {
                                                                     });
 
                                                                 }
+                                                                response.close();
                                                             }
                                                         });
 
@@ -514,6 +677,7 @@ public class Vender extends AppCompatActivity {
                                                         });
 
                                                     }
+                                                    response.close();
                                                 }
                                             });
 
@@ -528,10 +692,12 @@ public class Vender extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
                             }
+                            response.close();
                         }
                     });
                 }
@@ -549,7 +715,7 @@ public class Vender extends AppCompatActivity {
         String json = gson.toJson(vender);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/vender/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/vender/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -564,6 +730,7 @@ public class Vender extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Vender.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -588,6 +755,7 @@ public class Vender extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -599,7 +767,7 @@ public class Vender extends AppCompatActivity {
         String json = gson.toJson(vender);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/vender/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/vender/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -614,6 +782,7 @@ public class Vender extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Vender.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -638,6 +807,7 @@ public class Vender extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

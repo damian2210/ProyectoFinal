@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.Objetos.ObjCliente;
 import com.example.myapplication.Objetos.ObjEmpleado;
 import com.example.myapplication.Objetos.ObjPrestar;
 import com.example.myapplication.Objetos.ObjSucursal;
@@ -33,7 +36,9 @@ import com.example.myapplication.bbdd.PreferenciasHelper;
 import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.regex.Pattern;
 
@@ -76,14 +81,140 @@ public class Prestar extends AppCompatActivity {
 
 
         ImageButton ajustes=findViewById(R.id.btnImagenPrest);
-        ajustes.setOnClickListener(new View.OnClickListener() {
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
+
+
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        txtCodSucRPrest.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodSucRPrest.getText().toString().isEmpty() == true || txtCodSucRPrest.getText().toString() == null||txtCodSucPPrest.getText().toString().isEmpty() == true || txtCodSucPPrest.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String sucR = txtCodSucRPrest.getText().toString();
+                    String sucP = txtCodSucPPrest.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
+                            .appendQueryParameter("id", sucR)
+                            .appendQueryParameter("id2", sucP)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new Gson();
+                                ObjPrestar prestar = gson.fromJson(data, ObjPrestar.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(prestar!=null){
+                                            txtCantPrest.setText(prestar.getCantidad()+"");
+
+
+                                        }else{
+                                          txtCantPrest.setText("");
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
             }
         });
+        txtCodSucPPrest.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodSucRPrest.getText().toString().isEmpty() == true || txtCodSucRPrest.getText().toString() == null||txtCodSucPPrest.getText().toString().isEmpty() == true || txtCodSucPPrest.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String sucR = txtCodSucRPrest.getText().toString();
+                    String sucP = txtCodSucPPrest.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
+                            .appendQueryParameter("id", sucR)
+                            .appendQueryParameter("id2", sucP)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new Gson();
+                                ObjPrestar prestar = gson.fromJson(data, ObjPrestar.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(prestar!=null){
+                                            txtCantPrest.setText(prestar.getCantidad()+"");
+
+
+                                        }else{
+                                            txtCantPrest.setText("");
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
+            }
+        });
+
         if (intent != null) {
             usuario = intent.getStringExtra("usuario");
             rol = intent.getStringExtra("rol");
@@ -92,6 +223,16 @@ public class Prestar extends AppCompatActivity {
         }
         String usuario2=usuario;
         String rol2=rol;
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         salirPrest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +250,8 @@ public class Prestar extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gestion=new Intent(getBaseContext(), Visualizar.class);
                 gestion.putExtra("clase","prestar");
-
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
                 startActivity(gestion);
                 finish();
             }
@@ -124,7 +266,7 @@ public class Prestar extends AppCompatActivity {
                     String sucR = txtCodSucRPrest.getText().toString();
                     String sucP = txtCodSucPPrest.getText().toString();
 
-                    String uri = Uri.parse(d.getUrl() + "/prestar/buscarPrestamo").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
                             .appendQueryParameter("id2", sucP)
                             .build().toString();
@@ -139,6 +281,7 @@ public class Prestar extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -160,7 +303,7 @@ public class Prestar extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                                         .appendQueryParameter("id", sucR)
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -174,6 +317,7 @@ public class Prestar extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
 
@@ -195,7 +339,7 @@ public class Prestar extends AppCompatActivity {
 
                                                 return;
                                             }
-                                            String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                                            String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                                                     .appendQueryParameter("id", sucP)
                                                     .build().toString();
                                             Request request = new Request.Builder()
@@ -209,6 +353,7 @@ public class Prestar extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                            call.cancel();
                                                         }
                                                     });
 
@@ -247,6 +392,7 @@ public class Prestar extends AppCompatActivity {
                                                         });
 
                                                     }
+                                                    response.close();
                                                 }
                                             });
                                         }else{
@@ -258,10 +404,12 @@ public class Prestar extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
                             }
+                            response.close();
                         }
                     });
                 }
@@ -278,7 +426,7 @@ public class Prestar extends AppCompatActivity {
                     String sucR = txtCodSucRPrest.getText().toString();
                     String sucP = txtCodSucPPrest.getText().toString();
 
-                    String uri = Uri.parse(d.getUrl() + "/prestar/buscarPrestamo").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
                             .appendQueryParameter("id2", sucP)
                             .build().toString();
@@ -293,6 +441,7 @@ public class Prestar extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -314,7 +463,7 @@ public class Prestar extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                                         .appendQueryParameter("id", sucR)
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -328,6 +477,7 @@ public class Prestar extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
 
@@ -349,7 +499,7 @@ public class Prestar extends AppCompatActivity {
 
                                                 return;
                                             }
-                                            String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                                            String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                                                     .appendQueryParameter("id", sucP)
                                                     .build().toString();
                                             Request request = new Request.Builder()
@@ -363,6 +513,7 @@ public class Prestar extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             Toast.makeText(Prestar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                            call.cancel();
                                                         }
                                                     });
 
@@ -401,6 +552,7 @@ public class Prestar extends AppCompatActivity {
                                                         });
 
                                                     }
+                                                    response.close();
                                                 }
                                             });
                                         }else{
@@ -412,10 +564,12 @@ public class Prestar extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
                             }
+                            response.close();
                         }
                     });
                 }
@@ -431,7 +585,7 @@ public class Prestar extends AppCompatActivity {
         String json = gson.toJson(prestar);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/prestar/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/prestar/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -446,6 +600,7 @@ public class Prestar extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Prestar.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -470,6 +625,7 @@ public class Prestar extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -479,7 +635,7 @@ public class Prestar extends AppCompatActivity {
         String json = gson.toJson(prestar);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/prestar/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/prestar/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -494,6 +650,7 @@ public class Prestar extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Prestar.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -518,6 +675,7 @@ public class Prestar extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

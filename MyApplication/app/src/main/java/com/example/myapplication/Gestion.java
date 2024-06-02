@@ -53,17 +53,31 @@ public class Gestion extends AppCompatActivity {
         Button Pro=findViewById(R.id.btnProdGest);
         Button Prest=findViewById(R.id.btnPrestGest);
         Button Vend=findViewById(R.id.btnVendGest);
+        Button salir=findViewById(R.id.btnSalirGest);
 
 
         ImageButton ajustes=findViewById(R.id.btnImagenGest);
-        ajustes.setOnClickListener(new View.OnClickListener() {
+        salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
+                Intent inicio=new Intent(getBaseContext(), Login.class);
+                startActivity(inicio);
                 finish();
             }
         });
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
+
+
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
         TextView nombreUsuarioGest=findViewById(R.id.txtViewNombreUser);
         if (intent != null) {
@@ -76,6 +90,17 @@ public class Gestion extends AppCompatActivity {
         }
         String usuario2=usuario;
         String rol2=rol;
+
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         Suc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +125,7 @@ public class Gestion extends AppCompatActivity {
                     cambio.putExtra("usuario", usuario2);
                     cambio.putExtra("rol", rol2);
                     startActivity(cambio);
+                    finish();
                 }
             }
         });

@@ -64,13 +64,19 @@ public class Visualizar extends AppCompatActivity {
         });
         ListView miLista = (ListView) findViewById(R.id.listaGeneral);
         String clase = null;
+        String rol = null;
+        String usuario = null;
         Intent intent = getIntent();
         Button salir=findViewById(R.id.btnAtrasVer);
         if (intent != null) {
            clase=intent.getStringExtra("clase");
+            usuario = intent.getStringExtra("usuario");
+            rol = intent.getStringExtra("rol");
             TextView titulo=findViewById(R.id.visualTitulo);
             titulo.setText("Visualizar "+clase);
         }
+        String usuario2=usuario;
+        String rol2=rol;
         switch (clase){
             case "sucursal":
                 ArrayList<ObjSucursal> sucursales = new ArrayList<>();
@@ -132,31 +138,43 @@ public class Visualizar extends AppCompatActivity {
                 switch (finalClase){
                     case "sucursal":
                         cambio=new Intent(v.getContext(),Sucursal.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
                     case "empleado":
                         cambio=new Intent(v.getContext(),Empleado.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
                     case "cliente":
                         cambio=new Intent(v.getContext(),Cliente.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
                     case "vender":
                         cambio=new Intent(v.getContext(),Vender.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
                     case "producto":
                         cambio=new Intent(v.getContext(),Producto.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
                     case "prestar":
                         cambio=new Intent(v.getContext(),Prestar.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
                         startActivity(cambio);
                         finish();
                         break;
@@ -168,7 +186,7 @@ public class Visualizar extends AppCompatActivity {
 
     public void conseguirListaSucursal(ArrayList<ObjSucursal> sucursales) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/sucursal/listarSucursales").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/sucursal/listarSucursales").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)
@@ -216,7 +234,7 @@ public class Visualizar extends AppCompatActivity {
     }
     public void conseguirListaEmpleados(ArrayList<ObjEmpleado> empleados) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/empleado/listarEmpleados").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/empleado/listarEmpleados").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)
@@ -231,6 +249,7 @@ public class Visualizar extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Visualizar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -258,14 +277,14 @@ public class Visualizar extends AppCompatActivity {
                         }
                     });
                 }
-
+                response.close();
             }
         });
 
     }
     public void conseguirListaProductos(ArrayList<ObjProducto> productos ) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/producto/listarProductos").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/producto/listarProductos").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)
@@ -317,7 +336,7 @@ public class Visualizar extends AppCompatActivity {
     }
     public void conseguirListaClientes(ArrayList<ObjCliente> clientes ) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/cliente/listarClientes").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/cliente/listarClientes").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)
@@ -365,7 +384,7 @@ public class Visualizar extends AppCompatActivity {
 
     public void conseguirListaVentas(ArrayList<ObjVender> ventas ,ListView miLista) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/vender/listarVentas").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/vender/listarVentas").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)
@@ -421,7 +440,7 @@ public class Visualizar extends AppCompatActivity {
     }
     public void conseguirListaPrestamos(ArrayList<ObjPrestar> prestamos ) {
         datos d=getDatos();
-        String uri= Uri.parse(d.getUrl() + "/prestar/listarPrestars").buildUpon()
+        String uri= Uri.parse(d.getUrl() + ":8080/prestar/listarPrestars").buildUpon()
                 .build().toString();
         Request request=new Request.Builder()
                 .url(uri)

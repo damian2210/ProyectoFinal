@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -22,6 +24,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.myapplication.bbdd.AjustesDAO;
 import com.example.myapplication.bbdd.PreferenciasHelper;
 import com.example.myapplication.bbdd.entidades.Ajustes;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Guardar extends AppCompatActivity {
 
@@ -45,6 +51,18 @@ public class Guardar extends AppCompatActivity {
 
 
         ImageButton ajustes=findViewById(R.id.btnImagenGuar);
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
+
+
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         ajustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

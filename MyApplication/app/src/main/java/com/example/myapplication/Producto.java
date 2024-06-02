@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Objetos.ObjEmpleado;
+import com.example.myapplication.Objetos.ObjPrestar;
 import com.example.myapplication.Objetos.ObjProducto;
 import com.example.myapplication.Objetos.ObjVender;
 import com.example.myapplication.bbdd.AjustesDAO;
@@ -33,7 +36,9 @@ import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.regex.Pattern;
 
@@ -78,15 +83,94 @@ public class Producto extends AppCompatActivity {
 
         ImageButton ajustes=findViewById(R.id.btnImagenPro);
 
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
 
-        ajustes.setOnClickListener(new View.OnClickListener() {
+
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        txtCodPro.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodPro.getText().toString().isEmpty() == true || txtCodPro.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String codPro = txtCodPro.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
+                            .appendQueryParameter("id", codPro)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Producto.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new GsonBuilder()
+                                        .setDateFormat("yyyy-MM-dd")
+                                        .create();
+                                ObjProducto producto = gson.fromJson(data, ObjProducto.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(producto!=null){
+                                            txtInteresPro.setText(producto.getInteres()+"");
+                                            txtPuntPro.setText(producto.getPuntuacion());
+                                            if(producto.getFechaDevolucion()==null){
+                                                txtFechaPro.setText("");
+                                            }else{
+                                                txtFechaPro.setText(producto.getFechaDevolucion().toString());
+                                            }
+
+
+                                            for (int i = 0; i < spin.getCount(); i++) {
+                                                if (spin.getItemAtPosition(i).toString().equals(producto.getTipo())) {
+                                                    spin.setSelection(i);
+                                                    break;
+                                                }
+                                            }
+                                        }else{
+                                            txtInteresPro.setText("");
+                                            txtPuntPro.setText("");
+                                            txtFechaPro.setText("");
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
             }
         });
+
         if (intent != null) {
             usuario = intent.getStringExtra("usuario");
             rol = intent.getStringExtra("rol");
@@ -95,6 +179,16 @@ public class Producto extends AppCompatActivity {
         }
         String usuario2=usuario;
         String rol2=rol;
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         salirPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +223,8 @@ public class Producto extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gestion=new Intent(getBaseContext(), Visualizar.class);
                 gestion.putExtra("clase","producto");
-
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
                 startActivity(gestion);
                 finish();
             }
@@ -142,7 +237,7 @@ public class Producto extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codPro = txtCodPro.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/producto/buscarProducto").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -156,6 +251,7 @@ public class Producto extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Producto.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -195,6 +291,7 @@ public class Producto extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -209,7 +306,7 @@ public class Producto extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codPro = txtCodPro.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/producto/buscarProducto").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -223,6 +320,7 @@ public class Producto extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -261,6 +359,7 @@ public class Producto extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -275,7 +374,7 @@ public class Producto extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codPro = txtCodPro.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/producto/buscarProducto").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -289,6 +388,7 @@ public class Producto extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -312,7 +412,7 @@ public class Producto extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/vender/buscarProductoEnVenta").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarProductoEnVenta").buildUpon()
                                         .appendQueryParameter("id",txtCodPro.getText().toString())
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -327,6 +427,7 @@ public class Producto extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Producto.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
                                     }
@@ -362,6 +463,7 @@ public class Producto extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
@@ -376,6 +478,7 @@ public class Producto extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -393,7 +496,7 @@ public class Producto extends AppCompatActivity {
         String json = gson.toJson(producto);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/producto/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/producto/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -408,6 +511,7 @@ public class Producto extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Producto.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -432,6 +536,7 @@ public class Producto extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -444,7 +549,7 @@ public class Producto extends AppCompatActivity {
 
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/producto/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/producto/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -459,6 +564,7 @@ public class Producto extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Producto.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -483,6 +589,7 @@ public class Producto extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -495,7 +602,7 @@ public class Producto extends AppCompatActivity {
         String json = gson.toJson(producto);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/producto/borrar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/producto/borrar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -509,6 +616,7 @@ public class Producto extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Producto.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -533,6 +641,7 @@ public class Producto extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

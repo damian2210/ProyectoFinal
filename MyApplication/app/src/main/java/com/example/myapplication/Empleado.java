@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +34,9 @@ import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import okhttp3.Call;
@@ -74,56 +78,28 @@ public class Empleado extends AppCompatActivity {
         Button verEmp=findViewById(R.id.btnVisualizarEmp);
         Button salirEmp=findViewById(R.id.btnSalirEmp);
         ImageButton ajustes=findViewById(R.id.btnImagenEmp);
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
 
 
-
-        ajustes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
-            }
-        });
-        if (intent != null) {
-            usuario = intent.getStringExtra("usuario");
-            rol = intent.getStringExtra("rol");
-
-
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        String usuario2=usuario;
-        String rol2=rol;
-        salirEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent salir=new Intent(getBaseContext(), Gestion.class);
-                salir.putExtra("usuario",usuario2);
-                salir.putExtra("rol",rol2);
-                startActivity(salir);
-                finish();
-            }
-        });
-
-
-        verEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent gestion=new Intent(getBaseContext(), Visualizar.class);
-                gestion.putExtra("clase","empleado");
-
-                startActivity(gestion);
-                finish();
-            }
-        });
-        insEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datos d=getDatos();
-                boolean correcto = validarEmp(txtCodEmp,txtDniEmp,txtTlfEmp,txtContraEmp,txtUsuarioEmp);
-
-                if (correcto == true) {
+        txtCodEmp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtCodEmp.getText().toString().isEmpty() == true || txtCodEmp.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
                     String codEmp = txtCodEmp.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/empleado/buscarEmpleado").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -137,6 +113,118 @@ public class Empleado extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new Gson();
+                                ObjEmpleado empleado = gson.fromJson(data, ObjEmpleado.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(empleado!=null){
+                                            txtDniEmp.setText(empleado.getDni());
+                                            txtTlfEmp.setText(empleado.getTelefono()+"");
+                                            txtContraEmp.setText(empleado.getContraseña());
+                                            txtUsuarioEmp.setText(empleado.getUsuario());
+                                            for (int i = 0; i < spin.getCount(); i++) {
+                                                if (spin.getItemAtPosition(i).toString().equals(empleado.getRol())) {
+                                                    spin.setSelection(i);
+                                                    break;
+                                                }
+                                            }
+                                        }else{
+                                            txtDniEmp.setText("");
+                                            txtTlfEmp.setText("");
+                                            txtContraEmp.setText("");
+                                            txtUsuarioEmp.setText("");
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
+            }
+        });
+
+
+
+        if (intent != null) {
+            usuario = intent.getStringExtra("usuario");
+            rol = intent.getStringExtra("rol");
+
+
+        }
+        String usuario2=usuario;
+        String rol2=rol;
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
+        salirEmp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent salir=new Intent(v.getContext(), Gestion.class);
+                salir.putExtra("usuario",usuario2);
+                salir.putExtra("rol",rol2);
+                startActivity(salir);
+                finish();
+            }
+        });
+
+
+        verEmp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gestion=new Intent(getBaseContext(), Visualizar.class);
+                gestion.putExtra("clase","empleado");
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
+                startActivity(gestion);
+                finish();
+            }
+        });
+        insEmp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datos d=getDatos();
+                boolean correcto = validarEmp(txtCodEmp,txtDniEmp,txtTlfEmp,txtContraEmp,txtUsuarioEmp);
+
+                if (correcto == true) {
+                    String codEmp = txtCodEmp.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
+                            .appendQueryParameter("id", codEmp)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -159,7 +247,7 @@ public class Empleado extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/empleado/comprobarUsuario").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/empleado/comprobarUsuario").buildUpon()
                                         .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString())
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -174,6 +262,7 @@ public class Empleado extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
                                     }
@@ -206,6 +295,7 @@ public class Empleado extends AppCompatActivity {
                                                 }
                                             });
                                         }
+                                        response.close();
                                     }
                                 });
 
@@ -220,7 +310,9 @@ public class Empleado extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
+
                     });
 
                 }
@@ -234,7 +326,7 @@ public class Empleado extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codEmp = txtCodEmp.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/empleado/buscarEmpleado").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -248,6 +340,7 @@ public class Empleado extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -269,7 +362,7 @@ public class Empleado extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + "/empleado/comprobarUsuario").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/empleado/comprobarUsuario").buildUpon()
                                         .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString())
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -284,6 +377,7 @@ public class Empleado extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
                                     }
@@ -317,6 +411,7 @@ public class Empleado extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
@@ -331,6 +426,7 @@ public class Empleado extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -345,7 +441,7 @@ public class Empleado extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codEmp = txtCodEmp.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/empleado/buscarEmpleado").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -359,6 +455,7 @@ public class Empleado extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -383,7 +480,7 @@ public class Empleado extends AppCompatActivity {
                                 }
 
 
-                                String uri = Uri.parse(d.getUrl() + "/vender/buscarEmpEnVenta").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarEmpEnVenta").buildUpon()
                                         .appendQueryParameter("id",codEmp)
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -399,6 +496,7 @@ public class Empleado extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Empleado.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
                                     }
@@ -434,6 +532,7 @@ public class Empleado extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
@@ -448,6 +547,7 @@ public class Empleado extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -463,7 +563,7 @@ public class Empleado extends AppCompatActivity {
         String json = gson.toJson(empleado);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/empleado/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/empleado/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -478,6 +578,7 @@ public class Empleado extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Empleado.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -502,6 +603,7 @@ public class Empleado extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -511,7 +613,7 @@ public class Empleado extends AppCompatActivity {
         String json = gson.toJson(empleado);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/empleado/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/empleado/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -526,6 +628,7 @@ public class Empleado extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Empleado.this,  R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -550,6 +653,7 @@ public class Empleado extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -560,7 +664,7 @@ public class Empleado extends AppCompatActivity {
         String json = gson.toJson(empleado);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/empleado/borrar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/empleado/borrar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -574,6 +678,7 @@ public class Empleado extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Empleado.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -599,6 +704,7 @@ public class Empleado extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

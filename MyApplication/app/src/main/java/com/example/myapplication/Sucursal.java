@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.Objetos.ObjCliente;
 import com.example.myapplication.Objetos.ObjEmpleado;
 import com.example.myapplication.Objetos.ObjPrestar;
 import com.example.myapplication.Objetos.ObjSucursal;
@@ -30,7 +33,9 @@ import com.example.myapplication.bbdd.PreferenciasHelper;
 import com.example.myapplication.bbdd.entidades.Ajustes;
 import com.google.gson.Gson;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import okhttp3.Call;
@@ -70,17 +75,81 @@ public class Sucursal extends AppCompatActivity {
         ImageButton ajustes=findViewById(R.id.btnImagenSuc);
 
 
+        try {
+            InputStream stream=getAssets().open("ajustes.png");
 
 
+            byte[] imageBytes = new byte[stream.available()];
+            DataInputStream dataInputStream = new DataInputStream(stream);
+            dataInputStream.readFully(imageBytes);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ajustes.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        ajustes.setOnClickListener(new View.OnClickListener() {
+        txtcodSuc.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent ajustes=new Intent(getBaseContext(), Config.class);
-                startActivity(ajustes);
-                finish();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus == false) {
+                    if (txtcodSuc.getText().toString().isEmpty() == true || txtcodSuc.getText().toString() == null) {
+                        return;
+                    }
+                    datos d=getDatos();
+                    String codSuc = txtcodSuc.getText().toString();
+                    String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
+                            .appendQueryParameter("id", codSuc)
+                            .build().toString();
+                    Request request = new Request.Builder()
+                            .url(uri)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(Sucursal.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+
+                                Gson gson = new Gson();
+                                ObjSucursal sucursal = gson.fromJson(data, ObjSucursal.class);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(sucursal!=null){
+                                            txttlfSuc.setText(sucursal.getTelefono()+"");
+                                            txtdireccionSuc.setText(sucursal.getDireccion());
+
+
+                                        }else{
+                                            txttlfSuc.setText("");
+                                            txtdireccionSuc.setText("");
+
+                                        }
+
+                                    }
+                                });
+
+                            }
+                            response.close();
+                        }
+                    });
+                }
             }
         });
+
         if (intent != null) {
             usuario = intent.getStringExtra("usuario");
             rol = intent.getStringExtra("rol");
@@ -89,6 +158,16 @@ public class Sucursal extends AppCompatActivity {
         }
         String usuario2=usuario;
         String rol2=rol;
+        ajustes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("usuario",usuario2);
+                ajustes.putExtra("rol",rol2);
+                startActivity(ajustes);
+                finish();
+            }
+        });
         salirSuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +185,8 @@ public class Sucursal extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gestion=new Intent(getBaseContext(), Visualizar.class);
                 gestion.putExtra("clase","sucursal");
-
+                gestion.putExtra("usuario",usuario2);
+                gestion.putExtra("rol",rol2);
                 startActivity(gestion);
                 finish();
             }
@@ -119,7 +199,7 @@ public class Sucursal extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -133,6 +213,7 @@ public class Sucursal extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Sucursal.this, R.string.peticion, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -168,6 +249,7 @@ public class Sucursal extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -182,7 +264,7 @@ public class Sucursal extends AppCompatActivity {
 
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -196,6 +278,7 @@ public class Sucursal extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
                         }
@@ -231,6 +314,7 @@ public class Sucursal extends AppCompatActivity {
                                 });
 
                             }
+                            response.close();
                         }
                     });
 
@@ -244,7 +328,7 @@ public class Sucursal extends AppCompatActivity {
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
                 if (correcto == true) {
                     String codSuc = txtcodSuc.getText().toString();
-                    String uri = Uri.parse(d.getUrl() + "/sucursal/buscarSucursal").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
                     Request request = new Request.Builder()
@@ -258,6 +342,7 @@ public class Sucursal extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
+                                    call.cancel();
                                 }
                             });
 
@@ -283,7 +368,7 @@ public class Sucursal extends AppCompatActivity {
 
 
 
-                                String uri = Uri.parse(d.getUrl() + "/prestar/buscarSucursalEnPrestamo").buildUpon()
+                                String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarSucursalEnPrestamo").buildUpon()
                                         .appendQueryParameter("id",sucursal.getCodSucursal())
                                         .build().toString();
                                 Request request = new Request.Builder()
@@ -298,6 +383,7 @@ public class Sucursal extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 Toast.makeText(Sucursal.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
+                                                call.cancel();
                                             }
                                         });
                                     }
@@ -330,6 +416,7 @@ public class Sucursal extends AppCompatActivity {
                                             });
 
                                         }
+                                        response.close();
                                     }
                                 });
 
@@ -342,6 +429,7 @@ public class Sucursal extends AppCompatActivity {
                                     }
                                 });
                             }
+                            response.close();
                         }
                     });
 
@@ -357,7 +445,7 @@ public class Sucursal extends AppCompatActivity {
         String json = gson.toJson(sucursal);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/sucursal/insertar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/sucursal/insertar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -372,6 +460,7 @@ public class Sucursal extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Sucursal.this, R.string.NoInsPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -396,6 +485,7 @@ public class Sucursal extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -405,7 +495,7 @@ public class Sucursal extends AppCompatActivity {
         String json = gson.toJson(sucursal);
         RequestBody body=RequestBody.create(MediaType.parse("application/json"),json);
 
-        String uri = Uri.parse(d.getUrl() + "/sucursal/modificar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/sucursal/modificar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -420,6 +510,7 @@ public class Sucursal extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Sucursal.this, R.string.NoModPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -444,6 +535,7 @@ public class Sucursal extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }
@@ -453,7 +545,7 @@ public class Sucursal extends AppCompatActivity {
         String json = gson.toJson(sucursal);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
-        String uri = Uri.parse(d.getUrl() + "/sucursal/borrar").buildUpon()
+        String uri = Uri.parse(d.getUrl() + ":8080/sucursal/borrar").buildUpon()
                 .build().toString();
         Request request = new Request.Builder()
                 .url(uri)
@@ -467,6 +559,7 @@ public class Sucursal extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Sucursal.this, R.string.NoBorrarPet, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
 
@@ -491,6 +584,7 @@ public class Sucursal extends AppCompatActivity {
                     });
 
                 }
+                response.close();
             }
         });
     }

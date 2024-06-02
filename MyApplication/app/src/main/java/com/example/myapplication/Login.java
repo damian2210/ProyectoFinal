@@ -121,7 +121,7 @@ public class Login extends AppCompatActivity {
                 try {
 
                     //http://10.0.2.2:8080
-                    String uri = Uri.parse(d.getUrl() + "/empleado/buscarUsuario").buildUpon()
+                    String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarUsuario").buildUpon()
                             .appendQueryParameter("usuario", usuario)
                             .appendQueryParameter("contraseña", contra)
                             .build().toString();
@@ -248,10 +248,9 @@ public class Login extends AppCompatActivity {
         Ajustes a2=new Ajustes(11,false);
         Ajustes a3=new Ajustes(12,false);
         Ajustes a4=new Ajustes(14,false);
-        Ajustes a5=new Ajustes(16,false);
-        Ajustes a6=new Ajustes(18,true);
-        Ajustes a7=new Ajustes(20,false);
-        total.add(a6);total.add(a1);total.add(a2);total.add(a3);total.add(a4);total.add(a5);total.add(a7);
+        Ajustes a5=new Ajustes(16,true);
+
+        total.add(a1);total.add(a2);total.add(a3);total.add(a4);total.add(a5);
         ajustesDAO.insertarAjustes(bd,total);
         helper.close();
     }
