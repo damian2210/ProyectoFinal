@@ -36,7 +36,7 @@ public class PrestarDAO {
         session.save(p);
     }
 
-    public void modificar(Session session, Prestar p, float cant) {
+    public void modificar(Session session, Prestar p, Integer cant) {
       p.setCantidad(cant);
         session.update(p);
     }

@@ -28,21 +28,35 @@ public class VenderDAO {
         String consulta="from Vender v where v.venderPK.codProducto=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",codProd);
-        return (Vender)q.uniqueResult();
+        if(q.list().size()>0){
+             return (Vender)q.list().get(0);
+        }else{
+             return (Vender)q.uniqueResult();
+        }
+       
+       
     }
       
         public Vender buscarClienteEnVenta(Session session, String codCli) {
         String consulta="from Vender v where v.venderPK.idCliente=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",codCli);
-        return (Vender)q.uniqueResult();
+        if(q.list().size()>0){
+             return (Vender)q.list().get(0);
+        }else{
+             return (Vender)q.uniqueResult();
+        }
     }
         
         public Vender buscarEmpEnVenta(Session session, String codEmp) {
         String consulta="from Vender v where v.codEmpleado=:id";
         Query q=session.createQuery(consulta);
         q.setParameter("id",codEmp);
-        return (Vender)q.uniqueResult();
+         if(q.list().size()>0){
+             return (Vender)q.list().get(0);
+        }else{
+             return (Vender)q.uniqueResult();
+        }
     }
      
     public void insertar(Session session, Vender v) {

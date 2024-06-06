@@ -161,7 +161,8 @@ public class controladorPantallaProductos {
                 fechaDevolucion.setText(fecha);
                 interes.setText(p.getInteres() + "");
                 puntuacion.setText(p.getPuntuacion());
-                tipo.setSelectedItem(p.getTipo());
+                
+                tipo.setSelectedItem(p.getTipo().toString());
             } else {
                 fechaDevolucion.setText("");
                 interes.setText("");

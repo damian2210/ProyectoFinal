@@ -28,7 +28,7 @@ public class Prestar implements Serializable {
     @EmbeddedId
     protected PrestarPK prestarPK;
     @Column(name = "cantidad")
-    private Float cantidad;
+    private Integer cantidad;
      @JoinColumn(name = "cod_sucursal", referencedColumnName = "cod_sucursal", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Sucursal sucursal;
@@ -47,7 +47,7 @@ public class Prestar implements Serializable {
         this.prestarPK = new PrestarPK(codSucursal, codSucursalPrestadora);
     }
 
-    public Prestar(PrestarPK prestarPK, Float cantidad) {
+    public Prestar(PrestarPK prestarPK, Integer cantidad) {
         this.prestarPK = prestarPK;
         this.cantidad = cantidad;
     }
@@ -60,11 +60,11 @@ public class Prestar implements Serializable {
         this.prestarPK = prestarPK;
     }
 
-    public Float getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Float cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

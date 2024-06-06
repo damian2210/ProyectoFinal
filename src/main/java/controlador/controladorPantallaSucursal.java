@@ -162,7 +162,7 @@ public class controladorPantallaSucursal {
         }
     }
 
-    public static void insertarPrest(PrestarPK prestarPK, float cantidad) {
+    public static void insertarPrest(PrestarPK prestarPK, Integer cantidad) {
         try {
             HibernateUtil.beginTx(session);
             Prestar p = preDAO.buscarPrestamo(session, prestarPK);
@@ -181,7 +181,7 @@ public class controladorPantallaSucursal {
         }
     }
 
-    public static void modificarPrest(PrestarPK prestarPK, float cantidad) {
+    public static void modificarPrest(PrestarPK prestarPK, Integer cantidad) {
         try {
             HibernateUtil.beginTx(session);
              Prestar p = preDAO.buscarPrestamo(session, prestarPK);

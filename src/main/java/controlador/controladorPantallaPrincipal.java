@@ -5,6 +5,7 @@
 package controlador;
 
 import controlador.factory.HibernateUtil;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -81,7 +82,7 @@ public class controladorPantallaPrincipal {
 
     public static void borrarEmp(String codEmp) {
         try {
-           HibernateUtil.beginTx(session);
+            HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e == null) {
                 JOptionPane.showMessageDialog(ventana, "No existe el empleado");
@@ -105,19 +106,21 @@ public class controladorPantallaPrincipal {
     public static void modificarEmp(String codEmp, String contraseña, String dni, String rol, String usuario) {
         try {
             HibernateUtil.beginTx(session);
-            Empleado e = empDAO.buscarEmpleado(session, codEmp);
-            if (e == null) {
-                JOptionPane.showMessageDialog(ventana, "No existe el empleado");
-                return;
-            }
-            e = empDAO.buscarUsuario(session, usuario);
+            Empleado e = empDAO.buscarUsuario(session, usuario);
             if (e != null) {
                 JOptionPane.showMessageDialog(ventana, "Ya existe usuario");
                 return;
             }
 
-            empDAO.modificar(session, e,usuario, contraseña, dni, rol);
-           HibernateUtil.commitTx(session);
+             e = empDAO.buscarEmpleado(session, codEmp);
+            if (e == null) {
+                JOptionPane.showMessageDialog(ventana, "No existe el empleado");
+                return;
+            }
+           
+
+            empDAO.modificar(session, e, usuario, contraseña, dni, rol);
+            HibernateUtil.commitTx(session);
             JOptionPane.showMessageDialog(ventana, "Empleado modificado correctamente");
 
         } catch (Exception ex) {
@@ -131,18 +134,18 @@ public class controladorPantallaPrincipal {
             HibernateUtil.beginTx(session);
             Empleado e = empDAO.buscarEmpleado(session, codEmp);
             if (e != null) {
-                
+
                 usuario.setText(e.getUsuario());
                 contra.setText(e.getContraseña());
                 dni.setText(e.getDni());
                 rol.setSelectedItem(e.getRol());
             } else {
-               
+
                 usuario.setText("");
                 contra.setText("");
                 dni.setText("");
             }
-           HibernateUtil.commitTx(session);
+            HibernateUtil.commitTx(session);
         } catch (Exception ex) {
             HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,14 +156,14 @@ public class controladorPantallaPrincipal {
         try {
             HibernateUtil.beginTx(session);
             empDAO.cargadatos(session, ta);
-           HibernateUtil.commitTx(session);
+            HibernateUtil.commitTx(session);
         } catch (Exception ex) {
             HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void insertarCli(String idCliente, String dni, String nombre, String numCuenta, Integer telefono) {
+    public static void insertarCli(String idCliente, String dni, String nombre, Long numCuenta, Integer telefono) {
         try {
             HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
@@ -201,7 +204,7 @@ public class controladorPantallaPrincipal {
         }
     }
 
-    public static void modificarCli(String idCliente, String dni, String nombre, String numCuenta, Integer telefono) {
+    public static void modificarCli(String idCliente, String dni, String nombre, Long numCuenta, Integer telefono) {
         try {
             HibernateUtil.beginTx(session);
             Cliente c = cliDAO.buscarCliente(session, idCliente);
@@ -224,7 +227,7 @@ public class controladorPantallaPrincipal {
             Cliente c = cliDAO.buscarCliente(session, idCliente);
             if (c != null) {
                 nombre.setText(c.getNombre());
-                numCuenta.setText(c.getNumCuenta());
+                numCuenta.setText(c.getNumCuenta()+"");
                 telefono.setText(c.getTelefono() + "");
                 dni.setText(c.getDni());
 
@@ -236,7 +239,7 @@ public class controladorPantallaPrincipal {
             }
             HibernateUtil.commitTx(session);
         } catch (Exception ex) {
-           HibernateUtil.rollbackTx(session);
+            HibernateUtil.rollbackTx(session);
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -251,128 +254,125 @@ public class controladorPantallaPrincipal {
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public static void informeCli(){
-          String baseDatos = "jdbc:mysql://localhost/banco";
+
+    public static void informeCli() {
+        String baseDatos = "jdbc:mysql://localhost/banco";
         String usuario = "root";
         String clave = "root";
-        
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection(baseDatos, usuario, clave);
-           
-            String archivoJasper = ".\\src\\main\\java\\informes\\InformeCli.jasper";
- 
-            JasperPrint print = JasperFillManager.fillReport(archivoJasper, null, conexion);
-            JasperExportManager.exportReportToPdfFile(print, "InformeClientes.pdf");
+
+            InputStream archivoJasperStream = ClassLoader.getSystemResourceAsStream("informesR/InformeCli.jasper");
+
+            JasperPrint print = JasperFillManager.fillReport(archivoJasperStream, null, conexion);
+            JasperExportManager.exportReportToPdfFile(print, "InformeCliente.pdf");
             JasperViewer.viewReport(print, false);
-    
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error sql");
+            JOptionPane.showMessageDialog(null, "Error sql");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
-             JOptionPane.showMessageDialog(null,"Error jre");
+            JOptionPane.showMessageDialog(null, "Error jre");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-             JOptionPane.showMessageDialog(null,"Error clase");
+            JOptionPane.showMessageDialog(null, "Error clase");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception ex){
-             JOptionPane.showMessageDialog(null,"Error");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }
-    
-     public static void informeEmp(){
-          String baseDatos = "jdbc:mysql://localhost/banco";
+
+    public static void informeEmp() {
+        String baseDatos = "jdbc:mysql://localhost/banco";
         String usuario = "root";
         String clave = "root";
-        
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection(baseDatos, usuario, clave);
-            
-            String archivoJasper = ".\\src\\main\\java\\informes\\InformeVentasEmp.jasper";
- 
-            JasperPrint print = JasperFillManager.fillReport(archivoJasper, null, conexion);
+
+            InputStream archivoJasperStream = ClassLoader.getSystemResourceAsStream("informesR/InformeVentasEmp.jasper");
+
+            JasperPrint print = JasperFillManager.fillReport(archivoJasperStream, null, conexion);
             JasperExportManager.exportReportToPdfFile(print, "InformeVentasEmpleado.pdf");
             JasperViewer.viewReport(print, false);
-    
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error sql");
+            JOptionPane.showMessageDialog(null, "Error sql");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
-             JOptionPane.showMessageDialog(null,"Error jre");
+            JOptionPane.showMessageDialog(null, "Error jre");
+           
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+
         } catch (ClassNotFoundException ex) {
-             JOptionPane.showMessageDialog(null,"Error clase");
+            JOptionPane.showMessageDialog(null, "Error clase");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception ex){
-             JOptionPane.showMessageDialog(null,"Error");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }
-     
-      public static void informePro(){
-          String baseDatos = "jdbc:mysql://localhost/banco";
+
+    public static void informePro() {
+        String baseDatos = "jdbc:mysql://localhost/banco";
         String usuario = "root";
         String clave = "root";
-        
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection(baseDatos, usuario, clave);
-            
-            String archivoJasper = ".\\src\\main\\java\\informes\\informePro.jasper";
- 
-            JasperPrint print = JasperFillManager.fillReport(archivoJasper, null, conexion);
-            JasperExportManager.exportReportToPdfFile(print, "InformeProductos.pdf");
+
+         
+
+             InputStream archivoJasperStream = ClassLoader.getSystemResourceAsStream("informesR/informePro.jasper");
+
+            JasperPrint print = JasperFillManager.fillReport(archivoJasperStream, null, conexion);
+            JasperExportManager.exportReportToPdfFile(print, "InformeProducto.pdf");
             JasperViewer.viewReport(print, false);
-    
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error sql");
+            JOptionPane.showMessageDialog(null, "Error sql");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
-             JOptionPane.showMessageDialog(null,"Error jre");
+            JOptionPane.showMessageDialog(null, "Error jre");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-             JOptionPane.showMessageDialog(null,"Error clase");
+            JOptionPane.showMessageDialog(null, "Error clase");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception ex){
-             JOptionPane.showMessageDialog(null,"Error");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }
-      
-       public static void informeSuc(){
-          String baseDatos = "jdbc:mysql://localhost/banco";
+
+    public static void informeSuc() {
+        String baseDatos = "jdbc:mysql://localhost/banco";
         String usuario = "root";
         String clave = "root";
-        
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection(baseDatos, usuario, clave);
-            
-            String archivoJasper = ".\\src\\main\\java\\informes\\InformePrestSuc.jasper";
- 
-            JasperPrint print = JasperFillManager.fillReport(archivoJasper, null, conexion);
-            JasperExportManager.exportReportToPdfFile(print, "InformePrestamosRecibidos.pdf");
+
+
+             InputStream archivoJasperStream = ClassLoader.getSystemResourceAsStream("informesR/InformePrestSuc.jasper");
+
+            JasperPrint print = JasperFillManager.fillReport(archivoJasperStream, null, conexion);
+            JasperExportManager.exportReportToPdfFile(print, "InformePrestamosSuc.pdf");
             JasperViewer.viewReport(print, false);
-    
-        
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error sql");
+            JOptionPane.showMessageDialog(null, "Error sql");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
-             JOptionPane.showMessageDialog(null,"Error jre");
+            JOptionPane.showMessageDialog(null, "Error jre");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-             JOptionPane.showMessageDialog(null,"Error clase");
+            JOptionPane.showMessageDialog(null, "Error clase");
             Logger.getLogger(controladorPantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(Exception ex){
-             JOptionPane.showMessageDialog(null,"Error");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }
 

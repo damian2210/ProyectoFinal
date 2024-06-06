@@ -73,7 +73,7 @@ public class EmpleadoDAO {
         Iterator it=q.list().iterator();
         while (it.hasNext()){
             e=(Empleado) it.next();  
-            ta.append("Cod.Empleado:"+e.getCodEmpleado()+" Nombre:"+e.getDni()+" Usuario:"+e.getUsuario()+" Contraseña:"+e.getContraseña()+" Rol:"+e.getRol()+"\n");
+            ta.append("Cod.Empleado:"+e.getCodEmpleado()+" Dni:"+e.getDni()+" Usuario:"+e.getUsuario()+" Contraseña:"+e.getContraseña()+" Rol:"+e.getRol()+"\n");
         }
     
     }

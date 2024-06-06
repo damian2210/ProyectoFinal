@@ -64,7 +64,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnCliBorrar = new javax.swing.JButton();
         btnCliMod = new javax.swing.JButton();
         txtCliVer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btnTrbProd = new javax.swing.JButton();
         btnTrbSuc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -251,8 +250,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -280,9 +277,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                             .addComponent(btnCliBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCliIns, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(113, 113, 113)
                         .addComponent(btnCliMod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(34, 34, 34))
         );
@@ -303,8 +298,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtCliDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCliMod)
-                    .addComponent(jButton1))
+                    .addComponent(btnCliMod))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -445,15 +439,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void txtEmpCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpCodFocusLost
         // TODO add your handling code here:
-        if (!txtEmpCod.getText().isBlank()) {
-            controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText(), txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
+        if (!txtEmpCod.getText().trim().isBlank()) {
+            controladorPantallaPrincipal.cargarDatosEmp(txtEmpCod.getText().trim(), txtEmpUser, txtEmpContra, txtEmpDni, cmbEmpRol);
         }
     }//GEN-LAST:event_txtEmpCodFocusLost
 
     private void txtCliCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCliCodFocusLost
         // TODO add your handling code here:
-        if (!txtCliCod.getText().isBlank()) {
-            controladorPantallaPrincipal.cargarDatosCli(txtCliCod.getText(), txtCliDni, txtCliNom, txtCliNumC, txtCliTlf);
+        if (!txtCliCod.getText().trim().isBlank()) {
+            controladorPantallaPrincipal.cargarDatosCli(txtCliCod.getText().trim(), txtCliDni, txtCliNom, txtCliNumC, txtCliTlf);
         }
     }//GEN-LAST:event_txtCliCodFocusLost
 
@@ -461,7 +455,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarEmpleado();
         if (correcto == true) {
-            controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+            controladorPantallaPrincipal.insertarEmp(txtEmpCod.getText().trim(), txtEmpContra.getText().trim(), txtEmpDni.getText().trim(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText().trim());
         }
     }//GEN-LAST:event_btnEmpInsMouseClicked
 
@@ -469,7 +463,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarEmpleado();
         if (correcto == true) {
-            controladorPantallaPrincipal.borrarEmp(txtEmpCod.getText());
+            controladorPantallaPrincipal.borrarEmp(txtEmpCod.getText().trim());
         }
     }//GEN-LAST:event_btnEmpBorraMouseClicked
 
@@ -477,7 +471,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarEmpleado();
         if (correcto == true) {
-            controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText(), txtEmpContra.getText(), txtEmpDni.getText(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText());
+            controladorPantallaPrincipal.modificarEmp(txtEmpCod.getText().trim(), txtEmpContra.getText().trim(), txtEmpDni.getText().trim(), cmbEmpRol.getSelectedItem().toString(), txtEmpUser.getText().trim());
         }
     }//GEN-LAST:event_btnEmpModMouseClicked
 
@@ -490,7 +484,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarCliente();
         if (correcto == true) {
-            controladorPantallaPrincipal.insertarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
+            controladorPantallaPrincipal.insertarCli(txtCliCod.getText().trim(), txtCliDni.getText().trim(), txtCliNom.getText().trim(), Long.valueOf(txtCliNumC.getText().trim()), Integer.valueOf(txtCliTlf.getText().trim()));
         }
     }//GEN-LAST:event_btnCliInsMouseClicked
 
@@ -498,7 +492,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarCliente();
         if (correcto == true) {
-            controladorPantallaPrincipal.borrarCli(txtCliCod.getText());
+            controladorPantallaPrincipal.borrarCli(txtCliCod.getText().trim());
         }
     }//GEN-LAST:event_btnCliBorrarMouseClicked
 
@@ -506,7 +500,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto = validarCliente();
         if (correcto == true) {
-            controladorPantallaPrincipal.modificarCli(txtCliCod.getText(), txtCliDni.getText(), txtCliNom.getText(), txtCliNumC.getText(), Integer.valueOf(txtCliTlf.getText()));
+            controladorPantallaPrincipal.modificarCli(txtCliCod.getText().trim(), txtCliDni.getText().trim(), txtCliNom.getText().trim(), Long.valueOf(txtCliNumC.getText().trim()), Integer.valueOf(txtCliTlf.getText().trim()));
         }
     }//GEN-LAST:event_btnCliModMouseClicked
 
@@ -571,42 +565,42 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     private boolean validarEmpleado() {
-        if (txtEmpCod.getText().isBlank() == true) {
+        if (txtEmpCod.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtEmpCod.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^e\\d{2}$");
-            boolean correcto = p.matcher(txtEmpCod.getText()).matches();
+            boolean correcto = p.matcher(txtEmpCod.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:e+dos dígitos)");
                 txtEmpCod.requestFocus();
-                txtEmpCod.setText(" ");
+                txtEmpCod.setText("");
                 return false;
             }
         }
-        if (txtEmpContra.getText().isBlank() == true) {
-            JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
+        if (txtEmpContra.getText().trim().isBlank() == true) {
+            JOptionPane.showMessageDialog(null, "Tiene que introducir la contraseña");
             txtEmpDni.requestFocus();
             return false;
         }
-       if (txtEmpUser.getText().isBlank() == true) {
-            JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
+       if (txtEmpUser.getText().trim().isBlank() == true) {
+            JOptionPane.showMessageDialog(null, "Tiene que introducir el usuario");
             txtEmpDni.requestFocus();
             return false;
        }
         
-        if (txtEmpDni.getText().isBlank() == true) {
+       if (txtEmpDni.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
             txtEmpDni.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
-            boolean correcto = p.matcher(txtEmpDni.getText()).matches();
+            boolean correcto = p.matcher(txtEmpDni.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de DNI incorrecto");
                 txtEmpDni.requestFocus();
-                txtEmpDni.setText(" ");
+                txtEmpDni.setText("");
                 return false;
             }
         }
@@ -614,7 +608,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     private boolean validarCliente() {
-        if (txtCliCod.getText().isBlank() == true) {
+        if (txtCliCod.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtCliCod.requestFocus();
             return false;
@@ -624,64 +618,81 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:c+tres dígitos)");
                 txtCliCod.requestFocus();
-                txtCliCod.setText(" ");
+                txtCliCod.setText("");
                 return false;
             }
         }
-        if (txtCliNom.getText().isBlank() == true) {
+        if (txtCliNom.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el nombre");
             txtCliNom.requestFocus();
             return false;
         } else {
-            for (int i = 0; i < txtCliNom.getText().length(); i++) {
-                if (Character.isDigit(txtCliNom.getText().charAt(i))) {
+            for (int i = 0; i < txtCliNom.getText().trim().length(); i++) {
+                if (Character.isDigit(txtCliNom.getText().trim().charAt(i))) {
                     JOptionPane.showMessageDialog(null, "El nombre no puede tener números");
                     txtCliNom.requestFocus();
-                    txtCliNom.setText(" ");
+                    txtCliNom.setText("");
                     return false;
                 }
             }
         }
-        if (txtCliDni.getText().isBlank() == true) {
+        if (txtCliDni.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el DNI");
             txtCliDni.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
-            boolean correcto = p.matcher(txtCliDni.getText()).matches();
+            boolean correcto = p.matcher(txtCliDni.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de DNI incorrecto");
                 txtCliDni.requestFocus();
-                txtCliDni.setText(" ");
+                txtCliDni.setText("");
                 return false;
             }
         }
-        if (txtCliTlf.getText().isBlank() == true) {
+        if (txtCliTlf.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el teléfono");
             txtCliTlf.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
-            boolean correcto = p.matcher(txtCliTlf.getText()).matches();
+            boolean correcto = p.matcher(txtCliTlf.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de número de teléfono incorrecto");
                 txtCliTlf.requestFocus();
-                txtCliTlf.setText(" ");
+                txtCliTlf.setText("");
                 return false;
             }
+             try{
+                int i=Integer.parseInt(txtCliTlf.getText().trim());
+            }catch(NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null,"Formato de número de teléfono incorrecto");
+                  txtCliTlf.requestFocus();
+                txtCliTlf.setText("");
+                return false;
+            }
+        
         }
 
-        if (txtCliNumC.getText().isBlank() == true) {
+        if (txtCliNumC.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el número de cuenta");
             txtCliNumC.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{10}");
-            boolean correcto = p.matcher(txtCliNumC.getText()).matches();
+            boolean correcto = p.matcher(txtCliNumC.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de número de cuenta incorrecto");
                 txtCliNumC.requestFocus();
-                txtCliNumC.setText(" ");
+                txtCliNumC.setText("");
+                return false;
+            }
+             try{
+                long i=Long.parseLong(txtCliNumC.getText().trim());
+            }catch(NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null,"Formato de número de cuenta incorrecto");
+                txtCliNumC.requestFocus();
+                txtCliNumC.setText("");
                 return false;
             }
         }
@@ -699,7 +710,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnTrbProd;
     private javax.swing.JButton btnTrbSuc;
     private javax.swing.JComboBox<String> cmbEmpRol;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

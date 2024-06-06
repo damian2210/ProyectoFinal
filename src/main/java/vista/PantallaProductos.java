@@ -215,6 +215,11 @@ public class PantallaProductos extends javax.swing.JFrame {
         });
 
         cmbProdTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Financiación", "Ahorro", "Inversión" }));
+        cmbProdTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProdTipoItemStateChanged(evt);
+            }
+        });
         cmbProdTipo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cmbProdTipoPropertyChange(evt);
@@ -417,8 +422,8 @@ public class PantallaProductos extends javax.swing.JFrame {
 
     private void txtProdCodFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProdCodFocusLost
         // TODO add your handling code here:
-        if (!txtProdCod.getText().isBlank()) {
-        controladorPantallaProductos.cargarDatosPro(txtProdCod.getText(), txtProdfecha, txtProdInt, txtProdPunt, cmbProdTipo);
+        if (!txtProdCod.getText().trim().isBlank()) {
+        controladorPantallaProductos.cargarDatosPro(txtProdCod.getText().trim(), txtProdfecha, txtProdInt, txtProdPunt, cmbProdTipo);
         }
     }//GEN-LAST:event_txtProdCodFocusLost
 
@@ -426,7 +431,7 @@ public class PantallaProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto=validarProducto();
         if(correcto==true){
-        controladorPantallaProductos.insertarPro(txtProdCod.getText(), Date.valueOf(txtProdfecha.getText()), Float.valueOf(txtProdInt.getText()), txtProdPunt.getText(), cmbProdTipo.getSelectedItem().toString());
+        controladorPantallaProductos.insertarPro(txtProdCod.getText().trim(), Date.valueOf(txtProdfecha.getText().trim()), Float.valueOf(txtProdInt.getText().trim()), txtProdPunt.getText().trim(), cmbProdTipo.getSelectedItem().toString());
         }
     }//GEN-LAST:event_btnProdInsMouseClicked
 
@@ -434,7 +439,7 @@ public class PantallaProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto=validarProducto();
         if(correcto==true){
-        controladorPantallaProductos.borrarPro(txtProdCod.getText());
+        controladorPantallaProductos.borrarPro(txtProdCod.getText().trim());
         }
     }//GEN-LAST:event_btnProdBorrarMouseClicked
 
@@ -442,7 +447,7 @@ public class PantallaProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean correcto=validarProducto();
         if(correcto==true){
-        controladorPantallaProductos.modificarPro(txtProdCod.getText(), Date.valueOf(txtProdfecha.getText()), Float.valueOf(txtProdInt.getText()), txtProdPunt.getText(), cmbProdTipo.getSelectedItem().toString());
+        controladorPantallaProductos.modificarPro(txtProdCod.getText().trim(), Date.valueOf(txtProdfecha.getText().trim()), Float.valueOf(txtProdInt.getText().trim()), txtProdPunt.getText().trim(), cmbProdTipo.getSelectedItem().toString());
         }
     }//GEN-LAST:event_btnProdModMouseClicked
 
@@ -497,6 +502,17 @@ public class PantallaProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbVendProdItemStateChanged
 
+    private void cmbProdTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProdTipoItemStateChanged
+        // TODO add your handling code here:
+         if (evt.getItem().equals("Financiación")) {
+                lblFecha.setVisible(true);
+                txtProdfecha.setVisible(true);
+            } else {
+                lblFecha.setVisible(false);
+                txtProdfecha.setVisible(false);
+            }
+    }//GEN-LAST:event_cmbProdTipoItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -546,61 +562,63 @@ public class PantallaProductos extends javax.swing.JFrame {
     }
 
     private boolean validarProducto() {
-        if (txtProdCod.getText().isBlank() == true) {
+        if (txtProdCod.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el código");
             txtProdCod.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^p\\d{2}$");
-            boolean correcto = p.matcher(txtProdCod.getText()).matches();
+            boolean correcto = p.matcher(txtProdCod.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de código incorrecto(Formato válido:p+dos dígitos)");
                 txtProdCod.requestFocus();
-                txtProdCod.setText(" ");
+                txtProdCod.setText("");
                 return false;
             }
         }
-        if (txtProdInt.getText().isBlank() == true) {
+        if (txtProdInt.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir el interés");
             txtProdInt.requestFocus();
             return false;
         } else {
-            for (int i = 0; i < txtProdInt.getText().length(); i++) {
-                if (Character.isLetter(txtProdInt.getText().charAt(i))) {
-                    JOptionPane.showMessageDialog(null, "El intéres solo pueden ser números");
-                    txtProdInt.requestFocus();
-                    txtProdInt.setText(" ");
-                    return false;
-                }
+            
+               try{
+                int e=Integer.parseInt(txtProdInt.getText().trim());
+            }catch(NumberFormatException nfe){
+                JOptionPane.showMessageDialog(null,"El intéres solo pueden ser números");
+                txtProdInt.requestFocus();
+                txtProdInt.setText("");
+                return false;
             }
         }
-        if (txtProdPunt.getText().isBlank() == true) {
+        
+        if (txtProdPunt.getText().trim().isBlank() == true) {
             JOptionPane.showMessageDialog(null, "Tiene que introducir la puntuación");
             txtProdPunt.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\p{L}{3}");
-            boolean correcto = p.matcher(txtProdPunt.getText()).matches();
+            boolean correcto = p.matcher(txtProdPunt.getText().trim()).matches();
             if (correcto == false) {
                 JOptionPane.showMessageDialog(null, "Formato de puntuación incorrecto(Formato correcto:tres letras)");
                 txtProdPunt.requestFocus();
-                txtProdPunt.setText(" ");
+                txtProdPunt.setText("");
                 return false;
             }
         }
         if (cmbProdTipo.getSelectedItem().equals("Financiación")) {
-            if (txtProdfecha.getText().isBlank() == true) {
+            if (txtProdfecha.getText().trim().isBlank() == true) {
                 JOptionPane.showMessageDialog(null, "Tiene que introducir la fecha de devolución");
                 txtProdfecha.requestFocus();
                 return false;
             } else {
                 try {
-                    Date fecha = Date.valueOf(txtProdfecha.getText());
+                    Date fecha = Date.valueOf(txtProdfecha.getText().trim());
 
                 } catch (IllegalArgumentException iae) {
                     JOptionPane.showMessageDialog(null, "Formato de fecha incorrecto(Formato correcto:yyyy-mm-dd)");
                     txtProdfecha.requestFocus();
-                    txtProdfecha.setText(" ");
+                    txtProdfecha.setText("");
                     return false;
                 }
             }

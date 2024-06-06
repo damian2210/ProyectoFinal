@@ -35,7 +35,7 @@ public class Cliente implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "num_cuenta")
-    private String numCuenta;
+    private Long numCuenta;
     @Column(name = "telefono")
     private Integer telefono;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
@@ -48,7 +48,7 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(String idCliente, String dni, String nombre, String numCuenta, Integer telefono) {
+    public Cliente(String idCliente, String dni, String nombre, Long numCuenta, Integer telefono) {
         this.idCliente = idCliente;
         this.dni = dni;
         this.nombre = nombre;
@@ -80,11 +80,11 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getNumCuenta() {
+    public Long getNumCuenta() {
         return numCuenta;
     }
 
-    public void setNumCuenta(String numCuenta) {
+    public void setNumCuenta(Long numCuenta) {
         this.numCuenta = numCuenta;
     }
 

@@ -43,7 +43,7 @@ public class ClienteDAO {
         session.save(c);
     }
 
-    public void modificar(Session session, Cliente c, String nombre, String dni, String numCuenta , int tlf) {
+    public void modificar(Session session, Cliente c, String nombre, String dni, Long numCuenta , int tlf) {
         c.setNombre(nombre);
         c.setDni(dni);
         c.setNumCuenta(numCuenta);
