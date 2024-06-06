@@ -25,7 +25,7 @@ private final ProductoRepository proRep;
     }
 
     public Producto buscarProducto(String id) {
-        return proRep.findAll().stream().filter(p -> p.getCodproducto() == id).findFirst().orElse(null);
+        return proRep.findAll().stream().filter(p -> p.getCodproducto().equals(id)).findFirst().orElse(null);
 
     }
 
@@ -36,7 +36,7 @@ private final ProductoRepository proRep;
 
     public void modificar(Producto pro) {
         // TODO Auto-generated method stub
-        Producto producto = proRep.findAll().stream().filter(p -> p.getCodproducto() == pro.getCodproducto())
+        Producto producto = proRep.findAll().stream().filter(p -> p.getCodproducto().equals(pro.getCodproducto()))
                 .findFirst()
                 .orElse(null);
         if (producto != null) {

@@ -33,6 +33,10 @@ public class EmpleadoController {
     public Empleado buscarUsuario(@RequestParam(value = "usuario", defaultValue = "0") String usuario,@RequestParam(value = "contraseña", defaultValue = "0") String contraseña) {
         return empSer.buscarUsuario(usuario,contraseña);
     }
+    @GetMapping("/comprobarUsuario")
+    public Empleado comprobarUsuario(@RequestParam(value = "usuario", defaultValue = "0") String usuario) {
+        return empSer.comprobarUsuario(usuario);
+    }
 
     @PostMapping("/insertar")
     public void insertar(@RequestBody Empleado emp) {
@@ -45,7 +49,7 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("/borrar")
-    public void borrar(Empleado emp) {
+    public void borrar(@RequestBody Empleado emp) {
         empSer.borrar(emp);
     }
 }

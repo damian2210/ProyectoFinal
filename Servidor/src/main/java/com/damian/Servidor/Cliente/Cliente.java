@@ -32,7 +32,7 @@ public class Cliente {
     private String nombre;
     @Lob
     @Column(name = "num_cuenta")
-    private String numCuenta;
+    private Long numCuenta;
 
 
     public String getIdCliente() {
@@ -59,10 +59,10 @@ public class Cliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getNumCuenta() {
+    public Long getNumCuenta() {
         return numCuenta;
     }
-    public void setNumCuenta(String numCuenta) {
+    public void setNumCuenta(Long numCuenta) {
         this.numCuenta = numCuenta;
     }
 

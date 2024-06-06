@@ -39,9 +39,9 @@ public class EmpleadoService {
                 .orElse(null);
         if (empleado != null) {
             empleado.setContraseña(emp.getContraseña());
-            empleado.setDireccion(emp.getDireccion());
+        
             empleado.setDni(emp.getDni());
-            empleado.setNombre(emp.getNombre());
+
             empleado.setRol(emp.getRol());
             empleado.setTelefono(emp.getTelefono());
             empleado.setUsuario(emp.getUsuario());
@@ -56,6 +56,11 @@ public class EmpleadoService {
 
     public Empleado buscarUsuario(String usuario,String contraseña) {
         return empRep.findAll().stream().filter(e -> e.getUsuario().equals(usuario)).filter(e -> e.getContraseña().equals(contraseña)).findFirst().orElse(null);
+
+    }
+
+    public Empleado comprobarUsuario(String usuario) {
+        return empRep.findAll().stream().filter(e -> e.getUsuario().equals(usuario)).findFirst().orElse(null);
 
     }
 }

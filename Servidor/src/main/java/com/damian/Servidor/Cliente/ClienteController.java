@@ -41,7 +41,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/borrar")
-    public void borrar(Cliente cli) {
+    public void borrar(@RequestBody Cliente cli) {
         cliSer.borrar(cli);
     }
 }

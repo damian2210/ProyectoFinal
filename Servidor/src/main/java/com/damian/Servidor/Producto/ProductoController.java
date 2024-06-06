@@ -42,7 +42,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/borrar")
-    public void borrar(Producto pro) {
+    public void borrar(@RequestBody Producto pro) {
         proSer.borrar(pro);
     }
 }

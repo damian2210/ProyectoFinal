@@ -43,6 +43,10 @@ public class VenderController {
     public Vender buscarClienteEnVenta(@RequestParam(value="id",defaultValue = "0") String id){
         return venderSer.buscarClienteEnVenta(id);
     }
+    @GetMapping("/buscarEmpEnVenta") 
+    public Vender buscarEmpEnVenta(@RequestParam(value="id",defaultValue = "0") String id){
+        return venderSer.buscarEmpEnVenta(id);
+    }
 
     @PostMapping("/insertar") 
     public void insertar(@RequestBody Vender venta){
@@ -55,7 +59,7 @@ public class VenderController {
     }
 
     @PutMapping("/modificarEmpNull") 
-    public void modificarEmpNull(@RequestBody Vender venta){
-          venderSer.modificarEmpNull(venta);
+    public void modificarEmpNull(@RequestBody String id){
+          venderSer.modificarEmpNull(id);
     }
 }

@@ -35,6 +35,11 @@ public class VenderService {
         return venderRep.findAll().stream().filter(v -> v.getProductoFinanciero().getCodproducto().equals(id)).findFirst().orElse(null);
     }
 
+    public Vender buscarEmpEnVenta(String id) {
+        // TODO Auto-generated method stub
+        return venderRep.findAll().stream().filter(v -> v.getCodEmpleado().getCodEmpleado().equals(id)).findFirst().orElse(null);
+    }
+
     public Vender buscarClienteEnVenta(String id) {
         // TODO Auto-generated method stub
         return venderRep.findAll().stream().filter(v -> v.getCliente().getIdCliente().equals(id)).findFirst().orElse(null);
@@ -47,21 +52,24 @@ public class VenderService {
 
     public void modificar(Vender venta) {
         // TODO Auto-generated method stub
-        Vender vender = venderRep.findAll().stream().filter(v -> v.getVenderPK() == venta.getVenderPK()).findFirst()
+        Vender vender = venderRep.findAll().stream().filter(v -> v.getVenderPK().equals(venta.getVenderPK())).findFirst()
                 .orElse(null);
         if (vender != null) {
-            vender.setCodEmpleado(venta.getCodEmpleado());
+            vender.setFechaVenta(venta.getFechaVenta());
             venderRep.saveAndFlush(vender);
         }
     }
 
-    public void modificarEmpNull(Vender venta) {
+    public void modificarEmpNull(String id) {
         // TODO Auto-generated method stub
-        Vender vender = venderRep.findAll().stream().filter(v -> v.getVenderPK() == venta.getVenderPK()).findFirst()
-                .orElse(null);
+        List<Vender> vender = venderRep.findAll().stream().filter(v -> v.getCodEmpleado().getCodEmpleado().equals(id)).toList();
+                
         if (vender != null) {
-            vender.setCodEmpleado(null);
-            venderRep.save(vender);
+            for (Vender vender2 : vender) {
+                vender2.setCodEmpleado(null);
+                venderRep.save(vender2);
+            }
+            
         }
     }
 
