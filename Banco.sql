@@ -21,12 +21,10 @@ num_cuenta long
 create table empleado(
 cod_empleado varchar(3) primary key,
 dni varchar(9),
-direccion varchar(40),
-nombre varchar(15),
 telefono int,
 rol varchar(20),
 usuario varchar(15),
-contraseña varchar(6)
+contra varchar(6)
 );
 
 create table vender(
@@ -55,27 +53,42 @@ foreign key(cod_sucursal) references sucursal(cod_sucursal),
 foreign key(cod_sucursal_prestadora) references sucursal(cod_sucursal)
 );
 
+/*create table contratar(
+cod_empleado varchar(3),
+fecha_inicio date,
+fecha_fin date,
+cantidad int,
+cod_sucursal varchar(3),
+primary key(cod_empleado,fecha_inicio)
+);*/
 
+/*create table dirigir(
+cod_sucursal varchar(3)  ,
+fecha_inicio date,
+fecha_fin date,
+cod_empleado_director varchar(3),
+primary key(cod_sucursal,fecha_inicio)
+);*/
 
 insert into producto_financiero(cod_producto,puntuacion,tipo,interes,fecha_devolucion)
-values('p00','AAA',"inversión",10,null),
-('p01','AAa',"financiación",12,'2023-10-10'),
-('p03','AAA',"financiación",15,'2023-09-10'),
-('p04','Aaa',"inversión",18,null),
-('p02','Aaa',"ahorro",15,null);
+values('p00','AAA',"Inversión",10,null),
+('p01','AAa',"Financiación",12,'2023-10-10'),
+('p03','AAA',"Financiación",15,'2023-09-10'),
+('p04','Aaa',"Inversión",18,null),
+('p02','Aaa',"Ahorro",15,null);
 
 insert into cliente(id_cliente,dni,telefono,nombre,num_cuenta)
 values('c123','48923423N',722319308,'Mariano',3216543211),
 ('c124','73413442F',611420419,'Pepe',2314325611),
 ('c125','74313343H',622420429,'María',1231234561); 
 
-insert into empleado(cod_empleado,dnitelefono,rol,usuario,contra)
-values('e23','65313343E','632532734','Director','Antonio','ant'),
-('e24','83728383G','745634372','Director','Alejandro','ale'),
-('e25','92546343I','619293634','Director','Pablo','pab'),
-('e26','78143833J','690120489','Inversionista','Pedro','ped'),
-('e27','76543342F','754532734','Inversionista','Jorge','jor'),
-('e28','91565443U','692845921','Gestor de préstamos','Manuel','man');
+insert into empleado(cod_empleado,dni,telefono,rol,usuario,contra)
+values('e23','65313343N','632532734','Director','Antonio','ant'),
+('e24','83728383N','745634372','Director','Alejandro','ale'),
+('e25','92546343N','619293634','Director','Pablo','pab'),
+('e26','78143833N','690120489','Inversionista','Pedro','ped'),
+('e27','76543342N','754532734','Inversionista','Jorge','jor'),
+('e28','91565443N','692845921','Inversionista','Manuel','man');
 
 insert into vender(Cod_producto,id_cliente,fecha_venta,cod_empleado)
 values('p00','c123','2023-04-09','e26'),
@@ -93,8 +106,22 @@ values('s22','Calle María Jose 10','612892959'),
 insert into prestar(cod_sucursal,cod_sucursal_prestadora,cantidad)
 values('s24','s22',10000);
 
+/*
+insert into contratar(cod_empleado,fecha_inicio,fecha_fin,cod_sucursal)
+values('e23','2003-10-10',null,'s23'),
+('e24','2005-10-10',null,'s22'),
+('e25','2004-10-10',null,'s24'),
+('e26','2003-09-10',null,'s22'),
+('e27','2008-08-10',null,'s23'),
+('e28','2007-10-10',null,'s24');
 
-
+/*e26 en s22 con e24 director
+27 23 23
+28 24 25
+insert into dirigir(cod_sucursal,fecha_inicio,fecha_fin,cod_empleado_director)
+values('s23','2003-10-10',null,'e23'),
+('s22','2002-10-10',null,'e24'),
+('s24','2001-10-10',null,'e25');*/
 
 
 
