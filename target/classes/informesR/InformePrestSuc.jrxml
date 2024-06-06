@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05687c31-26eb-4492-b399-15574e8684c7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select s.cod_sucursal,s.direccion,s.telefono,p.cod_sucursal_prestadora,p.cantidad from Prestar p inner 
+join sucursal s on p.cod_sucursal=s.cod_sucursal order by p.cod_sucursal;]]>
+	</queryString>
+	<field name="cod_sucursal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_sucursal_prestadora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="cod_sucursal_prestadora_1" class="java.lang.Integer" resetType="Group" resetGroup="suc" calculation="Count">
+		<variableExpression><![CDATA[$F{cod_sucursal_prestadora}]]></variableExpression>
+	</variable>
+	<variable name="cantidad_1" class="java.lang.Integer" resetType="Group" resetGroup="suc" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<variable name="cod_sucursal_prestadora_2" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{cod_sucursal_prestadora}]]></variableExpression>
+	</variable>
+	<group name="suc">
+		<groupExpression><![CDATA[$F{cod_sucursal}]]></groupExpression>
+		<groupHeader>
+			<band height="93">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="93" backcolor="#9999FF" uuid="cd8caa94-92d5-4712-9a5a-b15eb0756323"/>
+					<staticText>
+						<reportElement x="0" y="0" width="91" height="28" uuid="377da989-2d8a-4709-8b43-507ab20ed02f"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Sucursal:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="150" y="0" width="80" height="28" uuid="5b6ef2c3-a1fb-427f-afbf-7bfffa835d22"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Teléfono:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="0" y="28" width="91" height="29" uuid="10fd8905-5607-42b3-a33e-5951aba540b8"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Dirección:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="40" y="69" width="270" height="24" uuid="744574fe-0f47-4c54-8b3d-b0c9f0557f93"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Sucursal que realiza el préstamo:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="337" y="69" width="128" height="24" uuid="0efc3182-9edd-4a76-909b-10c87c7a080a"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Cantidad:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="91" y="0" width="49" height="28" uuid="6196df7f-b39e-4308-8073-ae13646b93f4"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{cod_sucursal}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="230" y="0" width="118" height="27" uuid="4d55d470-7678-4202-9b26-ac4c9b50972e"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="91" y="27" width="139" height="25" uuid="7aeb3307-f9bd-4b77-82cd-1427c69b57aa"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="33">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="33" backcolor="#6666FF" uuid="caead931-9c78-404f-bacf-d336653687f8"/>
+					<staticText>
+						<reportElement x="0" y="0" width="171" height="33" uuid="bd2ddb6e-f70e-4375-be22-1e00488a5372"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Préstamos recibidos:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="171" y="0" width="59" height="33" uuid="093abcc8-520d-44d4-bce8-01a72f986477"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{cod_sucursal_prestadora_1}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="304" y="0" width="120" height="32" uuid="ed2b950f-11d9-41a9-bca8-d1a63b7640b6"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<text><![CDATA[Cantidad total:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="424" y="0" width="131" height="32" uuid="12eec1b6-17cc-4e5c-8d8b-965c8a725731"/>
+						<textElement>
+							<font size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{cantidad_1}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#99CCFF" uuid="734b013c-c5ec-48ac-b9a4-3829b32cd637"/>
+				<staticText>
+					<reportElement x="10" y="0" width="533" height="68" forecolor="#9900CC" uuid="087a5a36-b5a4-4fec-8a08-02925f299dca"/>
+					<textElement>
+						<font size="36"/>
+					</textElement>
+					<text><![CDATA[Préstamos recibidos por sucursal]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="41" forecolor="#FF66FF" backcolor="#CC99FF" uuid="06a69377-978c-4f8e-a0c2-7a2350540406"/>
+				<textField>
+					<reportElement x="40" y="0" width="242" height="28" uuid="0a859bc5-9bdf-4b75-bcce-ed4d5862f557"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cod_sucursal_prestadora}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="337" y="0" width="114" height="28" uuid="b4f44def-8bca-4f04-9a9f-ba172335a6dd"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="522" y="0" width="33" height="28" uuid="d7e5f356-f785-4838-9359-6f6288fa3250"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="42" backcolor="#99CCFF" uuid="16fdd330-018e-4151-998c-57e2d799d809"/>
+				<staticText>
+					<reportElement x="0" y="0" width="451" height="39" uuid="b3982890-9045-4930-8597-e3ee3b72b297"/>
+					<textElement>
+						<font size="20"/>
+					</textElement>
+					<text><![CDATA[Cantidad de sucursales que realizaron préstamos:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="451" y="0" width="104" height="39" uuid="392b17ba-ad25-4b38-a6e1-d40a7f6018ec"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{cod_sucursal_prestadora_2}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

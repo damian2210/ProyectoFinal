@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e677b5c6-5406-45f1-bb18-fe1a5fe5321f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from Cliente order by id_cliente;]]>
+	</queryString>
+	<field name="id_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_cuenta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="id_cliente_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id_cliente}]]></variableExpression>
+	</variable>
+	<group name="cliente">
+		<groupExpression><![CDATA[$F{id_cliente}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="40" backcolor="#FFFF99" uuid="38ded541-a16c-4441-b028-05790e278a46"/>
+					<staticText>
+						<reportElement x="0" y="2" width="75" height="38" forecolor="#00CC33" uuid="523b7126-f3ad-430e-a904-bedb986653d4"/>
+						<textElement>
+							<font size="20"/>
+						</textElement>
+						<text><![CDATA[Cliente:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="75" y="2" width="130" height="38" uuid="c730a0ec-e51e-4063-8c77-e13ecece4a6b"/>
+						<textElement>
+							<font size="20"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{id_cliente}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#99FF99" uuid="fbdbccaa-5cd7-4256-b180-0301112c1848"/>
+				<staticText>
+					<reportElement x="113" y="0" width="339" height="61" forecolor="#003300" uuid="1cd4e55e-12c3-475d-97ea-5de67517d681"/>
+					<textElement>
+						<font size="40"/>
+					</textElement>
+					<text><![CDATA[Informe Clientes]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="191" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="191" backcolor="#CCFF99" uuid="b976e411-4b60-468f-bf80-595fefa8a059"/>
+				<staticText>
+					<reportElement x="7" y="146" width="168" height="25" uuid="54c6b25d-345d-4b56-8ac9-25f216836b84"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Número de cuenta:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="101" width="142" height="31" uuid="6fb1008c-90b2-4c7a-bd6b-517bfd06d5dd"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Teléfono:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="13" width="83" height="33" forecolor="#000000" uuid="807f07b6-cb4b-4205-b01f-93e638588f5e"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Nombre:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="53" width="142" height="31" uuid="7f0c4e58-ee90-49c1-a385-caab93397107"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Dni:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="205" y="13" width="126" height="33" uuid="ca8425f4-632b-4837-a318-a2822f8e31f3"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="205" y="53" width="109" height="31" uuid="89376d48-b3d6-4d9b-b941-5b907faefd30"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="205" y="101" width="109" height="31" uuid="1896f18e-ed02-47b9-afea-ec2f412eafa4"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="205" y="146" width="138" height="25" uuid="4a5e2bac-b1a1-4a61-b1b7-7d7ff9fbb153"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{num_cuenta}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="512" y="0" width="43" height="23" uuid="6d415761-1def-41bd-9d6b-8f9b1d6c9fc9"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="40" backcolor="#FFFF99" uuid="f3a9a9c0-c9d8-438c-a572-cb17e7072e9e"/>
+				<staticText>
+					<reportElement x="0" y="2" width="149" height="26" forecolor="#00CC33" uuid="2e3b5d8c-f867-4431-bf2f-c643ee53557a"/>
+					<textElement>
+						<font size="20"/>
+					</textElement>
+					<text><![CDATA[Total clientes:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="158" y="0" width="156" height="28" uuid="33866bad-2c1b-40e1-ae09-2f94fe9bb118"/>
+					<textElement>
+						<font size="20"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{id_cliente_1}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>
