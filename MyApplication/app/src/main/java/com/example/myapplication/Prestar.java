@@ -98,12 +98,12 @@ public class Prestar extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodSucRPrest.getText().toString().isEmpty() == true || txtCodSucRPrest.getText().toString() == null||txtCodSucPPrest.getText().toString().isEmpty() == true || txtCodSucPPrest.getText().toString() == null) {
+                    if (txtCodSucRPrest.getText().toString().trim().isEmpty() == true || txtCodSucRPrest.getText().toString().trim() == null||txtCodSucPPrest.getText().toString().trim().isEmpty() == true || txtCodSucPPrest.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String sucR = txtCodSucRPrest.getText().toString();
-                    String sucP = txtCodSucPPrest.getText().toString();
+                    String sucR = txtCodSucRPrest.getText().toString().trim();
+                    String sucP = txtCodSucPPrest.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
                             .appendQueryParameter("id2", sucP)
@@ -158,12 +158,12 @@ public class Prestar extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodSucRPrest.getText().toString().isEmpty() == true || txtCodSucRPrest.getText().toString() == null||txtCodSucPPrest.getText().toString().isEmpty() == true || txtCodSucPPrest.getText().toString() == null) {
+                    if (txtCodSucRPrest.getText().toString().trim().isEmpty() == true || txtCodSucRPrest.getText().toString().trim() == null||txtCodSucPPrest.getText().toString().trim().isEmpty() == true || txtCodSucPPrest.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String sucR = txtCodSucRPrest.getText().toString();
-                    String sucP = txtCodSucPPrest.getText().toString();
+                    String sucR = txtCodSucRPrest.getText().toString().trim();
+                    String sucP = txtCodSucPPrest.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
                             .appendQueryParameter("id2", sucP)
@@ -229,6 +229,7 @@ public class Prestar extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","prestar");
                 startActivity(ajustes);
                 finish();
             }
@@ -263,8 +264,8 @@ public class Prestar extends AppCompatActivity {
                 boolean correcto = validarPrest(txtCodSucRPrest,txtCodSucPPrest,txtCantPrest);
 
                 if (correcto == true) {
-                    String sucR = txtCodSucRPrest.getText().toString();
-                    String sucP = txtCodSucPPrest.getText().toString();
+                    String sucR = txtCodSucRPrest.getText().toString().trim();
+                    String sucP = txtCodSucPPrest.getText().toString().trim();
 
                     String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
@@ -378,9 +379,10 @@ public class Prestar extends AppCompatActivity {
 
                                                         PrestarPK ppk = new PrestarPK(sucR,sucP);
 
-                                                        ObjPrestar p = new ObjPrestar(ppk,Integer.parseInt(txtCantPrest.getText().toString()),sucursalR,sucursalP);
+                                                        ObjPrestar p = new ObjPrestar(ppk,Integer.parseInt(txtCantPrest.getText().toString().trim()),sucursalR,sucursalP);
 
                                                         insertarPrest(client, p);
+
 
 
                                                     } else {
@@ -423,8 +425,8 @@ public class Prestar extends AppCompatActivity {
                 boolean correcto = validarPrest(txtCodSucRPrest,txtCodSucPPrest,txtCantPrest);
 
                 if (correcto == true) {
-                    String sucR = txtCodSucRPrest.getText().toString();
-                    String sucP = txtCodSucPPrest.getText().toString();
+                    String sucR = txtCodSucRPrest.getText().toString().trim();
+                    String sucP = txtCodSucPPrest.getText().toString().trim();
 
                     String uri = Uri.parse(d.getUrl() + ":8080/prestar/buscarPrestamo").buildUpon()
                             .appendQueryParameter("id", sucR)
@@ -578,7 +580,14 @@ public class Prestar extends AppCompatActivity {
 
     }
 
-
+    public void limpiarDatos(){
+        EditText txtCodSucRPrest=findViewById(R.id.txtCodSucRPrest);
+        EditText txtCodSucPPrest=findViewById(R.id.txtCodSucPPrest);
+        EditText txtCantPrest=findViewById(R.id.txtCantPrest);
+        txtCodSucRPrest.setText("");
+        txtCodSucPPrest.setText("");
+        txtCantPrest.setText("");
+    }
     public void insertarPrest( OkHttpClient client,ObjPrestar prestar){
         datos d=getDatos();
         Gson gson = new Gson();
@@ -615,7 +624,7 @@ public class Prestar extends AppCompatActivity {
                             Toast.makeText(Prestar.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -691,12 +700,12 @@ public class Prestar extends AppCompatActivity {
             boolean correcto = p.matcher(txtCodSucRPrest.getText().toString().trim()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this, R.string.intCodigoSucRForm, Toast.LENGTH_SHORT).show();
-                txtCodSucRPrest.setText(" ");
+                Toast.makeText(this, R.string.intCodigoSuc, Toast.LENGTH_SHORT).show();
+                txtCodSucRPrest.setText("");
                 return false;
             }
         }
-        if (txtCodSucPPrest.getText().toString().trim().isEmpty() == true || txtCodSucPPrest.getText().toString()==null) {
+        if (txtCodSucPPrest.getText().toString().trim().isEmpty() == true || txtCodSucPPrest.getText().toString().trim()==null) {
             Toast.makeText(this,  R.string.intCodigoSucP, Toast.LENGTH_SHORT).show();
             return false;
         } else {
@@ -704,24 +713,32 @@ public class Prestar extends AppCompatActivity {
             boolean correcto = p.matcher(txtCodSucPPrest.getText().toString().trim()).matches();
             if (correcto == false) {
 
-                Toast.makeText(this,  R.string.intCodigoSucPForm, Toast.LENGTH_SHORT).show();
-                txtCodSucPPrest.setText(" ");
+                Toast.makeText(this,  R.string.intCodigoSuc, Toast.LENGTH_SHORT).show();
+                txtCodSucPPrest.setText("");
                 return false;
             }
         }
-        if (txtCantPrest.getText().toString().isEmpty() == true||txtCantPrest.getText().toString()==null) {
+        if (txtCantPrest.getText().toString().trim().isEmpty() == true||txtCantPrest.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intCant, Toast.LENGTH_SHORT).show();
             txtCantPrest.requestFocus();
             return false;
         } else {
-            for (int i = 0; i < txtCantPrest.getText().length(); i++) {
-                if (Character.isLetter(txtCantPrest.getText().charAt(i))) {
+            for (int i = 0; i < txtCantPrest.getText().length()-1; i++) {
+                if (Character.isLetter(txtCantPrest.getText().toString().trim().charAt(i))) {
                     Toast.makeText(this, R.string.intCantForm, Toast.LENGTH_SHORT).show();
                     txtCantPrest.requestFocus();
-                    txtCantPrest.setText(" ");
+                    txtCantPrest.setText("");
                     return false;
                 }
+            }
+            try{
+                int i=Integer.parseInt(txtCantPrest.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this, R.string.intCantForm, Toast.LENGTH_SHORT).show();
+                txtCantPrest.requestFocus();
+                txtCantPrest.setText("");
+                return false;
             }
         }
         return true;
@@ -738,6 +755,8 @@ public class Prestar extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
 

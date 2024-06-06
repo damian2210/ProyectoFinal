@@ -97,12 +97,12 @@ public class Vender extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodCliVend.getText().toString().isEmpty() == true || txtCodCliVend.getText().toString() == null||txtCodProVend.getText().toString().isEmpty() == true || txtCodProVend.getText().toString() == null) {
+                    if (txtCodCliVend.getText().toString().trim().isEmpty() == true || txtCodCliVend.getText().toString().trim() == null||txtCodProVend.getText().toString().trim().isEmpty() == true || txtCodProVend.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codCli = txtCodCliVend.getText().toString();
-                    String codPro = txtCodProVend.getText().toString();
+                    String codCli = txtCodCliVend.getText().toString().trim();
+                    String codPro = txtCodProVend.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
@@ -162,12 +162,12 @@ public class Vender extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodCliVend.getText().toString().isEmpty() == true || txtCodCliVend.getText().toString() == null||txtCodProVend.getText().toString().isEmpty() == true || txtCodProVend.getText().toString() == null) {
+                    if (txtCodCliVend.getText().toString().trim().isEmpty() == true || txtCodCliVend.getText().toString().trim() == null||txtCodProVend.getText().toString().trim().isEmpty() == true || txtCodProVend.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codCli = txtCodCliVend.getText().toString();
-                    String codPro = txtCodProVend.getText().toString();
+                    String codCli = txtCodCliVend.getText().toString().trim();
+                    String codPro = txtCodProVend.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
@@ -239,6 +239,7 @@ public class Vender extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","vender");
                 startActivity(ajustes);
                 finish();
             }
@@ -273,9 +274,9 @@ public class Vender extends AppCompatActivity {
                 boolean correcto = validarVend(txtCodCliVend,txtCodProVend,txtCodEmpVend,txtFechaVend);
 
                 if (correcto == true) {
-                    String codCli = txtCodCliVend.getText().toString();
-                    String codPro = txtCodProVend.getText().toString();
-                    String codEmp=txtCodEmpVend.getText().toString();
+                    String codCli = txtCodCliVend.getText().toString().trim();
+                    String codPro = txtCodProVend.getText().toString().trim();
+                    String codEmp=txtCodEmpVend.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
@@ -316,12 +317,14 @@ public class Vender extends AppCompatActivity {
 
                                     return;
                                 }
-                                String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
-                                        .appendQueryParameter("id", codEmp)
+
+                                String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
+                                        .appendQueryParameter("id", codPro)
                                         .build().toString();
                                 Request request = new Request.Builder()
                                         .url(uri)
                                         .build();
+
 
                                 client.newCall(request).enqueue(new Callback() {
                                     @Override
@@ -339,15 +342,19 @@ public class Vender extends AppCompatActivity {
                                     @Override
                                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                                         if(response.isSuccessful()){
+
+
                                             String data=response.body().string();
 
-                                            Gson gson=new Gson();
-                                            ObjEmpleado empleado=gson.fromJson(data, ObjEmpleado.class);
-                                            if(empleado==null){
+                                            Gson gson = new GsonBuilder()
+                                                    .setDateFormat("yyyy-MM-dd")
+                                                    .create();
+                                            ObjProducto producto=gson.fromJson(data, ObjProducto.class);
+                                            if(producto==null){
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(Vender.this, R.string.empNoExiste, Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Vender.this, R.string.proNoExiste, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
 
@@ -390,8 +397,8 @@ public class Vender extends AppCompatActivity {
 
                                                             return;
                                                         }
-                                                        String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
-                                                                .appendQueryParameter("id", codPro)
+                                                        String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
+                                                                .appendQueryParameter("id", codEmp)
                                                                 .build().toString();
                                                         Request request = new Request.Builder()
                                                                 .url(uri)
@@ -415,25 +422,25 @@ public class Vender extends AppCompatActivity {
                                                                 if(response.isSuccessful()){
                                                                     String data=response.body().string();
 
-                                                                    Gson gson = new GsonBuilder()
-                                                                            .setDateFormat("yyyy-MM-dd")
-                                                                            .create();
-                                                                    ObjProducto producto=gson.fromJson(data, ObjProducto.class);
-                                                                    if(producto==null){
+                                                                    Gson gson=new Gson();
+                                                                    ObjEmpleado empleado=gson.fromJson(data, ObjEmpleado.class);
+                                                                    if(empleado==null){
                                                                         runOnUiThread(new Runnable() {
                                                                             @Override
                                                                             public void run() {
-                                                                                Toast.makeText(Vender.this, R.string.proNoExiste, Toast.LENGTH_SHORT).show();
+                                                                                Toast.makeText(Vender.this, R.string.empNoExiste, Toast.LENGTH_SHORT).show();
                                                                             }
                                                                         });
 
                                                                         return;
                                                                     }
-                                                                    VenderPK vpk = new VenderPK(txtCodProVend.getText().toString(), txtCodCliVend.getText().toString());
+                                                                    VenderPK vpk = new VenderPK(txtCodProVend.getText().toString().trim(), txtCodCliVend.getText().toString().trim());
 
-                                                                    ObjVender v = new ObjVender(vpk, Date.valueOf(txtFechaVend.getText().toString()),cliente, empleado,producto);
+                                                                    ObjVender v = new ObjVender(vpk, Date.valueOf(txtFechaVend.getText().toString().trim()),cliente, empleado,producto);
 
                                                                     insertarVend(client, v);
+
+
 
                                                                 }else{
                                                                     runOnUiThread(new Runnable() {
@@ -492,9 +499,9 @@ public class Vender extends AppCompatActivity {
                 boolean correcto = validarVend(txtCodCliVend,txtCodProVend,txtCodEmpVend,txtFechaVend);
 
                 if (correcto == true) {
-                    String codCli = txtCodCliVend.getText().toString();
-                    String codPro = txtCodProVend.getText().toString();
-                    String codEmp=txtCodEmpVend.getText().toString();
+                    String codCli = txtCodCliVend.getText().toString().trim();
+                    String codPro = txtCodProVend.getText().toString().trim();
+                    String codEmp=txtCodEmpVend.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarVenta").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .appendQueryParameter("id2", codCli)
@@ -648,9 +655,9 @@ public class Vender extends AppCompatActivity {
 
                                                                         return;
                                                                     }
-                                                                    VenderPK vpk = new VenderPK(txtCodProVend.getText().toString(), txtCodCliVend.getText().toString());
+                                                                    VenderPK vpk = new VenderPK(txtCodProVend.getText().toString().trim(), txtCodCliVend.getText().toString().trim());
 
-                                                                    ObjVender v = new ObjVender(vpk, Date.valueOf(txtFechaVend.getText().toString()),cliente, empleado,producto);
+                                                                    ObjVender v = new ObjVender(vpk, Date.valueOf(txtFechaVend.getText().toString().trim()),cliente, empleado,producto);
 
                                                                     modificarVend(client, v);
 
@@ -707,6 +714,16 @@ public class Vender extends AppCompatActivity {
     }
 
 
+    public void limpiarDatos(){
+        EditText txtCodCliVend=findViewById(R.id.txtCodCliVend);
+        EditText txtCodProVend=findViewById(R.id.txtCodProVend);
+        EditText txtCodEmpVend=findViewById(R.id.txtCodEmpVend);
+        EditText txtFechaVend=findViewById(R.id.txtFechaVend);
+        txtCodCliVend.setText("");
+        txtCodProVend.setText("");
+        txtFechaVend.setText("");
+        txtCodEmpVend.setText("");
+    }
     public void insertarVend( OkHttpClient client,ObjVender vender){
         datos d=getDatos();
         Gson gson = new GsonBuilder()
@@ -745,7 +762,7 @@ public class Vender extends AppCompatActivity {
                             Toast.makeText(Vender.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -815,37 +832,24 @@ public class Vender extends AppCompatActivity {
 
 
     private boolean validarVend(EditText txtCodCliVend, EditText txtCodProVend,EditText txtCodEmpVend,EditText txtFechaVend){
-        if (txtCodProVend.getText().toString().isEmpty() == true||txtCodProVend.getText().toString()==null) {
+        if (txtCodProVend.getText().toString().trim().isEmpty() == true||txtCodProVend.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intCodigoProducto, Toast.LENGTH_SHORT).show();
             txtCodProVend.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^p\\d{2}$");
-            boolean correcto = p.matcher(txtCodProVend.getText()).matches();
+            boolean correcto = p.matcher(txtCodProVend.getText().toString()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intCodigoPro, Toast.LENGTH_SHORT).show();
                 txtCodProVend.requestFocus();
-                txtCodProVend.setText(" ");
+                txtCodProVend.setText("");
                 return false;
             }
         }
 
-        if (txtCodEmpVend.getText().toString().isEmpty() == true||txtCodEmpVend.getText().toString()==null) {
-            Toast.makeText(this, R.string.intCodigoEmpleado, Toast.LENGTH_SHORT).show();
-            txtCodEmpVend.requestFocus();
-            return false;
-        } else {
-            Pattern p = Pattern.compile("^e\\d{2}$");
-            boolean correcto = p.matcher(txtCodEmpVend.getText()).matches();
-            if (correcto == false) {
-                Toast.makeText(this, R.string.intCodigoEmp, Toast.LENGTH_SHORT).show();
-                txtCodEmpVend.requestFocus();
-                txtCodEmpVend.setText(" ");
-                return false;
-            }
-        }
-        if (txtCodCliVend.getText().toString().trim().isEmpty() == true||txtCodCliVend.getText().toString()==null) {
+
+        if (txtCodCliVend.getText().toString().trim().isEmpty() == true||txtCodCliVend.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intCodigoCliente, Toast.LENGTH_SHORT).show();
             txtCodCliVend.requestFocus();
@@ -856,18 +860,33 @@ public class Vender extends AppCompatActivity {
             if (correcto == false) {
                 Toast.makeText(this, R.string.intCodigoCli, Toast.LENGTH_SHORT).show();
                 txtCodCliVend.requestFocus();
-                txtCodCliVend.setText(" ");
+                txtCodCliVend.setText("");
                 return false;
             }
         }
-        if (txtFechaVend.getText().toString().isEmpty() == true||txtFechaVend.getText().toString()==null) {
+
+        if (txtCodEmpVend.getText().toString().trim().isEmpty() == true||txtCodEmpVend.getText().toString().trim()==null) {
+            Toast.makeText(this, R.string.intCodigoEmpleado, Toast.LENGTH_SHORT).show();
+            txtCodEmpVend.requestFocus();
+            return false;
+        } else {
+            Pattern p = Pattern.compile("^e\\d{2}$");
+            boolean correcto = p.matcher(txtCodEmpVend.getText().toString().trim()).matches();
+            if (correcto == false) {
+                Toast.makeText(this, R.string.intCodigoEmp, Toast.LENGTH_SHORT).show();
+                txtCodEmpVend.requestFocus();
+                txtCodEmpVend.setText("");
+                return false;
+            }
+        }
+        if (txtFechaVend.getText().toString().trim().isEmpty() == true||txtFechaVend.getText().toString().trim()==null) {
             Toast.makeText(this, R.string.intFechaVent, Toast.LENGTH_SHORT).show();
 
             txtFechaVend.requestFocus();
             return false;
         } else {
             try {
-                Date fecha = Date.valueOf(txtFechaVend.getText().toString());
+                Date fecha = Date.valueOf(txtFechaVend.getText().toString().trim());
 
             } catch (IllegalArgumentException iae) {
                 Toast.makeText(this, R.string.intFechaForm, Toast.LENGTH_SHORT).show();
@@ -890,6 +909,8 @@ public class Vender extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
     private  void cambiarTamaño(){

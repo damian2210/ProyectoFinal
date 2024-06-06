@@ -9,9 +9,9 @@ public class ObjCliente {
 
     private String nombre;
 
-    private String numCuenta;
+    private Long numCuenta;
 
-    public ObjCliente(String idCliente, String dni, Integer telefono, String nombre, String numCuenta) {
+    public ObjCliente(String idCliente, String dni, Integer telefono, String nombre, Long numCuenta) {
         this.idCliente = idCliente;
         this.dni = dni;
         this.telefono = telefono;
@@ -43,10 +43,10 @@ public class ObjCliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getNumCuenta() {
+    public Long getNumCuenta() {
         return numCuenta;
     }
-    public void setNumCuenta(String numCuenta) {
+    public void setNumCuenta(Long numCuenta) {
         this.numCuenta = numCuenta;
     }
 

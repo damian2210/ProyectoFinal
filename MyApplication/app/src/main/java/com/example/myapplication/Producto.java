@@ -100,11 +100,11 @@ public class Producto extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodPro.getText().toString().isEmpty() == true || txtCodPro.getText().toString() == null) {
+                    if (txtCodPro.getText().toString().trim().isEmpty() == true || txtCodPro.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codPro = txtCodPro.getText().toString();
+                    String codPro = txtCodPro.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
@@ -144,7 +144,7 @@ public class Producto extends AppCompatActivity {
                                             if(producto.getFechaDevolucion()==null){
                                                 txtFechaPro.setText("");
                                             }else{
-                                                txtFechaPro.setText(producto.getFechaDevolucion().toString());
+                                                txtFechaPro.setText(producto.getFechaDevolucion().toString().trim());
                                             }
 
 
@@ -185,6 +185,7 @@ public class Producto extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","producto");
                 startActivity(ajustes);
                 finish();
             }
@@ -236,7 +237,7 @@ public class Producto extends AppCompatActivity {
                 boolean correcto = validarPro(txtCodPro,txtPuntPro,txtInteresPro,txtFechaPro,spin);
 
                 if (correcto == true) {
-                    String codPro = txtCodPro.getText().toString();
+                    String codPro = txtCodPro.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
@@ -277,11 +278,12 @@ public class Producto extends AppCompatActivity {
                                     return;
                                 }
                                 if(spin.getSelectedItem().toString().trim().equals("Financiación")) {
-                                    producto = new ObjProducto(txtCodPro.getText().toString(), txtPuntPro.getText().toString(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString()), Date.valueOf(txtFechaPro.getText().toString()));
+                                    producto = new ObjProducto(txtCodPro.getText().toString().trim(), txtPuntPro.getText().toString().trim(), spin.getSelectedItem().toString().trim(), Integer.parseInt(txtInteresPro.getText().toString().trim()), Date.valueOf(txtFechaPro.getText().toString().trim()));
                                 }else {
-                                    producto = new ObjProducto(txtCodPro.getText().toString(), txtPuntPro.getText().toString(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString()), null);
+                                    producto = new ObjProducto(txtCodPro.getText().toString().trim(), txtPuntPro.getText().toString().trim(), spin.getSelectedItem().toString().trim(), Integer.parseInt(txtInteresPro.getText().toString().trim()), null);
                                 }
                                 insertarPro( client,producto);
+
                             }else{
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -305,7 +307,7 @@ public class Producto extends AppCompatActivity {
                 boolean correcto = validarPro(txtCodPro,txtPuntPro,txtInteresPro,txtFechaPro,spin);
 
                 if (correcto == true) {
-                    String codPro = txtCodPro.getText().toString();
+                    String codPro = txtCodPro.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
@@ -345,9 +347,9 @@ public class Producto extends AppCompatActivity {
                                     return;
                                 }
                                 if(spin.getSelectedItem().toString().trim().equals("Financiación")) {
-                                    producto = new ObjProducto(txtCodPro.getText().toString(), txtPuntPro.getText().toString(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString()), Date.valueOf(txtFechaPro.getText().toString()));
+                                    producto = new ObjProducto(txtCodPro.getText().toString().trim(), txtPuntPro.getText().toString().trim(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString().trim()), Date.valueOf(txtFechaPro.getText().toString().trim()));
                                 }else {
-                                    producto = new ObjProducto(txtCodPro.getText().toString(), txtPuntPro.getText().toString(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString()), null);
+                                    producto = new ObjProducto(txtCodPro.getText().toString().trim(), txtPuntPro.getText().toString().trim(), spin.getSelectedItem().toString(), Integer.parseInt(txtInteresPro.getText().toString().trim()), null);
                                 }
                                 modificarPro( client,producto);
                             }else{
@@ -373,7 +375,7 @@ public class Producto extends AppCompatActivity {
                 boolean correcto = validarPro(txtCodPro,txtPuntPro,txtInteresPro,txtFechaPro,spin);
 
                 if (correcto == true) {
-                    String codPro = txtCodPro.getText().toString();
+                    String codPro = txtCodPro.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/producto/buscarProducto").buildUpon()
                             .appendQueryParameter("id", codPro)
                             .build().toString();
@@ -413,7 +415,7 @@ public class Producto extends AppCompatActivity {
                                     return;
                                 }
                                 String uri = Uri.parse(d.getUrl() + ":8080/vender/buscarProductoEnVenta").buildUpon()
-                                        .appendQueryParameter("id",txtCodPro.getText().toString())
+                                        .appendQueryParameter("id",txtCodPro.getText().toString().trim())
                                         .build().toString();
                                 Request request = new Request.Builder()
                                         .url(uri)
@@ -454,6 +456,7 @@ public class Producto extends AppCompatActivity {
 
                                             borrarPro( client,producto);
 
+
                                         }else{
                                             runOnUiThread(new Runnable() {
                                                 @Override
@@ -486,6 +489,16 @@ public class Producto extends AppCompatActivity {
             }
         });
 
+    }
+    public  void limpiarDatos(){
+        EditText txtFechaPro=findViewById(R.id.txtFechaPro);
+        EditText txtCodPro=findViewById(R.id.txtCodPro);
+        EditText txtPuntPro=findViewById(R.id.txtPuntPro);
+        EditText txtInteresPro=findViewById(R.id.txtInteresPro);
+        txtCodPro.setText("");
+        txtInteresPro.setText("");
+        txtPuntPro.setText("");
+        txtFechaPro.setText("");
     }
 
     public void insertarPro( OkHttpClient client,ObjProducto producto){
@@ -526,7 +539,7 @@ public class Producto extends AppCompatActivity {
                             Toast.makeText(Producto.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -631,7 +644,7 @@ public class Producto extends AppCompatActivity {
                             Toast.makeText(Producto.this,  R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -646,65 +659,65 @@ public class Producto extends AppCompatActivity {
         });
     }
     public boolean validarPro(EditText txtCodPro,EditText txtPuntPro,EditText txtInteresPro, EditText txtFechaPro,Spinner spin) {
-        if (txtCodPro.getText().toString().isEmpty() == true||txtCodPro.getText().toString()==null) {
+        if (txtCodPro.getText().toString().trim().isEmpty() == true||txtCodPro.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             txtCodPro.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^p\\d{2}$");
-            boolean correcto = p.matcher(txtCodPro.getText()).matches();
+            boolean correcto = p.matcher(txtCodPro.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intCodigoPro, Toast.LENGTH_SHORT).show();
                 txtCodPro.requestFocus();
-                txtCodPro.setText(" ");
+                txtCodPro.setText("");
                 return false;
             }
         }
-        if (txtInteresPro.getText().toString().isEmpty() == true||txtInteresPro.getText().toString()==null) {
+        if (txtInteresPro.getText().toString().trim().isEmpty() == true||txtInteresPro.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intInt, Toast.LENGTH_SHORT).show();
             txtInteresPro.requestFocus();
             return false;
         } else {
-            for (int i = 0; i < txtInteresPro.getText().length(); i++) {
-                if (Character.isLetter(txtInteresPro.getText().charAt(i))) {
-                    Toast.makeText(this, R.string.intIntForm, Toast.LENGTH_SHORT).show();
-                    txtInteresPro.requestFocus();
-                    txtInteresPro.setText(" ");
-                    return false;
-                }
+            try{
+                int i=Integer.parseInt(txtInteresPro.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this, R.string.intIntForm, Toast.LENGTH_SHORT).show();
+                txtInteresPro.requestFocus();
+                txtInteresPro.setText("");
+                return false;
             }
         }
-        if (txtPuntPro.getText().toString().isEmpty() == true||txtPuntPro.getText().toString()==null) {
+        if (txtPuntPro.getText().toString().trim().isEmpty() == true||txtPuntPro.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intPunt, Toast.LENGTH_SHORT).show();
             txtPuntPro.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\p{L}{3}");
-            boolean correcto = p.matcher(txtPuntPro.getText()).matches();
+            boolean correcto = p.matcher(txtPuntPro.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intPuntForm, Toast.LENGTH_SHORT).show();
                 txtPuntPro.requestFocus();
-                txtPuntPro.setText(" ");
+                txtPuntPro.setText("");
                 return false;
             }
         }
         if (spin.getSelectedItem().toString().equals("Financiación")) {
-            if (txtFechaPro.getText().toString().isEmpty() == true||txtFechaPro.getText().toString()==null) {
+            if (txtFechaPro.getText().toString().trim().isEmpty() == true||txtFechaPro.getText().toString().trim()==null) {
                 Toast.makeText(this, R.string.intFechaDev, Toast.LENGTH_SHORT).show();
 
                 txtFechaPro.requestFocus();
                 return false;
             } else {
                 try {
-                    Date fecha = Date.valueOf(txtFechaPro.getText().toString());
+                    Date fecha = Date.valueOf(txtFechaPro.getText().toString().trim());
 
                 } catch (IllegalArgumentException iae) {
                     Toast.makeText(this, R.string.intFechaForm, Toast.LENGTH_SHORT).show();
                     txtFechaPro.requestFocus();
-                    txtFechaPro.setText(" ");
+                    txtFechaPro.setText("");
                     return false;
                 }
             }
@@ -723,6 +736,8 @@ public class Producto extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
        }
     private void cambiarTamaño(){

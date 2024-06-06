@@ -41,7 +41,7 @@ public class Guardar extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+            cambiarTamaño();
         EditText txtContraGuar=findViewById(R.id.txtContraGuar);
         EditText txtUsuarioGuar=findViewById(R.id.txtUsuarioGuar);
         EditText txtURLGuar=findViewById(R.id.txtURLGuar);
@@ -67,6 +67,7 @@ public class Guardar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("clase","guardar");
                 startActivity(ajustes);
                 finish();
             }
@@ -107,6 +108,8 @@ public class Guardar extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
 

@@ -68,7 +68,7 @@
     <string name="intNombreNum">El nombre no puede tener números</string>
     <string name="intContra">Tiene que introducir la contraseña</string>
     <string name="intUser">Tiene que introducir el usuario</string>
-    <string name="intURL">Tiene que la URL</string>
+    <string name="intURL">Tiene que introducir la URL</string>
     <string name="uriInc">Formato de uri incorrecto</string>
     <string name="userInc">Usuario o contraseña incorrectos</string>
     <string name="prefGuar">Preferencias guardadas correctamente</string>

@@ -63,6 +63,7 @@ public class Login extends AppCompatActivity {
             cambiarIdioma(idioma);
         }
         guardarImagenes();
+
         guardarAjustes();
         cambiarTamaño();
         EditText txtusuario=findViewById(R.id.txtUsuarioLog);
@@ -90,6 +91,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
+                ajustes.putExtra("clase","login");
                 startActivity(ajustes);
                 finish();
             }
@@ -120,7 +122,7 @@ public class Login extends AppCompatActivity {
                 Request request = null;
                 try {
 
-                    //http://10.0.2.2:8080
+
                     String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarUsuario").buildUpon()
                             .appendQueryParameter("usuario", usuario)
                             .appendQueryParameter("contraseña", contra)
@@ -151,6 +153,15 @@ public class Login extends AppCompatActivity {
 
                             Gson gson=new Gson();
                             ObjEmpleado e=gson.fromJson(data, ObjEmpleado.class);
+                            if(e==null){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(Login.this, R.string.userInc, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                return;
+                            }
                             Intent gestion=new Intent(getBaseContext(), Gestion.class);
                             gestion.putExtra("usuario",e.getUsuario());
                             gestion.putExtra("rol",e.getRol());
@@ -230,12 +241,19 @@ public class Login extends AppCompatActivity {
             imagenDAO.insertarImagen(bd,"Inversionista",imageBytes);
 
             helper.close();
+            bd.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private  void  guardarAjustes(){
+        SharedPreferences prefs = getBaseContext().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+        boolean ajustesGuardados = prefs.getBoolean("ajustes_guardados", false);
+
+        if (ajustesGuardados) {
+            return; // Si los ajustes ya se han guardado, no hacemos nada.
+        }
         PreferenciasHelper helper=new PreferenciasHelper(getBaseContext());
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
@@ -250,9 +268,13 @@ public class Login extends AppCompatActivity {
         Ajustes a4=new Ajustes(14,false);
         Ajustes a5=new Ajustes(16,true);
 
-        total.add(a1);total.add(a2);total.add(a3);total.add(a4);total.add(a5);
+        total.add(a5);total.add(a4);total.add(a3);total.add(a2);total.add(a1);
         ajustesDAO.insertarAjustes(bd,total);
         helper.close();
+        bd.close();
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("ajustes_guardados", true);
+        editor.apply();
     }
 
     private  int getTamaño(){
@@ -260,6 +282,8 @@ public class Login extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
 

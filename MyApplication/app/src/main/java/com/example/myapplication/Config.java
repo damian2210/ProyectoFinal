@@ -74,14 +74,72 @@ public class Config extends AppCompatActivity {
 
             }
         });
-
-
+        String usuario2=getIntent().getStringExtra("usuario");
+        String rol2=getIntent().getStringExtra("rol");
+        String clase=getIntent().getStringExtra("clase");
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guardarTamaño(tamaño[0]);
-                Intent login=new Intent(getBaseContext(), Login.class);
-                startActivity(login);
+                Intent cambio=null;
+                switch (clase){
+                    case "sucursal":
+                        cambio=new Intent(v.getContext(),Sucursal.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "empleado":
+                        cambio=new Intent(v.getContext(),Empleado.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "cliente":
+                        cambio=new Intent(v.getContext(),Cliente.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "vender":
+                        cambio=new Intent(v.getContext(),Vender.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "producto":
+                        cambio=new Intent(v.getContext(),Producto.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "prestar":
+                        cambio=new Intent(v.getContext(),Prestar.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "gestion":
+                        cambio=new Intent(v.getContext(),Gestion.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "guardar":
+                        cambio=new Intent(v.getContext(),Guardar.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+                    case "login":
+                        cambio=new Intent(v.getContext(),Login.class);
+                        cambio.putExtra("usuario",usuario2);
+                        cambio.putExtra("rol",rol2);
+
+                        break;
+
+                }
+                startActivity(cambio);
                 finish();
             }
         });
@@ -130,6 +188,8 @@ public class Config extends AppCompatActivity {
             listaString.add(ajuste.getTamaño()+"");
         }
         helper.close();
+
+        bd.close();
         return listaString;
     }
     private void guardarTamaño(int tamaño){
@@ -140,6 +200,7 @@ public class Config extends AppCompatActivity {
         ajustesDAO.deseleccionar(bd);
         ajustesDAO.seleccionarPorTamaño(bd,tamaño);
         helper.close();
+        bd.close();
     }
 
     private String getIdioma(){

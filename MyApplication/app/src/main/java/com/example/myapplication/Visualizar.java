@@ -134,52 +134,48 @@ public class Visualizar extends AppCompatActivity {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio;
+                Intent cambio=null;
                 switch (finalClase){
                     case "sucursal":
                         cambio=new Intent(v.getContext(),Sucursal.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
                     case "empleado":
                         cambio=new Intent(v.getContext(),Empleado.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
                     case "cliente":
                         cambio=new Intent(v.getContext(),Cliente.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
                     case "vender":
                         cambio=new Intent(v.getContext(),Vender.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
                     case "producto":
                         cambio=new Intent(v.getContext(),Producto.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
                     case "prestar":
                         cambio=new Intent(v.getContext(),Prestar.class);
                         cambio.putExtra("usuario",usuario2);
                         cambio.putExtra("rol",rol2);
-                        startActivity(cambio);
-                        finish();
+
                         break;
 
                 }
+                startActivity(cambio);
+                finish();
             }
         });
     }
@@ -201,8 +197,9 @@ public class Visualizar extends AppCompatActivity {
                     public void run() {
                         Toast.makeText(Visualizar.this, R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
-                });
 
+                });
+                call.cancel();
             }
 
             @Override
@@ -228,6 +225,7 @@ public class Visualizar extends AppCompatActivity {
                     });
                 }
 
+                response.close();
             }
         });
 
@@ -300,7 +298,7 @@ public class Visualizar extends AppCompatActivity {
                         Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
-
+                call.cancel();
 
             }
 
@@ -329,7 +327,7 @@ public class Visualizar extends AppCompatActivity {
                         }
                     });
                 }
-
+                response.close();
             }
         });
 
@@ -350,6 +348,7 @@ public class Visualizar extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
+                        call.cancel();
                     }
                 });
             }
@@ -376,7 +375,7 @@ public class Visualizar extends AppCompatActivity {
                         }
                     });
                 }
-
+                response.close();
             }
         });
 
@@ -400,7 +399,7 @@ public class Visualizar extends AppCompatActivity {
                         Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
                 });
-
+                call.cancel();
             }
 
             @Override
@@ -433,7 +432,7 @@ public class Visualizar extends AppCompatActivity {
                         }
                     });
                 }
-
+                response.close();
             }
         });
 
@@ -455,7 +454,9 @@ public class Visualizar extends AppCompatActivity {
                     public void run() {
                         Toast.makeText(Visualizar.this,  R.string.peticion, Toast.LENGTH_SHORT).show();
                     }
+
                 });
+                call.cancel();
 
             }
 
@@ -481,7 +482,7 @@ public class Visualizar extends AppCompatActivity {
                         }
                     });
                 }
-
+            response.close();
             }
         });
 

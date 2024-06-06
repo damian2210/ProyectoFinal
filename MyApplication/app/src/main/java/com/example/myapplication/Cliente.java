@@ -94,11 +94,11 @@ public class Cliente extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodCli.getText().toString().isEmpty() == true || txtCodCli.getText().toString() == null) {
+                    if (txtCodCli.getText().toString().trim().isEmpty() == true || txtCodCli.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codCli = txtCodCli.getText().toString();
+                    String codCli = txtCodCli.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                             .appendQueryParameter("id", codCli)
                             .build().toString();
@@ -177,6 +177,7 @@ public class Cliente extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","cliente");
                 startActivity(ajustes);
                 finish();
             }
@@ -210,7 +211,7 @@ public class Cliente extends AppCompatActivity {
                 boolean correcto = validarCli(txtCodCli,txtDniCli,txtNombreCli,txtCuentaCli,txtTlfCli);
 
                 if (correcto == true) {
-                    String codCli = txtCodCli.getText().toString();
+                    String codCli = txtCodCli.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                             .appendQueryParameter("id", codCli)
                             .build().toString();
@@ -248,9 +249,10 @@ public class Cliente extends AppCompatActivity {
 
                                     return;
                                 }
-                                cliente=new ObjCliente(txtCodCli.getText().toString(),txtDniCli.getText().toString(),Integer.parseInt(txtTlfCli.getText().toString()),txtNombreCli.getText().toString(),txtCuentaCli.getText().toString());
+                                cliente=new ObjCliente(txtCodCli.getText().toString().trim(),txtDniCli.getText().toString().trim(),Integer.parseInt(txtTlfCli.getText().toString().trim()),txtNombreCli.getText().toString().trim(),Long.parseLong(txtCuentaCli.getText().toString().trim()));
 
                                 insertarCliente( client,cliente);
+
 
                             }else{
                                 runOnUiThread(new Runnable() {
@@ -275,7 +277,7 @@ public class Cliente extends AppCompatActivity {
                 boolean correcto = validarCli(txtCodCli,txtDniCli,txtNombreCli,txtCuentaCli,txtTlfCli);
 
                 if (correcto == true) {
-                    String codCli = txtCodCli.getText().toString();
+                    String codCli = txtCodCli.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                             .appendQueryParameter("id", codCli)
                             .build().toString();
@@ -313,7 +315,7 @@ public class Cliente extends AppCompatActivity {
 
                                     return;
                                 }
-                                cliente=new ObjCliente(txtCodCli.getText().toString(),txtDniCli.getText().toString(),Integer.parseInt(txtTlfCli.getText().toString()),txtNombreCli.getText().toString(),txtCuentaCli.getText().toString());
+                                cliente=new ObjCliente(txtCodCli.getText().toString().trim(),txtDniCli.getText().toString().trim(),Integer.parseInt(txtTlfCli.getText().toString().trim()),txtNombreCli.getText().toString().trim(),Long.parseLong(txtCuentaCli.getText().toString().trim()));
 
                                 modificarCliente( client,cliente);
 
@@ -343,7 +345,7 @@ public class Cliente extends AppCompatActivity {
                     boolean correcto = validarCli(txtCodCli, txtDniCli, txtNombreCli, txtCuentaCli, txtTlfCli);
 
                     if (correcto == true) {
-                        String codCli = txtCodCli.getText().toString();
+                        String codCli = txtCodCli.getText().toString().trim();
                         String uri = Uri.parse(d.getUrl() + ":8080/cliente/buscarCliente").buildUpon()
                                 .appendQueryParameter("id", codCli)
                                 .build().toString();
@@ -374,7 +376,7 @@ public class Cliente extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Toast.makeText(Cliente.this, R.string.respuesta, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Cliente.this, R.string.cliNoExiste, Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -421,6 +423,7 @@ public class Cliente extends AppCompatActivity {
 
                                                 borrarCliente(client, cliente);
 
+
                                             } else {
 
                                                 runOnUiThread(new Runnable() {
@@ -454,6 +457,18 @@ public class Cliente extends AppCompatActivity {
 
     }
 
+    public void limpiarDatos(){
+        EditText txtCodCli=findViewById(R.id.txtCodCli);
+        EditText txtDniCli=findViewById(R.id.txtDniCli);
+        EditText txtNombreCli=findViewById(R.id.txtNombreCli);
+        EditText txtCuentaCli=findViewById(R.id.txtCuentaCli);
+        EditText txtTlfCli=findViewById(R.id.txtTlfCli);
+        txtCodCli.setText("");
+        txtDniCli.setText("");
+        txtCuentaCli.setText("");
+        txtNombreCli.setText("");
+        txtTlfCli.setText("");
+    }
     public void insertarCliente( OkHttpClient client,ObjCliente cliente){
         datos d=getDatos();
         Gson gson = new Gson();
@@ -490,7 +505,7 @@ public class Cliente extends AppCompatActivity {
                             Toast.makeText(Cliente.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -590,12 +605,12 @@ public class Cliente extends AppCompatActivity {
                             Toast.makeText(Cliente.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Cliente.this, R.string.NoModResp, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Cliente.this, R.string.NoBorrarResp, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -618,23 +633,8 @@ public class Cliente extends AppCompatActivity {
             if (correcto == false) {
                 Toast.makeText(this, R.string.intCodigoCli, Toast.LENGTH_SHORT).show();
                 txtCodCli.requestFocus();
-                txtCodCli.setText(" ");
+                txtCodCli.setText("");
                 return false;
-            }
-        }
-        if (txtNombreCli.getText().toString().trim().isEmpty() == true||txtNombreCli.getText().toString()==null) {
-            Toast.makeText(this, R.string.intNombre, Toast.LENGTH_SHORT).show();
-            txtNombreCli.requestFocus();
-            return false;
-        } else {
-            for (int i = 0; i < txtNombreCli.getText().length(); i++) {
-                if (Character.isDigit(txtNombreCli.getText().charAt(i))) {
-
-                    Toast.makeText(this, R.string.intNombreNum, Toast.LENGTH_SHORT).show();
-                    txtNombreCli.requestFocus();
-                    txtNombreCli.setText(" ");
-                    return false;
-                }
             }
         }
         if (txtDniCli.getText().toString().trim().isEmpty() == true||txtDniCli.getText().toString()==null) {
@@ -649,22 +649,46 @@ public class Cliente extends AppCompatActivity {
 
                 Toast.makeText(this, R.string.intDniForm, Toast.LENGTH_SHORT).show();
                 txtDniCli.requestFocus();
-                txtDniCli.setText(" ");
+                txtDniCli.setText("");
                 return false;
             }
         }
+        if (txtNombreCli.getText().toString().trim().isEmpty() == true||txtNombreCli.getText().toString()==null) {
+            Toast.makeText(this, R.string.intNombre, Toast.LENGTH_SHORT).show();
+            txtNombreCli.requestFocus();
+            return false;
+        } else {
+            for (int i = 0; i < txtNombreCli.getText().length()-1; i++) {
+                if (Character.isDigit(txtNombreCli.getText().toString().trim().charAt(i))) {
+
+                    Toast.makeText(this, R.string.intNombreNum, Toast.LENGTH_SHORT).show();
+                    txtNombreCli.requestFocus();
+                    txtNombreCli.setText("");
+                    return false;
+                }
+            }
+        }
+
         if (txtTlfCli.getText().toString().trim().isEmpty() == true||txtTlfCli.getText().toString()==null) {
             Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
             txtTlfCli.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
-            boolean correcto = p.matcher(txtTlfCli.getText()).matches();
+            boolean correcto = p.matcher(txtTlfCli.getText().toString().trim()).matches();
             if (correcto == false) {
 
                 Toast.makeText(this,  R.string.intTlfForm, Toast.LENGTH_SHORT).show();
                 txtTlfCli.requestFocus();
-                txtTlfCli.setText(" ");
+                txtTlfCli.setText("");
+                return false;
+            }
+            try{
+                int i=Integer.parseInt(txtTlfCli.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this,  R.string.intTlfForm, Toast.LENGTH_SHORT).show();
+                txtTlfCli.requestFocus();
+                txtTlfCli.setText("");
                 return false;
             }
         }
@@ -676,12 +700,20 @@ public class Cliente extends AppCompatActivity {
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{10}");
-            boolean correcto = p.matcher(txtCuentaCli.getText()).matches();
+            boolean correcto = p.matcher(txtCuentaCli.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this,  R.string.intCuentaForm, Toast.LENGTH_SHORT).show();
 
                 txtCuentaCli.requestFocus();
-                txtCuentaCli.setText(" ");
+                txtCuentaCli.setText("");
+                return false;
+            }
+            try{
+                long i=Long.parseLong(txtCuentaCli.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this,  R.string.intCuentaForm, Toast.LENGTH_SHORT).show();
+                txtCuentaCli.requestFocus();
+                txtCuentaCli.setText("");
                 return false;
             }
         }

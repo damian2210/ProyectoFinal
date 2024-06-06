@@ -94,11 +94,11 @@ public class Empleado extends AppCompatActivity {
                 @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtCodEmp.getText().toString().isEmpty() == true || txtCodEmp.getText().toString() == null) {
+                    if (txtCodEmp.getText().toString().trim().isEmpty() == true || txtCodEmp.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codEmp = txtCodEmp.getText().toString();
+                    String codEmp = txtCodEmp.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
@@ -136,7 +136,7 @@ public class Empleado extends AppCompatActivity {
                                             txtContraEmp.setText(empleado.getContraseña());
                                             txtUsuarioEmp.setText(empleado.getUsuario());
                                             for (int i = 0; i < spin.getCount(); i++) {
-                                                if (spin.getItemAtPosition(i).toString().equals(empleado.getRol())) {
+                                                if (spin.getItemAtPosition(i).toString().trim().equals(empleado.getRol())) {
                                                     spin.setSelection(i);
                                                     break;
                                                 }
@@ -175,6 +175,7 @@ public class Empleado extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","empleado");
                 startActivity(ajustes);
                 finish();
             }
@@ -209,7 +210,7 @@ public class Empleado extends AppCompatActivity {
                 boolean correcto = validarEmp(txtCodEmp,txtDniEmp,txtTlfEmp,txtContraEmp,txtUsuarioEmp);
 
                 if (correcto == true) {
-                    String codEmp = txtCodEmp.getText().toString();
+                    String codEmp = txtCodEmp.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
@@ -248,7 +249,7 @@ public class Empleado extends AppCompatActivity {
                                     return;
                                 }
                                 String uri = Uri.parse(d.getUrl() + ":8080/empleado/comprobarUsuario").buildUpon()
-                                        .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString())
+                                        .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString().trim())
                                         .build().toString();
                                 Request request = new Request.Builder()
                                         .url(uri)
@@ -283,9 +284,10 @@ public class Empleado extends AppCompatActivity {
                                                 return;
                                             }
 
-                                            e=new ObjEmpleado(txtCodEmp.getText().toString(),txtDniEmp.getText().toString(),Integer.parseInt(txtTlfEmp.getText().toString()),spin.getSelectedItem().toString(),txtUsuarioEmp.getText().toString(),txtContraEmp.getText().toString());
+                                            e=new ObjEmpleado(txtCodEmp.getText().toString().trim(),txtDniEmp.getText().toString().trim(),Integer.parseInt(txtTlfEmp.getText().toString().trim()),spin.getSelectedItem().toString().trim(),txtUsuarioEmp.getText().toString().trim(),txtContraEmp.getText().toString().trim());
 
                                             insertarEmp( client,e);
+
 
                                         }else{
                                             runOnUiThread(new Runnable() {
@@ -325,7 +327,7 @@ public class Empleado extends AppCompatActivity {
                 boolean correcto = validarEmp(txtCodEmp,txtDniEmp,txtTlfEmp,txtContraEmp,txtUsuarioEmp);
 
                 if (correcto == true) {
-                    String codEmp = txtCodEmp.getText().toString();
+                    String codEmp = txtCodEmp.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
@@ -363,7 +365,7 @@ public class Empleado extends AppCompatActivity {
                                     return;
                                 }
                                 String uri = Uri.parse(d.getUrl() + ":8080/empleado/comprobarUsuario").buildUpon()
-                                        .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString())
+                                        .appendQueryParameter("usuario",txtUsuarioEmp.getText().toString().trim())
                                         .build().toString();
                                 Request request = new Request.Builder()
                                         .url(uri)
@@ -398,7 +400,7 @@ public class Empleado extends AppCompatActivity {
                                                 return;
                                             }
 
-                                            e=new ObjEmpleado(txtCodEmp.getText().toString(),txtDniEmp.getText().toString(),Integer.parseInt(txtTlfEmp.getText().toString()),spin.getSelectedItem().toString(),txtUsuarioEmp.getText().toString(),txtContraEmp.getText().toString());
+                                            e=new ObjEmpleado(txtCodEmp.getText().toString().trim(),txtDniEmp.getText().toString().trim(),Integer.parseInt(txtTlfEmp.getText().toString().trim()),spin.getSelectedItem().toString().trim(),txtUsuarioEmp.getText().toString().trim(),txtContraEmp.getText().toString().trim());
 
                                             modificarEmp(client,e);
 
@@ -440,7 +442,7 @@ public class Empleado extends AppCompatActivity {
                 boolean correcto = validarEmp(txtCodEmp,txtDniEmp,txtTlfEmp,txtContraEmp,txtUsuarioEmp);
 
                 if (correcto == true) {
-                    String codEmp = txtCodEmp.getText().toString();
+                    String codEmp = txtCodEmp.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/empleado/buscarEmpleado").buildUpon()
                             .appendQueryParameter("id", codEmp)
                             .build().toString();
@@ -557,6 +559,19 @@ public class Empleado extends AppCompatActivity {
 
     }
 
+
+    public void limpiarDatos(){
+        EditText txtCodEmp=findViewById(R.id.txtCodEmp);
+        EditText txtDniEmp=findViewById(R.id.txtDniEmp);
+        EditText txtTlfEmp=findViewById(R.id.txtTlfEmp);
+        EditText txtContraEmp=findViewById(R.id.txtContraEmp);
+        EditText txtUsuarioEmp=findViewById(R.id.txtUsuarioEmp);
+        txtCodEmp.setText("");
+        txtDniEmp.setText("");
+        txtTlfEmp.setText("");
+        txtContraEmp.setText("");
+        txtUsuarioEmp.setText("");
+    }
     public void insertarEmp( OkHttpClient client,ObjEmpleado empleado){
         datos d=getDatos();
         Gson gson = new Gson();
@@ -593,7 +608,7 @@ public class Empleado extends AppCompatActivity {
                             Toast.makeText(Empleado.this,  R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -693,7 +708,7 @@ public class Empleado extends AppCompatActivity {
                             Toast.makeText(Empleado.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -710,61 +725,73 @@ public class Empleado extends AppCompatActivity {
     }
 
     public boolean validarEmp(EditText txtCodEmp,EditText txtDniEmp,EditText txtTlfEmp, EditText txtContraEmp,EditText txtUsuarioEmp) {
-        if (txtCodEmp.getText().toString().isEmpty() == true||txtCodEmp.getText().toString()==null) {
+        if (txtCodEmp.getText().toString().trim().isEmpty() == true||txtCodEmp.getText().toString().trim()==null) {
             Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
             txtCodEmp.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^e\\d{2}$");
-            boolean correcto = p.matcher(txtCodEmp.getText()).matches();
+            boolean correcto = p.matcher(txtCodEmp.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intCodigoEmp, Toast.LENGTH_SHORT).show();
                 txtCodEmp.requestFocus();
-                txtCodEmp.setText(" ");
+                txtCodEmp.setText("");
                 return false;
             }
         }
-        if (txtContraEmp.getText().toString().isEmpty() == true||txtContraEmp.getText().toString()==null) {
-            Toast.makeText(this, R.string.intContra, Toast.LENGTH_SHORT).show();
-            txtContraEmp.requestFocus();
-            return false;
-        }
-
-        if (txtUsuarioEmp.getText().toString().isEmpty() == true||txtUsuarioEmp.getText().toString()==null) {
-            Toast.makeText(this, R.string.intUser, Toast.LENGTH_SHORT).show();
-            txtUsuarioEmp.requestFocus();
-            return false;
-        }
-        if (txtTlfEmp.getText().toString().trim().isEmpty() == true||txtTlfEmp.getText().toString()==null) {
-            Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
-            txtTlfEmp.requestFocus();
-            return false;
-        } else {
-            Pattern p = Pattern.compile("^\\d{9}");
-            boolean correcto = p.matcher(txtTlfEmp.getText()).matches();
-            if (correcto == false) {
-
-                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
-                txtTlfEmp.requestFocus();
-                txtTlfEmp.setText(" ");
-                return false;
-            }
-        }
-        if (txtDniEmp.getText().toString().isEmpty() == true||txtDniEmp.getText().toString()==null) {
+        if (txtDniEmp.getText().toString().trim().isEmpty() == true||txtDniEmp.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intDni, Toast.LENGTH_SHORT).show();
             txtDniEmp.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{8}[A-HJ-NP-TV-Z]$");
-            boolean correcto = p.matcher(txtDniEmp.getText()).matches();
+            boolean correcto = p.matcher(txtDniEmp.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intDniForm, Toast.LENGTH_SHORT).show();
                 txtDniEmp.requestFocus();
-                txtDniEmp.setText(" ");
+                txtDniEmp.setText("");
                 return false;
             }
         }
+        if (txtTlfEmp.getText().toString().trim().isEmpty() == true||txtTlfEmp.getText().toString().trim()==null) {
+            Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
+            txtTlfEmp.requestFocus();
+            return false;
+        } else {
+            Pattern p = Pattern.compile("^\\d{9}");
+            boolean correcto = p.matcher(txtTlfEmp.getText().toString().trim()).matches();
+            if (correcto == false) {
+
+                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
+                txtTlfEmp.requestFocus();
+                txtTlfEmp.setText("");
+                return false;
+            }
+            try{
+                int i =Integer.parseInt(txtTlfEmp.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
+                txtTlfEmp.requestFocus();
+                txtTlfEmp.setText("");
+                return false;
+            }
+        }
+
+        if (txtUsuarioEmp.getText().toString().trim().isEmpty() == true||txtUsuarioEmp.getText().toString().trim()==null) {
+            Toast.makeText(this, R.string.intUser, Toast.LENGTH_SHORT).show();
+            txtUsuarioEmp.requestFocus();
+            return false;
+        }
+        if (txtContraEmp.getText().toString().trim().isEmpty() == true||txtContraEmp.getText().toString().trim()==null) {
+            Toast.makeText(this, R.string.intContra, Toast.LENGTH_SHORT).show();
+            txtContraEmp.requestFocus();
+            return false;
+        }
+
+
+
+
         return true;
     }
     private datos getDatos(){
@@ -778,6 +805,8 @@ public class Empleado extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
 

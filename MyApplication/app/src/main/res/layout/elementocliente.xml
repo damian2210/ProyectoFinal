@@ -50,11 +50,10 @@
 
     <TextView
         android:id="@+id/verCliNumCuenta"
-        android:layout_width="199dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
 
-        android:layout_marginStart="6dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/verCliNombre"
-        app:layout_constraintTop_toBottomOf="@+id/verCliTLF" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verCliNombre" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -97,6 +97,7 @@ public class Gestion extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","gestion");
                 startActivity(ajustes);
                 finish();
             }
@@ -110,6 +111,7 @@ public class Gestion extends AppCompatActivity {
                     cambio=new Intent(v.getContext(),Sucursal.class);
                     cambio.putExtra("usuario",usuario2);
                     cambio.putExtra("rol",rol2);
+
                     startActivity(cambio);
                 }
 
@@ -189,6 +191,8 @@ public class Gestion extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
 
@@ -201,9 +205,11 @@ public class Gestion extends AppCompatActivity {
         Button Pro=findViewById(R.id.btnProdGest);
         Button Prest=findViewById(R.id.btnPrestGest);
         Button Vend=findViewById(R.id.btnVendGest);
+        Button salir=findViewById(R.id.btnSalirGest);
         TextView texto1=findViewById(R.id.textView6Gest);
 
         texto1.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
+        salir.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
         Suc.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
         Emp.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);
         Cli.setTextSize(TypedValue.COMPLEX_UNIT_SP, tamaño);

@@ -38,7 +38,7 @@ public class VenderAdaptador extends ArrayAdapter<ObjVender> {
         TextView codEmp=elemento.findViewById(R.id.verVendEmp);
         codEmp.setText("Cod.Emp:"+datos.get(position).getCodEmpleado().getCodEmpleado());
         TextView fecha=elemento.findViewById(R.id.verVendFecha);
-        fecha.setText(R.string.fechaVent+":"+datos.get(position).getFechaVenta().toString());
+        fecha.setText("Fecha de venta:"+datos.get(position).getFechaVenta().toString());
         return elemento;
     }
 }

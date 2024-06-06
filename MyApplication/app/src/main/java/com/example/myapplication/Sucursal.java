@@ -92,11 +92,11 @@ public class Sucursal extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
-                    if (txtcodSuc.getText().toString().isEmpty() == true || txtcodSuc.getText().toString() == null) {
+                    if (txtcodSuc.getText().toString().trim().isEmpty() == true || txtcodSuc.getText().toString().trim() == null) {
                         return;
                     }
                     datos d=getDatos();
-                    String codSuc = txtcodSuc.getText().toString();
+                    String codSuc = txtcodSuc.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
@@ -164,6 +164,7 @@ public class Sucursal extends AppCompatActivity {
                 Intent ajustes=new Intent(getBaseContext(), Config.class);
                 ajustes.putExtra("usuario",usuario2);
                 ajustes.putExtra("rol",rol2);
+                ajustes.putExtra("clase","sucursal");
                 startActivity(ajustes);
                 finish();
             }
@@ -198,7 +199,7 @@ public class Sucursal extends AppCompatActivity {
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
 
                 if (correcto == true) {
-                    String codSuc = txtcodSuc.getText().toString();
+                    String codSuc = txtcodSuc.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
@@ -236,9 +237,10 @@ public class Sucursal extends AppCompatActivity {
 
                                     return;
                                 }
-                                sucursal=new ObjSucursal(txtcodSuc.getText().toString(),txtdireccionSuc.getText().toString(),Integer.parseInt(txttlfSuc.getText().toString()));
+                                sucursal=new ObjSucursal(txtcodSuc.getText().toString().trim(),txtdireccionSuc.getText().toString().trim(),Integer.parseInt(txttlfSuc.getText().toString().trim()));
 
                                 insertarSucursal( client,sucursal);
+
 
                             }else{
                                 runOnUiThread(new Runnable() {
@@ -263,7 +265,7 @@ public class Sucursal extends AppCompatActivity {
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
 
                 if (correcto == true) {
-                    String codSuc = txtcodSuc.getText().toString();
+                    String codSuc = txtcodSuc.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
@@ -303,7 +305,7 @@ public class Sucursal extends AppCompatActivity {
                                     });
                                     return;
                                 }
-                                sucursal=new ObjSucursal(txtcodSuc.getText().toString(),txtdireccionSuc.getText().toString(),Integer.parseInt(txttlfSuc.getText().toString()));
+                                sucursal=new ObjSucursal(txtcodSuc.getText().toString().trim(),txtdireccionSuc.getText().toString().trim(),Integer.parseInt(txttlfSuc.getText().toString().trim()));
                                 modSucursal(client,sucursal);
                             }else{
                                 runOnUiThread(new Runnable() {
@@ -327,7 +329,7 @@ public class Sucursal extends AppCompatActivity {
                 datos d=getDatos();
                 boolean correcto = validarSuc(txtcodSuc,txttlfSuc,txtdireccionSuc);
                 if (correcto == true) {
-                    String codSuc = txtcodSuc.getText().toString();
+                    String codSuc = txtcodSuc.getText().toString().trim();
                     String uri = Uri.parse(d.getUrl() + ":8080/sucursal/buscarSucursal").buildUpon()
                             .appendQueryParameter("id", codSuc)
                             .build().toString();
@@ -407,6 +409,7 @@ public class Sucursal extends AppCompatActivity {
 
                                             borrarSucursal(client, sucursal);
 
+
                                         }else{
                                             runOnUiThread(new Runnable() {
                                                 @Override
@@ -439,6 +442,15 @@ public class Sucursal extends AppCompatActivity {
 
     }
 
+
+    public void limpiarDatos(){
+        EditText txtcodSuc=findViewById(R.id.txtCodSuc);
+        EditText txtdireccionSuc=findViewById(R.id.txtDirSuc);
+        EditText txttlfSuc=findViewById(R.id.txtTlfSuc);
+        txtcodSuc.setText("");
+        txttlfSuc.setText("");
+        txtdireccionSuc.setText("");
+    }
     public void insertarSucursal( OkHttpClient client,ObjSucursal sucursal){
         datos d=getDatos();
         Gson gson = new Gson();
@@ -475,7 +487,7 @@ public class Sucursal extends AppCompatActivity {
                             Toast.makeText(Sucursal.this, R.string.ins, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -574,7 +586,7 @@ public class Sucursal extends AppCompatActivity {
                             Toast.makeText(Sucursal.this, R.string.borrar, Toast.LENGTH_SHORT).show();
                         }
                     });
-
+                    limpiarDatos();
                 }else{
                     runOnUiThread(new Runnable() {
                         @Override
@@ -592,8 +604,9 @@ public class Sucursal extends AppCompatActivity {
 
     private boolean validarSuc(EditText txtcodSuc, EditText txttlfSuc,EditText txtDirSuc){
 
-        if (txtcodSuc.getText().toString().trim().isEmpty() == true || txtcodSuc.getText().toString()==null) {
+        if (txtcodSuc.getText().toString().trim().isEmpty() == true || txtcodSuc.getText().toString().trim()==null) {
             Toast.makeText(this, R.string.intCodigo, Toast.LENGTH_SHORT).show();
+            txtcodSuc.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^s\\d{2}$");
@@ -601,28 +614,39 @@ public class Sucursal extends AppCompatActivity {
             if (correcto == false) {
 
                 Toast.makeText(this, R.string.intCodigoSuc, Toast.LENGTH_SHORT).show();
-                txtcodSuc.setText(" ");
+                txtcodSuc.requestFocus();
+                txtcodSuc.setText("");
                 return false;
             }
         }
 
-        if (txtDirSuc.getText().toString().trim().isEmpty() == true || txtDirSuc.getText().toString()==null) {
+        if (txtDirSuc.getText().toString().trim().isEmpty() == true || txtDirSuc.getText().toString().trim()==null) {
+
             Toast.makeText(this, R.string.intDir, Toast.LENGTH_SHORT).show();
+            txtDirSuc.requestFocus();
             return false;
         }
 
-        if (txttlfSuc.getText().toString().trim().isEmpty() == true||txttlfSuc.getText().toString()==null) {
+        if (txttlfSuc.getText().toString().trim().isEmpty() == true||txttlfSuc.getText().toString().trim()==null) {
 
             Toast.makeText(this, R.string.intTlf, Toast.LENGTH_SHORT).show();
             txttlfSuc.requestFocus();
             return false;
         } else {
             Pattern p = Pattern.compile("^\\d{9}");
-            boolean correcto = p.matcher(txttlfSuc.getText().toString()).matches();
+            boolean correcto = p.matcher(txttlfSuc.getText().toString().trim()).matches();
             if (correcto == false) {
                 Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
                 txttlfSuc.requestFocus();
-                txttlfSuc.setText(" ");
+                txttlfSuc.setText("");
+                return false;
+            }
+            try{
+                int i =Integer.parseInt(txttlfSuc.getText().toString().trim());
+            }catch (NumberFormatException nfe){
+                Toast.makeText(this, R.string.intTlfForm, Toast.LENGTH_SHORT).show();
+                txttlfSuc.requestFocus();
+                txttlfSuc.setText("");
                 return false;
             }
         }
@@ -641,6 +665,8 @@ public class Sucursal extends AppCompatActivity {
         SQLiteDatabase bd=helper.getWritableDatabase();
         AjustesDAO ajustesDAO=new AjustesDAO();
         Ajustes a=ajustesDAO.obtenerAjusteSeleccionado(bd);
+        helper.close();
+        bd.close();
         return  a.getTamaño();
     }
     private void cambiarTamaño(){

@@ -90,4 +90,13 @@
     <string name="intInt">Tes que introducir o interese</string>
     <string name="intDir">Tes que introducir a dirección</string>
     <string name="intIntForm">O interese só poden ser números</string>
+    <string name="intPunt">Ten que introducir a puntuación</string>
+    <string name="intPuntForm">Formato de puntuación incorrecto (Formato correcto: tres letras)</string>
+    <string name="intCodigoProducto">Ten que introducir o código do produto</string>
+    <string name="intCodigoEmpleado">Ten que introducir o código da sucursal que recibe o préstamo</string>
+    <string name="intCodigoCliente">Ten que introducir o código da sucursal que recibe o préstamo</string>
+    <string name="intFechaVent">Ten que introducir a data de venda</string>
+    <string name="intFechaDev">Ten que introducir a data de devolución</string>
+    <string name="intFechaForm">Formato de data incorrecto (Formato correcto: aaaa-mm-dd)</string>
+
 </resources>
